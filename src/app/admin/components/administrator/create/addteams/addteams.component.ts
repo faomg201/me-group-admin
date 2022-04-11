@@ -13,6 +13,7 @@ export class AddteamsComponent implements OnInit {
   teamsForm = new FormGroup({
     teams_firstname: new FormControl(''),
     teams_lastname: new FormControl(''),
+    teams_mbti: new FormControl(''),
     teams_position: new FormControl(''),
     teams_contact: new FormControl(''),
     teams_img: new FormControl('')
@@ -49,6 +50,7 @@ export class AddteamsComponent implements OnInit {
   addTeams(){
     console.log(this.teamsForm.get('teams_firstname')?.value);
     console.log(this.teamsForm.get('teams_lastname')?.value);
+    console.log(this.teamsForm.get('teams_mbti')?.value);
     console.log(this.teamsForm.get('teams_position')?.value);
     console.log(this.teamsForm.get('teams_contact')?.value);
     console.log(this.teamsForm.get('teams_img')?.value);
@@ -59,14 +61,17 @@ export class AddteamsComponent implements OnInit {
     else if(!RegExp('^[ก-๙a-zA-Z]+$').test(this.teamsForm.get('teams_lastname')?.value)){
       alert('ใส่นามสกุลไม่ถูกต้อง กรุณากรอกใหม่')
     }
-    // if(!RegExp('^[\\]s+$').test(this.teamsForm.get('teams_position')?.value)) {
-    //   alert('กรุณาใส่ตำแหน่ง')
-    // }
+    else if(!RegExp('^[ก-๙a-zA-Z0-9\\s]+$').test(this.teamsForm.get('teams_mbti')?.value)) {
+      alert('กรุณาใส่ MBTI')
+    }
+    else if(!RegExp('^[ก-๙a-zA-Z0-9\\s]+$').test(this.teamsForm.get('teams_position')?.value)) {
+      alert('กรุณาใส่ตำแหน่ง')
+    }
     else if(!RegExp('^[ก-๙a-zA-Z0-9\\s]+$').test(this.teamsForm.get('teams_contact')?.value)){
       alert('กรุณากรอกข้อมูลการติดต่อ')
     }
     
-    // else if(!RegExp('^[ก-๙a-zA-Z0-9\\s]+$').test(this.teamsForm.get('teams_img')?.value)){
+    // else if(!RegExp("/.*\.(gif|jpe?g|bmp|png)$/igm").test(this.teamsForm.get('teams_img')?.value)){
     //   alert('กรุณาใส่รูปภาพ')
     // }
     else if(this.teamsForm.status == "INVALID"){

@@ -54,9 +54,9 @@ export class AddworkComponent implements OnInit {
     if(!RegExp('^[ก-๙a-zA-Z]+$').test(this.worksForm.get('works_name')?.value)) {
       alert('ใส่ชื่อผลงานไม่ถูกต้อง กรุณากรอกใหม่')
     }
-    // if(!RegExp('^[\\]s+$').test(this.teamsForm.get('works_type')?.value)) {
-    //   alert('กรุณาใส่ตำแหน่ง')
-    // }
+    else if(!RegExp('^[ก-๙a-zA-Z0-9\\s]+$').test(this.worksForm.get('works_type')?.value)) {
+      alert('กรุณาใส่ตำแหน่ง')
+    }
     else if(!RegExp('^[ก-๙a-zA-Z0-9\\s]+$').test(this.worksForm.get('works_detail')?.value)){
       alert('กรุณากรอกรายละเอียดผลงาน')
     }
