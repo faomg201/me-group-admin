@@ -10,16 +10,19 @@ import { HttpClientService} from '../../../../../shareds/_service/http-client.se
 export class AddworkComponent implements OnInit {
 
   file: any;
+  info: any
   worksForm = new FormGroup({
-    works_name: new FormControl(''),
-    works_type: new FormControl(''),
-    works_detail: new FormControl(''),
-    works_img: new FormControl('')
+    goal_title: new FormControl(''),
+    service_id: new FormControl(),
+    goal_detail: new FormControl(''),
+    goal_img: new FormControl('')
   });
 
   previewLoaded: boolean = false;
 
-  constructor(private addServ: HttpClientService) { }
+  constructor(private addServ: HttpClientService) { 
+    this.onLoading();
+  }
 
   ngOnInit(): void {
   }
@@ -28,7 +31,7 @@ export class AddworkComponent implements OnInit {
     if (e.target.files.length > 0) {
       const file = e.target.files[0];
       this.worksForm.patchValue({
-        works_img:file
+        goal_img:file
         })
       const reader = new FileReader();
       reader.readAsDataURL(file);
@@ -45,22 +48,37 @@ export class AddworkComponent implements OnInit {
     this.previewLoaded = false;
   }
 
-  addWorks(){
-    console.log(this.worksForm.get('works_name')?.value);
-    console.log(this.worksForm.get('works_type')?.value);
-    console.log(this.worksForm.get('works_detail')?.value);
-    console.log(this.worksForm.get('works_img')?.value);
+  onLoading(){    
+    try {
+      this.addServ.getServices(this.info).subscribe(        
+        data => {          
+        console.log(666666)       
+          this.info = data; 
+          console.log(this.info.data[1].service_name);
+        },err => {
+          console.log(err)
+        });
+    }catch (error){
+      console.log(error)
+    }  
+}
 
-    if(!RegExp('^[ก-๙a-zA-Z]+$').test(this.worksForm.get('works_name')?.value)) {
+  addWorks(){
+    console.log(this.worksForm.get('goal_title')?.value);
+    console.log(this.worksForm.get('service_id')?.value);
+    console.log(this.worksForm.get('goal_detail')?.value);
+    console.log(this.worksForm.get('goal_img')?.value);
+
+    if(!RegExp('^[ก-๙a-zA-Z]+$').test(this.worksForm.get('goal_title')?.value)) {
       alert('ใส่ชื่อผลงานไม่ถูกต้อง กรุณากรอกใหม่')
     }
-    else if(!RegExp('^[ก-๙a-zA-Z0-9\\s]+$').test(this.worksForm.get('works_type')?.value)) {
+    else if(!RegExp('^[ก-๙a-zA-Z0-9\\s]+$').test(this.worksForm.get('service_id')?.value)) {
       alert('กรุณาใส่ตำแหน่ง')
     }
-    else if(!RegExp('^[ก-๙a-zA-Z0-9\\s]+$').test(this.worksForm.get('works_detail')?.value)){
+    else if(!RegExp('^[ก-๙a-zA-Z0-9\\s]+$').test(this.worksForm.get('goal_detail')?.value)){
       alert('กรุณากรอกรายละเอียดผลงาน')
     }
-    // else if(!RegExp('^[ก-๙a-zA-Z0-9\\s]+$').test(this.worksForm.get('works_img')?.value)){
+    // else if(!RegExp('^[ก-๙a-zA-Z0-9\\s]+$').test(this.worksForm.get('goal_img')?.value)){
     //   alert('กรุณาใส่รูปภาพ')
     // }
     else if(this.worksForm.status == "INVALID"){
@@ -68,6 +86,7 @@ export class AddworkComponent implements OnInit {
     }
     else {
       alert('เพิ่มข้อมูลสำเร็จ')
+      console.log(this.worksForm.value)
       this.addServ.addWorks(this.worksForm.value).subscribe()
     }
   }

@@ -10,6 +10,9 @@ import { SharedsModule } from 'src/app/shareds/shareds.module';
 import { AddserviceComponent } from './create/addservice/addservice.component';
 import { AddworkComponent } from './create/addwork/addwork.component';
 import { AddteamsComponent } from './create/addteams/addteams.component';
+import { ListserviceComponent } from './list/listservice/listservice.component';
+import { ListworksComponent } from './list/listworks/listworks.component';
+import { ListteamsComponent } from './list/listteams/listteams.component';
 
 
 @NgModule({
@@ -19,7 +22,10 @@ import { AddteamsComponent } from './create/addteams/addteams.component';
     ListComponent,
     AddserviceComponent,
     AddworkComponent,
-    AddteamsComponent
+    AddteamsComponent,
+    ListserviceComponent,
+    ListworksComponent,
+    ListteamsComponent
   ],
   imports: [
     CommonModule,

@@ -14,7 +14,7 @@
                   type="text"
                   aria-label="First name"
                   class="form-control"
-                  formControlName="works_name"
+                  formControlName="goal_title"
                 />
               </div>
             </div>
@@ -24,16 +24,13 @@
               <div class="col-md-2"></div>
               <div class="col-md-7">
                 <div class="form-floating">
-                  <select
-                    class="form-select"
-                    id="floatingSelect"
-                    aria-label="Floating label select example"
-                    formControlName="works_type"
-                  >
-                    <option selected>เลือกประเภทบริการ</option>
-                    <option value="1">One</option>
-                    <option value="2">Two</option>
-                    <option value="3">Three</option>
+                  <select class="form-select" formControlName="service_id">
+                    <option
+                      *ngFor="let item of info.data; let i = index"
+                      value="{{ i+1 }}"
+                    >
+                      {{ item.service_name }}
+                    </option>
                   </select>
                   <label for="floatingSelect">ประเภทบริการ</label>
                 </div>
@@ -50,7 +47,7 @@
                     placeholder="Leave a comment here"
                     id="floatingTextarea2"
                     style="height: 100px"
-                    formControlName="works_detail"
+                    formControlName="goal_detail"
                   ></textarea>
                   <label for="floatingTextarea2">รายละเอียดผลงาน</label>
                 </div>
@@ -64,7 +61,12 @@
                 <label for="formFile" class="form-label texxx111xx"
                   >รูปผลงาน</label
                 >
-                <input class="form-control" type="file" id="formFile" (change)="onChangePhoto($event)"/>
+                <input
+                  class="form-control"
+                  type="file"
+                  id="formFile"
+                  (change)="onChangePhoto($event)"
+                />
               </div>
             </div>
           </div>

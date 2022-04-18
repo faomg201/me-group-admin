@@ -12,21 +12,46 @@ export class HttpClientService {
   constructor(private http: HttpClient) { }
 
   addService(info : any){
-    return this.http.post<any>('http://0de8-183-88-7-39.ngrok.io/services', info)
+    return this.http.post<any>('http://localhost:8000/services', info)
     .pipe(map(data => {
       return data;
     }));
   }
   addTeams(info : any){
-    return this.http.post<any>('http://192.168.1.93:8000/teams', info)
+    return this.http.post<any>('http://localhost:8000/', info)
     .pipe(map(data => {
       return data;
     }));
   }
   addWorks(info : any){
-    return this.http.post<any>('http://192.168.1.93:8000/works', info)
+    return this.http.post<any>('http://localhost:8000/goals', info)
     .pipe(map(data => {
+      console.log(this.info);
       return data;
+    }));
+  }
+
+
+  getServices(info: any){
+    return this.http.get<any>('http://localhost:8000/services',info)
+    .pipe(map(data => {
+      if (data) {
+        this.info = data;
+        console.log(this.info);
+        console.log(this.info.data);
+      }
+      return this.info;
+    }));
+  }
+
+  getWorks(info: any){
+    return this.http.get<any>('http://localhost:8000/goals',info)
+    .pipe(map(data => {
+      if (data) {
+        this.info = data;
+        console.log(this.info.data);
+      }
+      return this.info;
     }));
   }
 
