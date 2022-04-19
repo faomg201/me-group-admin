@@ -16,6 +16,7 @@
             <td>{{item.service_name}}</td>
             <td>{{item.service_detail}}</td>
             <td width="300"><img [src]="item.service_img" style="width: 150px"></td>
+            <td><button class="btn btn-primary" (click)="delServ(item.id)">Delete</button></td>
           </tr>
         </tbody>
       </table>

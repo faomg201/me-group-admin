@@ -12,12 +12,13 @@
         </thead>
         <tbody align="center" >
           <tr *ngFor="let item of info.data; let i = index" class="align-middle">
-            <td>{{item.id}}</td>
+            <td>{{item.goal_id}}</td>
             <td>{{item.created_at}}</td>
             <td>{{item.goal_title}}</td>
             <td>{{item.goal_detail}}</td>
             <td width="300"><img [src]="item.goal_img" style="width: 150px"></td>
             <td>{{item.service_name}}</td>
+            <td><button class="btn btn-primary" (click)="delWorks(item.goal_id)">Delete</button></td>
           </tr>
         </tbody>
       </table>
