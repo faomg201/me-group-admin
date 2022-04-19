@@ -19,6 +19,7 @@ export class ListserviceComponent implements OnInit {
       this.addServ.getServices(this.info).subscribe(
         (data) => {
           console.log(666666);
+          console.warn('data',data);
           this.info = data;
         },
         (err) => {
@@ -28,5 +29,21 @@ export class ListserviceComponent implements OnInit {
     } catch (error) {
       console.log(error);
     }
+  }
+  delServ(id : any){
+    // console.log(id)
+    // console.log(this.infoForm.get('id')?.value);
+    try {
+      this.addServ.delServices(this,id).subscribe(
+        data => {
+          this.info = data;
+          this.Loadservice()
+          console.log(this.info)
+        },err => {
+          console.log(err)
+        });
+    }catch (error){
+      console.log(error)
+    }    
   }
 }

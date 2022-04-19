@@ -18,7 +18,6 @@ export class ListworksComponent implements OnInit {
     try {
       this.addServ.getWorks(this.info).subscribe(
         (data) => {
-          console.log(777);
           this.info = data;
         },
         (err) => {
@@ -28,6 +27,23 @@ export class ListworksComponent implements OnInit {
     } catch (error) {
       console.log(error);
     }
+  }
+
+  delWorks(goal_id : any){
+    // console.log(goal_id)
+    // console.log(this.infoForm.get('goal_id')?.value);
+    try {
+      this.addServ.delWorks(this,goal_id).subscribe(
+        data => {
+          this.info = data;
+          this.Loadworks()
+          console.log(this.info)
+        },err => {
+          console.log(err)
+        });
+    }catch (error){
+      console.log(error)
+    }    
   }
 
 }

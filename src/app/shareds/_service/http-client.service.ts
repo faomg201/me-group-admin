@@ -55,4 +55,14 @@ export class HttpClientService {
     }));
   }
 
+  delServices(token: any,id :any){
+    console.log(id)
+    return this.http.delete<any>('http://localhost:8000/services/'+id)
+  }
+
+  delWorks(token: any,goal_id :any){
+    console.log(goal_id)
+    return this.http.delete<any>('http://localhost:8000/goals/'+goal_id)
+  }
+
 }
