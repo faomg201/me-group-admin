@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClientService} from '../../../../../shareds/_service/http-client.service'
 import { Router } from '@angular/router';
 import { first } from 'rxjs';
-
 import { FormControl, FormGroup} from '@angular/forms';
 
 @Component({
@@ -14,6 +13,8 @@ export class ListworksComponent implements OnInit {
   infoServ:any;
   infoWork:any;
   file: any;  
+  p : number = 1
+  
   worksForm = new FormGroup({
     goal_title: new FormControl(''),
     service_id: new FormControl(),
@@ -45,10 +46,14 @@ export class ListworksComponent implements OnInit {
     }
   }  
 
-  resetFrom() {
-    this.worksForm.reset();
-    this.previewLoaded = false;
+  reLoading(){
+    this.getWorks()
   }
+
+  // resetFrom() {
+  //   this.worksForm.reset();
+  //   this.previewLoaded = false;
+  // }
 
   onLoading(){    
     try {
@@ -63,7 +68,7 @@ export class ListworksComponent implements OnInit {
     }  
 }
 
-addWorks(){
+createWorks(){
   console.log(this.worksForm.get('goal_title')?.value);
   console.log(this.worksForm.get('service_id')?.value);
   console.log(this.worksForm.get('goal_detail')?.value);
@@ -88,7 +93,7 @@ addWorks(){
     alert('เพิ่มข้อมูลสำเร็จ')
     console.log(this.worksForm.value)
     this.http.createData('/goals',this.worksForm.value).pipe(first()).subscribe()
-    
+    window.location.reload();
   }
 }
 

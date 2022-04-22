@@ -7,13 +7,15 @@
           <div class="col-md-10">
             <h3>บริการ</h3>
           </div>
-          <div class="col-md-2">
-            <a
-              href="admin/administrator/addservice"
+          <div class="col-md-2" align="center">
+            <button
               type="button"
-              class="btn btn-block btn-info"
-              >เพิ่มข้อมูล</a
+              class="btn btn-default"
+              data-toggle="modal"
+              data-target="#modal-default"
             >
+              เพิ่มข้อมูล
+            </button>
           </div>
         </div>
       </div>
@@ -31,7 +33,7 @@
           <tbody align="center">
             <tr
               *ngFor="
-                let item of info | paginate: { itemsPerPage: 3, currentPage: p }
+                let item of info | paginate: { itemsPerPage: 5, currentPage: p }
               "
             >
               <td>{{ item.id }}</td>
@@ -46,7 +48,10 @@
                 />
               </td>
               <td>
-                <button class="btn btn-primary" (click)="deleteService(item.id)">
+                <button
+                  class="btn btn-primary"
+                  (click)="deleteService(item.id)"
+                >
                   Delete
                 </button>
               </td>
@@ -65,7 +70,9 @@
       <div class="card-footer clearfix">
         <ul class="pagination pagination-sm m-0 float-right">
           <div>
-            <pagination-controls (pageChange)="p = $event"></pagination-controls>
+            <pagination-controls
+              (pageChange)="p = $event"
+            ></pagination-controls>
           </div>
         </ul>
       </div>
@@ -73,3 +80,95 @@
     <!-- /.card -->
   </div>
 </app-content>
+
+<div class="modal fade" id="modal-default">
+  <div class="modal-dialog modal-xl">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title textHead">เพิ่มบริการ</h4>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+          (click)="ngOnInit()"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="row-md-12">
+          <form [formGroup]="serviceForm">
+            <div class="card-body">
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="mb-3">
+                    <label>ชื่อบริการ</label>
+                    <input
+                      type="text"
+                      aria-label="First name"
+                      class="form-control"
+                      formControlName="service_name"
+                    />
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="mb-3">
+                    <label class="form-label texxx111xx">รูปบริการ</label>
+                    <input
+                      class="form-control"
+                      type="file"
+                      (change)="onChangePhoto($event)"
+                    />
+                  </div>
+                  <div class="col-md-12">
+                    <div class="row">
+                      <div class="col-md-2"></div>
+                      <div class="col-md-7 bg">
+                        <img
+                          *ngIf="previewLoaded"
+                          class="img-thumbnail"
+                          [src]="file"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="mb-3">
+                    <label>รายละเอียดบริการ</label>
+                    <textarea
+                      class="form-control"
+                      formControlName="service_detail"
+                      placeholder="Leave a comment here"
+                      id="floatingTextarea2"
+                      style="height: 100px"
+                    ></textarea>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="modal-footer justify-content-between">
+        <button
+          type="button"
+          class="btn btn-default"
+          data-dismiss="modal"
+          (click)="ngOnInit()"
+        >
+          Close
+        </button>
+        <input
+          class="btn padding3 btn-light elevation-3"
+          type="submit"
+          value="Submit"
+          (click)="createService()"
+        />
+      </div>
+    </div>
+    <!-- /.modal-content -->
+  </div>
+  <!-- /.modal-dialog -->
+</div>
