@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup} from '@angular/forms';
 import { HttpClientService} from '../../../../../shareds/_service/http-client.service'
+import { first } from 'rxjs';
 
 @Component({
   selector: 'app-addservice',
@@ -17,7 +18,7 @@ export class AddserviceComponent implements OnInit {
 
   previewLoaded: boolean = false;
 
-  constructor(private addServ: HttpClientService) { }
+  constructor(private http: HttpClientService) { }
 
   ngOnInit(): void {
   }
@@ -43,7 +44,8 @@ export class AddserviceComponent implements OnInit {
     this.previewLoaded = false;
   }
 
-  addService(){
+
+  createService(){
     console.log(this.serviceForm.get('service_name')?.value);
     console.log(this.serviceForm.get('service_detail')?.value);
     console.log(this.serviceForm.get('service_img')?.value);
@@ -62,7 +64,7 @@ export class AddserviceComponent implements OnInit {
     }
     else {
       alert('เพิ่มข้อมูลสำเร็จ')
-      this.addServ.addService(this.serviceForm.value).subscribe()
+      this.http.createData('/services',this.serviceForm.value).pipe(first()).subscribe()
     }
   }
 

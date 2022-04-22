@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup} from '@angular/forms';
+import { first } from 'rxjs';
 import { HttpClientService} from '../../../../../shareds/_service/http-client.service'
 
 @Component({
@@ -8,9 +9,8 @@ import { HttpClientService} from '../../../../../shareds/_service/http-client.se
   styleUrls: ['./addwork.component.css']
 })
 export class AddworkComponent implements OnInit {
-
-  file: any;
   info: any
+  file: any;  
   worksForm = new FormGroup({
     goal_title: new FormControl(''),
     service_id: new FormControl(),
@@ -20,7 +20,7 @@ export class AddworkComponent implements OnInit {
 
   previewLoaded: boolean = false;
 
-  constructor(private addServ: HttpClientService) { 
+  constructor(private http: HttpClientService) { 
     this.onLoading();
   }
 
@@ -50,14 +50,12 @@ export class AddworkComponent implements OnInit {
 
   onLoading(){    
     try {
-      this.addServ.getServices(this.info).subscribe(        
-        data => {          
-        console.log(666666)       
-          this.info = data; 
-          console.log(this.info.data[1].service_name);
-        },err => {
-          console.log(err)
-        });
+       this.http.getData('/services').pipe(first()).subscribe((response:any) => {
+      console.log(response)
+      if (response.status == true){
+        this.info = response.data
+      }
+    });
     }catch (error){
       console.log(error)
     }  
@@ -87,7 +85,8 @@ export class AddworkComponent implements OnInit {
     else {
       alert('เพิ่มข้อมูลสำเร็จ')
       console.log(this.worksForm.value)
-      this.addServ.addWorks(this.worksForm.value).subscribe()
+      this.http.createData('/goals',this.worksForm.value).pipe(first()).subscribe()
+      
     }
   }
 

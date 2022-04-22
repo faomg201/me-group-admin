@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClientService } from '../../../../../shareds/_service/http-client.service';
+import { Router } from '@angular/router';
+import { first } from 'rxjs';
 
 @Component({
   selector: 'app-listservice',
@@ -7,43 +9,54 @@ import { HttpClientService } from '../../../../../shareds/_service/http-client.s
   styleUrls: ['./listservice.component.css'],
 })
 export class ListserviceComponent implements OnInit {
-  info: any;
-  constructor(private addServ: HttpClientService) {}
+  info: any
+  data: Array<any>
+  totalRecord: number|any
+  page: number=1 
+  p : number = 1
+
+  constructor(private http: HttpClientService, private _router: Router) {
+    this.data = new Array<any>()
+    
+  }
 
   ngOnInit(): void {
-    this.Loadservice();
+    this.getService();
+    
   }
 
-  Loadservice() {
-    try {
-      this.addServ.getServices(this.info).subscribe(
-        (data) => {
-          console.log(666666);
-          console.warn('data',data);
-          this.info = data;
-        },
-        (err) => {
-          console.log(err);
-        }
-      );
-    } catch (error) {
-      console.log(error);
-    }
+  onClick(ServID: number){
+    this._router.navigate(['admin/administrator/editservice', ServID]);
   }
-  delServ(id : any){
-    // console.log(id)
-    // console.log(this.infoForm.get('id')?.value);
-    try {
-      this.addServ.delServices(this,id).subscribe(
-        data => {
-          this.info = data;
-          this.Loadservice()
-          console.log(this.info)
-        },err => {
-          console.log(err)
-        });
-    }catch (error){
-      console.log(error)
-    }    
+
+  getService(){
+    this.http.getData('/services').pipe(first()).subscribe((response:any) => {
+      console.log(response)
+      if (response.status == true){
+        this.info = response.data
+      }
+    },
+    (error) =>{
+      const response = error.error
+      if(response.status == 500){
+        alert('Failed cant Get Data');
+      }
+    })
+  }
+  deleteService(id : any){
+    this.http.removeData('/services/'+id).pipe(first()).subscribe((response:any) => {
+      console.log(response) 
+      if(response.status ==true ){
+        console.log(this.info)
+        this.info = response.data
+        this.getService()
+      }     
+    },
+    (error) => {
+      const response = error.error
+      if(response.status == 500){
+        alert('can not Delete Data');
+      }
+    })
   }
 }

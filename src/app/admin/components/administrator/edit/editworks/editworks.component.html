@@ -1,0 +1,80 @@
+<app-content>
+    <div class="container layout" align="center">
+        <div class="row-md-12">
+          <div class="col-md-9 padding2"><h1 class="textHead">ผลงาน</h1></div>
+          <div class="col-md-9">
+            <form [formGroup]="worksForm">
+              <div class="col-md-12">
+                <div class="row padding1">
+                  <div class="col-md-2">
+                    <span class="input-group-text texxxxx">ชื่อผลงาน</span>
+                  </div>
+                  <div class="col-md-7">
+                    <input
+                      type="text"
+                      aria-label="First name"
+                      class="form-control"
+                      formControlName="goal_title"
+                      value="{{ info.data.goal_title}}"
+                    />
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-12">
+                <div class="row padding1">
+                  <div class="col-md-2"></div>
+                  <div class="col-md-7">
+                    <input class="form-control" type="text" value="{{ info.data.service_name}}" aria-label="Disabled input example" disabled readonly>
+                    
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-12">
+                <div class="row padding1">
+                  <div class="col-md-2"></div>
+                  <div class="col-md-7">
+                    <div class="form-floating">
+                      <textarea
+                        class="form-control"
+                        placeholder="Leave a comment here"
+                        id="floatingTextarea2"
+                        style="height: 100px"
+                        formControlName="goal_detail"
+                        value="{{ info.data.goal_detail }}"
+                      ></textarea>
+                      <label for="floatingTextarea2">รายละเอียดผลงาน</label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </form>
+            <div class="col-md-12">
+              <div class="row">
+                <div class="col-md-2"></div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-12">
+            <div class="row padding2">
+              <div class="col-md-4"></div>
+              <div class="col-md-6">
+                <input
+                  class="btn padding3 btn-light elevation-3"
+                  type="submit"
+                  value="Submit"
+                  (click)="editWorks()"
+                />
+    
+                <input
+                  class="btn padding4 btn-light elevation-3"
+                  type="submit"
+                  value="Back"
+                  routerLink="/admin/administrator/listworks"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+</app-content>
+

@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NgxPaginationModule }from 'ngx-pagination';
 
 import { AdministratorRoutingModule } from './administrator-routing.module';
 import { CreateComponent } from './create/create.component';
@@ -13,6 +14,8 @@ import { AddteamsComponent } from './create/addteams/addteams.component';
 import { ListserviceComponent } from './list/listservice/listservice.component';
 import { ListworksComponent } from './list/listworks/listworks.component';
 import { ListteamsComponent } from './list/listteams/listteams.component';
+import { EditserviceComponent } from './edit/editservice/editservice.component';
+import { EditworksComponent } from './edit/editworks/editworks.component';
 
 
 @NgModule({
@@ -25,14 +28,17 @@ import { ListteamsComponent } from './list/listteams/listteams.component';
     AddteamsComponent,
     ListserviceComponent,
     ListworksComponent,
-    ListteamsComponent
+    ListteamsComponent,
+    EditserviceComponent,
+    EditworksComponent
   ],
   imports: [
     CommonModule,
     AdministratorRoutingModule,
     SharedsModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgxPaginationModule
   ]
 })
 export class AdministratorModule { }

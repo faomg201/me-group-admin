@@ -26,8 +26,8 @@
                 <div class="form-floating">
                   <select class="form-select" formControlName="service_id">
                     <option
-                      *ngFor="let item of info.data; let i = index"
-                      value="{{ i+1 }}"
+                      *ngFor="let item of info; let i = index"
+                      value="{{ item.id }}"
                     >
                       {{ item.service_name }}
                     </option>

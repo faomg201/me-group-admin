@@ -9,60 +9,37 @@ import { map } from 'rxjs/operators';
 export class HttpClientService {
   serveURl = environment.apiUrl;
   info: any;
+  apiService = 'http://localhost:8000/services';
+  apiWorks = 'http://localhost:8000/goals';
+  
+
   constructor(private http: HttpClient) { }
 
-  addService(info : any){
-    return this.http.post<any>('http://localhost:8000/services', info)
-    .pipe(map(data => {
-      return data;
-    }));
+  getData(path:any){
+    console.log(path);
+    console.log(this.serveURl+path);
+    
+    return this.http.get(this.serveURl+path)
   }
-  addTeams(info : any){
-    return this.http.post<any>('http://localhost:8000/', info)
-    .pipe(map(data => {
-      return data;
-    }));
-  }
-  addWorks(info : any){
-    return this.http.post<any>('http://localhost:8000/goals', info)
-    .pipe(map(data => {
-      console.log(this.info);
-      return data;
-    }));
+  createData(path:any, data:any){
+    return this.http.post(this.serveURl+path, data)
   }
 
-
-  getServices(info: any){
-    return this.http.get<any>('http://localhost:8000/services',info)
-    .pipe(map(data => {
-      if (data) {
-        this.info = data;
-        console.log(this.info);
-        console.log(this.info.data);
-      }
-      return this.info;
-    }));
+  updateData(path:any, data:any){
+    return this.http.put(this.serveURl+path, data)
   }
 
-  getWorks(info: any){
-    return this.http.get<any>('http://localhost:8000/goals',info)
-    .pipe(map(data => {
-      if (data) {
-        this.info = data;
-        console.log(this.info.data);
-      }
-      return this.info;
-    }));
+  removeData(path:any){
+    return this.http.delete(this.serveURl+path
+    //   ,{
+    //   headers:{
+    //     'Content-Type': 'application/json'
+    //   },
+    //   withCredentials:true,
+    // }
+    );
   }
 
-  delServices(token: any,id :any){
-    console.log(id)
-    return this.http.delete<any>('http://localhost:8000/services/'+id)
-  }
-
-  delWorks(token: any,goal_id :any){
-    console.log(goal_id)
-    return this.http.delete<any>('http://localhost:8000/goals/'+goal_id)
-  }
+  // http://localhost:8000/static/turtle.jpeg
 
 }
