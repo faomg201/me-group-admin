@@ -1,23 +1,75 @@
 <app-content>
-    <table class="table table-striped table-hover" >
-        <thead align="center">
-          <tr>
-            <th scope="col">id</th>
-            <th scope="col">created_at</th>
-            <th scope="col">service_name</th>
-            <th scope="col">service_detail</th>
-            <th scope="col">service_img</th>
-          </tr>
-        </thead>
-        <tbody align="center" >
-          <tr *ngFor="let item of info.data; let i = index" class="align-middle">
-            <td>{{item.id}}</td>
-            <td>{{item.created_at}}</td>
-            <td>{{item.service_name}}</td>
-            <td>{{item.service_detail}}</td>
-            <td width="300"><img [src]="item.service_img" style="width: 150px"></td>
-            <td><button class="btn btn-primary" (click)="delServ(item.id)">Delete</button></td>
-          </tr>
-        </tbody>
-      </table>
+  <br />
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-header">
+        <div class="row">
+          <div class="col-md-10">
+            <h3>บริการ</h3>
+          </div>
+          <div class="col-md-2">
+            <a
+              href="admin/administrator/addservice"
+              type="button"
+              class="btn btn-block btn-info"
+              >เพิ่มข้อมูล</a
+            >
+          </div>
+        </div>
+      </div>
+      <!-- /.card-header -->
+      <div class="card-body">
+        <table class="table">
+          <thead>
+            <tr align="center">
+              <th style="width: 10px">id</th>
+              <th style="width: 220px">created_at</th>
+              <th style="width: 150px">ชื่อบริการ</th>
+              <th style="width: 500px">รายละเอียดบริการ</th>
+            </tr>
+          </thead>
+          <tbody align="center">
+            <tr
+              *ngFor="
+                let item of info | paginate: { itemsPerPage: 3, currentPage: p }
+              "
+            >
+              <td>{{ item.id }}</td>
+              <td>{{ item.created_at }}</td>
+              <td>{{ item.service_name }}</td>
+              <td>{{ item.service_detail }}</td>
+
+              <td width="300">
+                <img
+                  src="http://localhost:8000/static/turtle.jpeg"
+                  style="width: 150px"
+                />
+              </td>
+              <td>
+                <button class="btn btn-primary" (click)="deleteService(item.id)">
+                  Delete
+                </button>
+              </td>
+              <td>
+                <a
+                  class="btn btn-outline-secondary pull-right pontterCursor"
+                  (click)="onClick(item.id)"
+                  >Edit</a
+                >
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <!-- /.card-body -->
+      <div class="card-footer clearfix">
+        <ul class="pagination pagination-sm m-0 float-right">
+          <div>
+            <pagination-controls (pageChange)="p = $event"></pagination-controls>
+          </div>
+        </ul>
+      </div>
+    </div>
+    <!-- /.card -->
+  </div>
 </app-content>

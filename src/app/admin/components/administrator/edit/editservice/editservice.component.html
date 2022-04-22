@@ -1,0 +1,72 @@
+<app-content>
+    <div class="container layout" align="center">
+      <div class="row-md-12">
+        <div class="col-md-9 padding2"><h1 class="textHead">บริการ</h1></div>
+        <div class="col-md-9">
+          <form [formGroup]="serviceForm">
+            <div class="col-md-12">
+              <div class="row padding1">
+                <div class="col-md-2">
+                  <span class="input-group-text texxxxx">ชื่อบริการ</span>
+                </div>
+                <div class="col-md-7">
+                  <input
+                    type="text"
+                    aria-label="First name"
+                    class="form-control"
+                    formControlName="service_name"
+                    value="{{ info.data.service_name }}"
+                  />
+                </div>
+              </div>
+            </div>
+            <div class="col-md-12">
+              <div class="row padding1">
+                <div class="col-md-2"></div>
+                <div class="col-md-7">
+                  <div class="form-floating">
+                    <textarea
+                      class="form-control"
+                      formControlName="service_detail"
+                      placeholder="Leave a comment here"
+                      id="floatingTextarea2"
+                      style="height: 100px"
+                      value="{{ info.data.service_detail }}"
+                    ></textarea>
+                    <label for="floatingTextarea2">รายละเอียดบริการ</label>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </form>
+          <div class="col-md-12">
+            <div class="row">
+              <div class="col-md-2"></div>
+            </div>
+          </div>
+        </div>
+  
+        <div class="col-md-12">
+          <div class="row padding2">
+            <div class="col-md-4"></div>
+            <div class="col-md-6">
+              <input
+                class="btn padding3 btn-light elevation-3"
+                type="submit"
+                value="Submit"
+                (click)="updateService()"
+              />
+  
+              <input
+                class="btn padding4 btn-light elevation-3"
+                type="submit"
+                value="Back"
+                routerLink="/admin/administrator/listservices"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </app-content>
+  

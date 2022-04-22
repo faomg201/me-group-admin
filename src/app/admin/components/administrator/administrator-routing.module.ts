@@ -9,6 +9,8 @@ import { AddteamsComponent } from './create/addteams/addteams.component';
 import { ListserviceComponent } from './list/listservice/listservice.component';
 import { ListworksComponent } from './list/listworks/listworks.component';
 import { ListteamsComponent } from './list/listteams/listteams.component';
+import { EditserviceComponent } from './edit/editservice/editservice.component';
+import { EditworksComponent } from './edit/editworks/editworks.component';
 
 
 const routes: Routes = [
@@ -22,6 +24,8 @@ const routes: Routes = [
   {path: 'list', component: ListComponent},
   {path: 'create', component: CreateComponent},
   {path: 'edit/:id', component: EditComponent},
+  {path: 'editservice/:id', component: EditserviceComponent},
+  {path: 'editworks/:id', component: EditworksComponent},
 
 ];
 

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup} from '@angular/forms';
+import { first } from 'rxjs';
 import { HttpClientService} from '../../../../../shareds/_service/http-client.service'
 
 @Component({
@@ -21,7 +22,7 @@ export class AddteamsComponent implements OnInit {
 
   previewLoaded: boolean = false;
 
-  constructor(private addServ: HttpClientService) { }
+  constructor(private http: HttpClientService) { }
 
   ngOnInit(): void {
   }
@@ -79,7 +80,7 @@ export class AddteamsComponent implements OnInit {
     }
     else {
       alert('เพิ่มข้อมูลสำเร็จ')
-      this.addServ.addTeams(this.teamsForm.value).subscribe()
+      this.http.createData('/employee',this.teamsForm.value).pipe(first()).subscribe()
     }
   }
 
