@@ -1,0 +1,162 @@
+<app-content>
+    <div class="card">
+        <div class="card-header">
+          <h3 class="card-title">ติดต่อของเรา</h3>
+        </div>
+        <!-- /.card-header -->
+        <div class="card-body p-0">
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th style="width: 150px">เบอร์ติดต่อ</th>
+                <th>ที่อยู่</th>
+                <th>ที่อยู่ Google map</th>
+                <th>เวลาทำการ</th>
+                <th>ชื่อผู้เสียภาษี</th>
+                <th>link facebook messenger</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>2.</td>
+                <td>2.</td>
+                <td>2.</td>
+                <td>Clean database</td>
+                <td>
+                  <div class="progress progress-xs">
+                    <div class="progress-bar bg-warning" style="width: 70%"></div>
+                  </div>
+                </td>
+                <td><span class="badge bg-warning">70%</span></td>
+                <td style="width: 10px">
+                  <a 
+                   class="btn btn-danger" type="button"                  
+                  data-toggle="modal"
+                  data-target="#modal-default"><i class="fas fa-edit"></i></a>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <!-- /.card-body -->
+      </div>
+</app-content>
+<div class="modal fade" id="modal-default">
+  <div class="modal-dialog modal-xl">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title textHead">เพิ่มบริการ</h4>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+          (click)="ngOnInit()"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="row-md-12">
+          <form >
+            <div class="card-body">
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="mb-3">
+                    <label>เบอร์ติดต่อ</label>
+                    <input
+                      type="text"
+                      aria-label="First name"
+                      class="form-control"
+                      formControlName="service_name"
+                    />
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="mb-3">
+                    <label>ชื่อผู้เสียภาษี</label>
+                    <input
+                      type="text"
+                      aria-label="First name"
+                      class="form-control"
+                      formControlName="service_name"
+                    />
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="mb-3">
+                    <label>ที่อยู่</label>
+                    <textarea
+                      class="form-control"
+                      formControlName="service_detail"
+                      placeholder="Leave a comment here"
+                      id="floatingTextarea2"
+                      style="height: 100px"
+                    ></textarea>
+                  </div>
+                  <div class="col-md-12">
+                    <div class="row">
+                      <div class="col-md-2"></div>
+                      <div class="col-md-7 bg">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="mb-3">
+                    <label>ที่อยู่ Google map</label>
+                    <textarea
+                      class="form-control"
+                      formControlName="service_detail"
+                      placeholder="Leave a comment here"
+                      id="floatingTextarea2"
+                      style="height: 100px"
+                    ></textarea>
+                  </div>
+                </div>
+                <div class="col-md-12">
+                  <div class="mb-3">
+                    <label>เวลาทำการ</label>
+                    <input
+                      type="text"
+                      aria-label="First name"
+                      class="form-control"
+                      formControlName="service_name"
+                    />
+                  </div>
+                  <div class="mb-3">
+                    <label>link facebook messenger</label>
+                    <input
+                      type="text"
+                      aria-label="First name"
+                      class="form-control"
+                      formControlName="service_name"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="modal-footer justify-content-between">
+        <button
+          type="button"
+          class="btn btn-default"
+          data-dismiss="modal"
+          (click)="ngOnInit()"
+        >
+          Close
+        </button>
+        <input
+          class="btn padding3 btn-light elevation-3"
+          type="submit"
+          value="Submit"
+        />
+      </div>
+    </div>
+    <!-- /.modal-content -->
+  </div>
+  <!-- /.modal-dialog -->
+</div>

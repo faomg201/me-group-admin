@@ -3,6 +3,7 @@ import { HttpClientService } from '../../../../../shareds/_service/http-client.s
 import { Router } from '@angular/router';
 import { first } from 'rxjs';
 import { FormControl, FormGroup} from '@angular/forms';
+import { HotToastService } from '@ngneat/hot-toast';
 
 @Component({
   selector: 'app-listservice',
@@ -11,9 +12,6 @@ import { FormControl, FormGroup} from '@angular/forms';
 })
 export class ListserviceComponent implements OnInit {
   info: any
-  data: Array<any>
-  totalRecord: number|any
-  page: number=1 
   p : number = 1
 
   file: any;
@@ -25,13 +23,10 @@ export class ListserviceComponent implements OnInit {
 
   previewLoaded: boolean = false;
 
-  constructor(private http: HttpClientService, private _router: Router) {
-    this.data = new Array<any>()
-    
-  }
+  constructor(private http: HttpClientService, private _router: Router, private toastService: HotToastService) { }
 
   ngOnInit(): void {
-    this.getService();
+    this.getService();   
     
   }
 
@@ -96,23 +91,22 @@ export class ListserviceComponent implements OnInit {
     console.log(this.serviceForm.get('service_name')?.value);
     console.log(this.serviceForm.get('service_detail')?.value);
     console.log(this.serviceForm.get('service_img')?.value.name);
-    console.log(this.file.value);
     
 
     if(!RegExp('^[ก-๙a-zA-Z]+$').test(this.serviceForm.get('service_name')?.value)) {
-      alert('ใส่ชื่อบริการไม่ถูกต้อง กรุณากรอกใหม่')
+      this.toastService.warning('ใส่ชื่อบริการไม่ถูกต้อง กรุณากรอกใหม่')
     }
     else if(!RegExp('^[ก-๙a-zA-Z0-9\\s]+$').test(this.serviceForm.get('service_detail')?.value)){
-      alert('กรุณากรอกรายละเอียดบริการ')
+      this.toastService.warning('กรุณากรอกรายละเอียดบริการ')
     }
     // else if(!RegExp('^[ก-๙a-zA-Z0-9\\s]+$').test(this.serviceForm.get('service_img')?.value)){
     //   alert('กรุณาใส่รูปภาพ')
     // }
     else if(this.serviceForm.status == "INVALID"){
-      alert('กรุณากรอกข้อมูลให้ครบ')
+      this.toastService.warning('กรุณากรอกข้อมูลให้ครบ')
     }
     else {
-      alert('เพิ่มข้อมูลสำเร็จ')
+      this.toastService.success('เพิ่มข้อมูลสำเร็จ')
       this.http.createData('/services',this.serviceForm.value).pipe(first()).subscribe()
       window.location.reload();
     }
