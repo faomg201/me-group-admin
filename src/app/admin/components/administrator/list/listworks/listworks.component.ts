@@ -3,6 +3,7 @@ import { HttpClientService} from '../../../../../shareds/_service/http-client.se
 import { Router } from '@angular/router';
 import { first } from 'rxjs';
 import { FormControl, FormGroup} from '@angular/forms';
+import { HotToastService } from '@ngneat/hot-toast';
 
 @Component({
   selector: 'app-listworks',
@@ -23,11 +24,23 @@ export class ListworksComponent implements OnInit {
   });
 
   previewLoaded: boolean = false;
-  constructor(private http: HttpClientService, private _router:Router) { }
+  constructor(private http: HttpClientService, private _router:Router, private toastService :HotToastService) { }
 
   ngOnInit(): void {
     this.getWorks();
     this.onLoading();
+    this.toastService.error('ลบข้อมูลสำเร็จ', {
+      duration: 10000,
+      style: {
+        border: '2px solid red',
+        padding: '16px',
+        color: 'red',
+      },
+      iconTheme: {
+        primary: 'red',
+        secondary: '#FFFAEE',
+      },
+    });
   }
 
   onChangePhoto(e: any) {
@@ -93,7 +106,7 @@ createWorks(){
     alert('เพิ่มข้อมูลสำเร็จ')
     console.log(this.worksForm.value)
     this.http.createData('/goals',this.worksForm.value).pipe(first()).subscribe()
-    // window.location.reload();
+    window.location.reload();
   }
 }
 
@@ -118,6 +131,7 @@ createWorks(){
       if(response.status ==true ){
         console.log(this.infoWork)
         this.infoWork = response.data
+        this.toastService.success('ลบข้อมูลสำเร็จ')
         this.getWorks()
       }     
     },
