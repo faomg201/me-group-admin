@@ -1,0 +1,265 @@
+<app-content>
+  <div class="card">
+    <div class="card-header">
+      <h3 class="card-title">เกียวกับเรา</h3>
+    </div>
+    <!-- /.card-header -->
+    <div class="card-body p-0">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th style="width: 10px">#</th>
+            <th>ชื่อหลัก</th>
+            <th>ชื่อรอง</th>
+            <th>คำอธิบาย</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1.</td>
+            <td>1.</td>
+            <td>1.</td>
+            <td>1.</td>
+            <td style="width: 10px">
+              <a
+                class="btn btn-danger"
+                type="button"
+                data-toggle="modal"
+                data-target="#modal-default"
+                ><i class="fas fa-edit"></i
+              ></a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th style="width: 450px">รูปภาพ</th>
+            <th>ชื่อภาพ</th>
+            <th></th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1.</td>
+            <td>1.</td>
+            <td style="width: 10px">
+              <a
+                class="btn btn-danger"
+                type="button"
+                data-toggle="modal"
+                data-target="#modal-editImg"
+                ><i class="fas fa-edit"></i
+              ></a>
+            </td>
+            <td style="width: 10px">
+              <a href="#" class="btn btn-danger"
+                ><i class="fas fa-trash"></i
+              ></a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <!-- /.card-body -->
+    <br />
+  </div>
+  <p>
+    &nbsp;
+    <button
+      class="btn btn-info"
+      type="button"
+      data-toggle="collapse"
+      data-target="#addImgAboutus"
+      aria-expanded="false"
+      aria-controls="addImgAboutus"
+    >
+      เพิ่มภาพประกอบ
+    </button>
+  </p>
+  <div class="collapse" id="addImgAboutus">
+    <div class="card card-body">
+      <div class="col-md-12">
+        <form>
+          <div class="card-body">
+            <div class="row">
+              <div class="col-md-6">
+                <div class="col-md-12">
+                  <div class="row">
+                    <div class="col bg-red border">
+                      <br /><br /><br /><br /><br /><br /><br /><br /><br />
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="mb-3">
+                  <label class="form-label texxx111xx">รูปภาพผลงาน</label>
+                  <input class="form-control" type="file" />
+                </div>
+                <div class="mb-3">
+                  <label>ชื่อภาพ</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="First name"
+                    aria-label="First name"
+                    formControlName="employee_firstname"
+                  />
+                  <div class="col-md-12">
+                    <div class="row padding2">
+                      <div class="col-md-4"></div>
+                      <div class="col-md-6">
+                        <input
+                          class="btn padding3 btn-light elevation-3"
+                          type="submit"
+                          value="Submit"
+                        />
+
+                        <input
+                          class="btn padding4 btn-light elevation-3"
+                          type="reset"
+                          value="Reset"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  
+</app-content>
+<div class="modal fade" id="modal-default">
+  <div class="modal-dialog modal-xl">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title textHead">แก้ไขข้อมูลสมาชิก</h4>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+          (click)="ngOnInit()"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+          <div class="card-body">
+            <div class="form-group">
+              <label for="inputName">ชื่อหลัก</label>
+              <input type="text" id="inputName" class="form-control" value="" />
+            </div>
+            <div class="form-group">
+              <label for="inputName">ชื่อรอง</label>
+              <input type="text" id="inputName" class="form-control" value="" />
+            </div>
+            <div class="form-group">
+              <label for="inputDescription">คำอธิบาย</label>
+              <textarea
+                id="inputDescription"
+                class="form-control"
+                rows="4"
+              ></textarea>
+            </div>
+          </div>
+        </div>
+      <div class="modal-footer justify-content-between">
+        <button
+          type="button"
+          class="btn btn-default"
+          data-dismiss="modal"
+          (click)="ngOnInit()"
+        >
+          Close
+        </button>
+        <input
+          class="btn padding3 btn-light elevation-3"
+          type="submit"
+          value="Submit"
+        />
+      </div>
+    </div>
+    <!-- /.modal-content -->
+  </div>
+  <!-- /.modal-dialog -->
+</div>
+
+<div class="modal fade" id="modal-editImg">
+  <div class="modal-dialog modal-xl">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title textHead">แก้ไขรูปภาพ</h4>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+          (click)="ngOnInit()"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="col-md-12">
+          <form>
+            <div class="card-body">
+              <div class="row">                
+                <div class="col-md-6">
+                  <div class="mb-3">
+                    <label class="form-label texxx111xx">รูปภาพผลงาน</label>
+                    <input class="form-control" type="file" />
+                  </div>
+                  <div class="mb-3">
+                    <label>ชื่อภาพ</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      placeholder="First name"
+                      aria-label="First name"
+                      formControlName="employee_firstname"
+                    />
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="col-md-12">
+                    <div class="row">
+                      <div class="col bg-warning border">
+                        <br /><br /><br /><br /><br /><br /><br /><br /><br />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+        </div>
+      <div class="modal-footer justify-content-between">
+        <button
+          type="button"
+          class="btn btn-default"
+          data-dismiss="modal"
+          (click)="ngOnInit()"
+        >
+          Close
+        </button>
+        <input
+          class="btn padding3 btn-light elevation-3"
+          type="submit"
+          value="Submit"
+        />
+      </div>
+    </div>
+    <!-- /.modal-content -->
+  </div>
+  <!-- /.modal-dialog -->
+</div>

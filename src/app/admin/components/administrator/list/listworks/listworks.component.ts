@@ -14,7 +14,7 @@ export class ListworksComponent implements OnInit {
   infoWork:any;
   file: any;  
   p : number = 1
-  
+
   worksForm = new FormGroup({
     goal_title: new FormControl(''),
     service_id: new FormControl(),
@@ -93,7 +93,7 @@ createWorks(){
     alert('เพิ่มข้อมูลสำเร็จ')
     console.log(this.worksForm.value)
     this.http.createData('/goals',this.worksForm.value).pipe(first()).subscribe()
-    window.location.reload();
+    // window.location.reload();
   }
 }
 
