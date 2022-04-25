@@ -69,7 +69,18 @@ export class ListserviceComponent implements OnInit {
       console.log(response) 
       if(response.status ==true ){
         console.log(this.info)
-        this.info = response.data
+        this.toastService.error('ลบข้อมูลสำเร็จ', {
+          style: {
+            border: '2px solid red',
+            padding: '16px',
+            color: 'red',
+          },
+          iconTheme: {
+            primary: 'red',
+            secondary: '#FFFAEE',
+          },
+        });
+        this.info = response.data        
         this.getService()
       }     
     },
@@ -86,29 +97,52 @@ export class ListserviceComponent implements OnInit {
   //   this.serviceForm.reset();        
   //   this.previewLoaded = false;
   // }
-
   createService(){
     console.log(this.serviceForm.get('service_name')?.value);
     console.log(this.serviceForm.get('service_detail')?.value);
     console.log(this.serviceForm.get('service_img')?.value.name);
     
 
-    if(!RegExp('^[ก-๙a-zA-Z]+$').test(this.serviceForm.get('service_name')?.value)) {
+    if(!RegExp('[ก-๙a-zA-Z]+$').test(this.serviceForm.get('service_name')?.value)) {
       this.toastService.warning('ใส่ชื่อบริการไม่ถูกต้อง กรุณากรอกใหม่')
     }
-    else if(!RegExp('^[ก-๙a-zA-Z0-9\\s]+$').test(this.serviceForm.get('service_detail')?.value)){
+    else if(!RegExp('[ก-๙a-zA-Z0-9\\s]+$').test(this.serviceForm.get('service_detail')?.value)){
       this.toastService.warning('กรุณากรอกรายละเอียดบริการ')
     }
-    // else if(!RegExp('^[ก-๙a-zA-Z0-9\\s]+$').test(this.serviceForm.get('service_img')?.value)){
-    //   alert('กรุณาใส่รูปภาพ')
-    // }
+    else if(!RegExp('^.*\.(jpg|JPG|png|PNG)$').test(this.serviceForm.get('service_img')?.value.name)){
+      this.toastService.warning('กรุณาใส่รูปภาพ')
+    }
     else if(this.serviceForm.status == "INVALID"){
       this.toastService.warning('กรุณากรอกข้อมูลให้ครบ')
     }
     else {
-      this.toastService.success('เพิ่มข้อมูลสำเร็จ')
+      this.toastService.success('เพิ่มข้อมูลสำเร็จ', {
+        duration: 10000,
+        style: {
+          border: '2px solid green',
+          padding: '16px',
+          color: 'green',
+        },
+        iconTheme: {
+          primary: 'green',
+          secondary: '#FFFAEE',
+        },
+      });
+      console.log(this.serviceForm.value)
       this.http.createData('/services',this.serviceForm.value).pipe(first()).subscribe()
-      window.location.reload();
+      // window.location.reload(1),5000;     
+      setTimeout("location.reload(true);", 2000);
     }
   }
+
+  // timedRefresh(timeoutPeriod :any) {
+  //   setTimeout("location.reload(true);",timeoutPeriod);
+  //   window.onload = timedRefresh(5000);
+  // }
+  
+  
+
+
+
+  
 }
