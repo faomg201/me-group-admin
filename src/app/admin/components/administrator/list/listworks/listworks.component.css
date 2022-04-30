@@ -1,47 +1,29 @@
-.layout{
-    /* background-color: #bab6b0; */
-    min-height: 80vh;
-    align-items: center;
-    justify-content: center;
+.bgHeadtable {
+  background-color: #f8faff;
 }
-div {
-    font-family: "SukhumvitSet";
+.round {
+  border-radius: 30px;
+  background-color: #fec87c;
+  width: 85px;
+  text-align: center;
+  height: 35px;
+  color: white;
 }
-.texxxxx {
-    text-align: center;
-    justify-content: center;
+td {
+  text-align: center;
+  vertical-align: middle;
 }
-h1 {
-    font-size: 36px;
-    color: #000000;
-    font-weight: bold;
-    /* text-shadow: 0px 0px 5px #000000a9; */
-}
-.padding1{
-    display: flex;
-    padding: 10px 10px;
+.sizeeeee {
+  position: absolute;
+  max-width: auto;
+  background-color: #fec87c;
 }
 
-.padding2{
-    /* display: flex; */
-    padding: 25px 10px;
-    
+.bgGray {
+  background-color: #ededed;
 }
-.padding3{
-    margin: 10px 35px;
-    letter-spacing: 2px;
-}
-.padding4{
-    
-    margin: 10px 8px;
-    letter-spacing: 2px;
-}
-
-.autoHight{
-    max-width: 50%;
-}
-
-.texxx111xx {
-    text-align: left;
-    display: block;
+.radius {
+  border-radius: 4px;
+  background: #898989;
+  color: white;
 }

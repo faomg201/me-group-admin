@@ -41,8 +41,8 @@
     <div class="row">
       <div class="col align-self-start">
         <br />
-        บริการ<br />
-        บริการ > แก้ไขข้อมูลบริการ
+        ทีมของเรา<br />
+        ทีมของเรา > แก้ไขข้อมูลทีมของเรา
       </div>
       <div class="col align-self-center"></div>
       <div class="col align-self-end" align="right"></div>
@@ -53,11 +53,11 @@
         <div class="card">
           <div class="card-body">
             <div class="row">
-              <form [formGroup]="serviceForm">
+              <form>
                 <div class="card-body">
                   <div class="row">
-                    <div class="col-md-6">
-                      <label class="form-label">รูปบริการ</label>
+                    <div class="col-md-4">
+                      <label class="form-label">รูปภาพ</label>
                       <div class="mb-3">
                         <label>
                           <div class="container">
@@ -66,11 +66,10 @@
                               align="center"
                             >
                               <img
-                                src="http://localhost:8000/static/services/{{
-                                  info.data.service_name+info.data.service_img
-                                }}"
+                                class="img-thumbnail"
+                                src="../../../../../../assets/img/BG-WEB-Gray.jpg"
+                                style="height: 300px; width: 335px"
                                 *ngIf="previewLoaded == false; hidden"
-                                style="height: 350px; width: auto"
                               />
                               <div
                                 class="bgGray"
@@ -80,10 +79,10 @@
                                   *ngIf="previewLoaded"
                                   class="img-thumbnail mx-auto d-block"
                                   [src]="file"
-                                  style="height: 350px; width: auto"
+                                  style="height: 300px; width: auto"
                                 />
                               </div>
-                              <div class="radius">แก้ไขรูปภาพบริการ</div>
+                              <div class="radius">เพิ่มรูปภาพ</div>
                             </div>
                             <div
                               class="row justify-content-md-center"
@@ -120,10 +119,10 @@
                               &nbsp;&nbsp; &nbsp; &nbsp;
                             </div>
                           </div>
+
                           <div className="imageupload">
                             <input
                               type="file"
-                              (change)="onChangePhoto($event)"
                               name="imageupload"
                               id="fileUpload"
                               multiple
@@ -136,28 +135,56 @@
                         <div class="row"></div>
                       </div>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-1"></div>
+                    <div class="col-md-7">
                       <div class="mb-3">
-                        <label>ชื่อบริการ</label>
+                        <label>ชื่อ</label>
                         <input
                           type="text"
-                          aria-label="First name"
                           class="form-control"
-                          formControlName="service_name"
+                          placeholder="First name"
+                          aria-label="First name"
+                          formControlName="employee_firstname"
                         />
                       </div>
                       <br />
                       <div class="mb-3">
-                        <label>คำอธิบาย</label>
-                        <textarea
+                        <label>นามสกุล</label>
+                        <input
+                          type="text"
                           class="form-control"
-                          formControlName="service_detail"
-                          placeholder=""
-                          id="floatingTextarea2"
-                          style="height: 200px"
-                        ></textarea>
+                          placeholder="Last name"
+                          aria-label="Last name"
+                          formControlName="employee_lastname"
+                        />
                       </div>
                       <br />
+                      <div class="mb-3">
+                        <label>ตำแหน่ง</label>
+                        <select
+                          class="form-select"
+                          formControlName="service_id"
+                        >
+                          <option selected>เลือกตำแหน่ง</option>
+                          <option value="1">One</option>
+                          <option value="2">Two</option>
+                          <option value="3">Three</option>
+                        </select>
+                      </div>
+                      <br />
+                      <div class="mb-3">
+                        <label>MBTI</label>
+                        <select
+                          class="form-select"
+                          formControlName="service_id"
+                        >
+                          <option selected>เลือกตำแหน่ง</option>
+                          <option value="1">One</option>
+                          <option value="2">Two</option>
+                          <option value="3">Three</option>
+                        </select>
+                      </div>
+                      <br /><br /><br />
                       <div class="col-md-12">
                         <div class="row">
                           <div class="col-md-8">
@@ -165,13 +192,14 @@
                               type="button"
                               class="btn btn-danger elevation-1"
                               data-bs-toggle="modal"
-                              data-bs-target="#exampleModal"
-                              (click)="getnameDel(info.data.id)"
+                              data-bs-target="#delEmp"
                             >
                               ลบข้อมูล
                             </button>
                           </div>
                           <div class="col-md-4">
+                            &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                            &nbsp; &nbsp; &nbsp; &nbsp;
                             <button
                               type="button"
                               class="btn btn-light elevation-1"
@@ -186,27 +214,10 @@
                               class="btn btn-warning elevation-1"
                               type="submit"
                               value="Submit"
-                              (click)="updateService()"
                             >
                               บันทึก
                             </button>
                           </div>
-                        </div>
-
-                        <div class="col align-self-end" align="right">
-                          <br />
-
-                          &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-                          &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-                          &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-                          &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-                          &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-                          &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-                          &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-                          &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-                          &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-                          &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-                          &nbsp;
                         </div>
                       </div>
                     </div>
@@ -220,12 +231,11 @@
     </div>
   </div>
 </app-content>
-
 <div
   class="modal fade"
-  id="exampleModal"
+  id="delEmp"
   tabindex="-1"
-  aria-labelledby="exampleModalLabel"
+  aria-labelledby="delEmp"
   aria-hidden="true"
 >
   <div class="modal-dialog modal-dialog-centered">
@@ -241,8 +251,8 @@
           <span aria-hidden="true">&times;</span>
         </button>
         <br /><br />
-        <div class="modal-body" *ngIf="info">
-          คุณต้องการลบข้อมูล {{ info.data.service_name }} หรือไม่?
+        <div class="modal-body" >
+          คุณต้องการลบข้อมูล ///// หรือไม่?
         </div>
         <br />
         <div class="row">
@@ -260,7 +270,6 @@
             <button
               type="button"
               class="btn btn-warning"
-              (click)="deleteService(info.id)"
               data-bs-dismiss="modal"
             >
               ยืนยัน
@@ -273,3 +282,4 @@
     </div>
   </div>
 </div>
+
