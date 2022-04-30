@@ -1,80 +1,289 @@
 <app-content>
-    <div class="container layout" align="center">
-        <div class="row-md-12">
-          <div class="col-md-9 padding2"><h1 class="textHead">ผลงาน</h1></div>
-          <div class="col-md-9">
-            <form [formGroup]="worksForm">
-              <div class="col-md-12">
-                <div class="row padding1">
-                  <div class="col-md-2">
-                    <span class="input-group-text texxxxx">ชื่อผลงาน</span>
-                  </div>
-                  <div class="col-md-7">
-                    <input
-                      type="text"
-                      aria-label="First name"
-                      class="form-control"
-                      formControlName="goal_title"
-                      value="{{ info.data.goal_title}}"
-                    />
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-12">
-                <div class="row padding1">
-                  <div class="col-md-2"></div>
-                  <div class="col-md-7">
-                    <input class="form-control" type="text" value="{{ info.data.service_name}}" aria-label="Disabled input example" disabled readonly>
-                    
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-12">
-                <div class="row padding1">
-                  <div class="col-md-2"></div>
-                  <div class="col-md-7">
-                    <div class="form-floating">
-                      <textarea
-                        class="form-control"
-                        placeholder="Leave a comment here"
-                        id="floatingTextarea2"
-                        style="height: 100px"
-                        formControlName="goal_detail"
-                        value="{{ info.data.goal_detail }}"
-                      ></textarea>
-                      <label for="floatingTextarea2">รายละเอียดผลงาน</label>
+  <div class="sizeeeee">
+    <br />
+    <br />
+    <br />
+    <br />
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+  </div>
+  <div class="container">
+    <div class="row">
+      <div class="col align-self-start">
+        <br />
+        ผลงาน<br />
+        ผลงาน > แก้ไขข้อมูลผลงาน
+      </div>
+      <div class="col align-self-center"></div>
+      <div class="col align-self-end" align="right"></div>
+    </div>
+    <br />
+    <div class="row">
+      <div class="col-md-12 align-self-center">
+        <div class="card">
+          <div class="card-body">
+            <div class="row">
+              <form [formGroup]="worksForm">
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col-md-6">
+                      <label class="form-label">รูปบริการ</label>
+                      <div class="mb-3">
+                        <label>
+                          <div class="container">
+                            <div
+                              class="row justify-content-md-center"
+                              align="center"
+                            >
+                              <img
+                                src="http://localhost:8000/static/goals/{{
+                                  info.data.goal_title+info.data.goal_img
+                                }}"
+                                *ngIf="previewLoaded == false; hidden"
+                                style="height: 350px; width: auto"
+                              />
+                              <div
+                                class="bgGray"
+                                *ngIf="previewLoaded == true; hidden"
+                              >
+                                <img
+                                  *ngIf="previewLoaded"
+                                  class="img-thumbnail mx-auto d-block"
+                                  [src]="file"
+                                  style="height: 350px; width: auto"
+                                />
+                              </div>
+                              <div class="radius">แก้ไขรูปภาพบริการ</div>
+                            </div>
+                            <div
+                              class="row justify-content-md-center"
+                              align="center"
+                            >
+                              &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp;
+                              &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp;
+                              &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp;
+                              &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp;
+                              &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp;
+                              &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp;
+                              &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp;
+                              &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp;
+                              &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp;
+                              &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp;
+                              &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp;
+                              &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp;
+                              &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp;
+                              &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp;
+                              &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp;
+                              &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp;
+                              &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp;
+                              &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp;
+                              &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp;
+                              &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp;
+                              &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;
+                              &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp;
+                              &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp;
+                              &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp;
+                              &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp;
+                              &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp;
+                              &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp;
+                              &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp;
+                              &nbsp;&nbsp; &nbsp; &nbsp;
+                            </div>
+                          </div>
+                          <div className="imageupload">
+                            <input
+                              type="file"
+                              (change)="onChangePhoto($event)"
+                              name="imageupload"
+                              id="fileUpload"
+                              multiple
+                              hidden
+                            />
+                          </div>
+                        </label>
+                      </div>
+                      <div class="col-md-12">
+                        <div class="row"></div>
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="mb-3">
+                        <label>ชื่อผลงาน</label>
+                        <input
+                          type="text"
+                          aria-label="First name"
+                          class="form-control"
+                          formControlName="goal_title"
+                          value="{{ info.data.goal_title }}"
+                        />
+                      </div>
+                      <div class="mb-3">
+                        <label>คำอธิบาย</label>
+                        <textarea
+                          class="form-control"
+                          placeholder="Leave a comment here"
+                          id="floatingTextarea2"
+                          style="height: 125px"
+                          formControlName="goal_detail"
+                          value="{{ info.data.goal_detail }}"
+                        ></textarea>
+                      </div>
+                      <div class="mb-3">
+                        <label>ประเภทบริการ</label>
+                        <select class="form-select" formControlName="service_id">
+                          <option
+                            *ngFor="let item of infoServ; let i = index"
+                            value="{{ item.id }}"
+                          >
+                            {{ item.service_name }}
+                          </option>
+                        </select>
+                      </div>
+                      <br />
+                      <div class="col-md-12">
+                        <div class="row">
+                          <div class="col-md-8">
+                            <button
+                              type="button"
+                              class="btn btn-danger elevation-1"
+                              data-bs-toggle="modal"
+                              data-bs-target="#exampleModal"
+                              (click)="getnameDel(info.data.goal_id)">
+                            
+                              ลบข้อมูล
+                            </button>
+                          </div>
+                          <div class="col-md-4">
+                            <button
+                              type="button"
+                              class="btn btn-light elevation-1"
+                              data-dismiss="modal"
+                              aria-label="Close"
+                              (click)="ngOnInit()"
+                            >
+                              คืนค่า
+                            </button>
+                            &nbsp; &nbsp; &nbsp;
+                            <button
+                              class="btn btn-warning elevation-1"
+                              type="submit"
+                              value="Submit"
+                              (click)="updateWorks()"
+                            >
+                              บันทึก
+                            </button>
+                          </div>
+                        </div>
+
+                        <div class="col align-self-end" align="right">
+                          <br />
+
+                          &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                          &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                          &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                          &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                          &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                          &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                          &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                          &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                          &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                          &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                          &nbsp;
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
-            </form>
-            <div class="col-md-12">
-              <div class="row">
-                <div class="col-md-2"></div>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-12">
-            <div class="row padding2">
-              <div class="col-md-4"></div>
-              <div class="col-md-6">
-                <input
-                  class="btn padding3 btn-light elevation-3"
-                  type="submit"
-                  value="Submit"
-                  (click)="editWorks()"
-                />
-    
-                <input
-                  class="btn padding4 btn-light elevation-3"
-                  type="submit"
-                  value="Back"
-                  routerLink="/admin/administrator/listworks"
-                />
-              </div>
+              </form>
             </div>
           </div>
         </div>
       </div>
+    </div>
+  </div>
 </app-content>
+
+
+<div
+  class="modal fade"
+  id="exampleModal"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-body" align="center">
+        <button
+          type="button"
+          class="close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+          (click)="ngOnInit()"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <br /><br />
+        <div class="modal-body" *ngIf="info">
+          คุณต้องการลบข้อมูล {{ info.data.goal_title }} หรือไม่?
+        </div>
+        <br />
+        <div class="row">
+          <div class="col-md-3"></div>
+          <div class="col-md-3">
+            <button
+              type="button"
+              class="btn btn-light"
+              data-bs-dismiss="modal"
+            >
+              ยกเลิก
+            </button>
+          </div>
+          <div class="col-md-3">
+            <button
+              type="button"
+              class="btn btn-warning"
+              (click)="deleteWorks(info.goal_id)"
+              data-bs-dismiss="modal"
+            >
+              ยืนยัน
+            </button>
+          </div>
+          <div class="col-md-3"></div>
+        </div>
+        <br /><br />
+      </div>
+    </div>
+  </div>
+</div>
 

@@ -9,19 +9,12 @@
     height: 35px;
     color: white;
   }
-  td {
-    text-align: center;
-    vertical-align: middle;
-  }
   .sizeeeee{
       position: absolute;
       max-width: auto;
       background-color: #fec87c;
   }
-  .dot {
-    height: 25px;
-    width: 25px;
-    background-color: #fec87c;
-    border-radius: 50%;
-    display: inline-block;
+  td {
+    text-align: center;
+    vertical-align: middle;
   }

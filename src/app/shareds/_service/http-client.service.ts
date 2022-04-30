@@ -21,7 +21,7 @@ export class HttpClientService {
     
     return this.http.get(this.serveURl+path)
   }
-  createData(path:any, data:any){
+  createData(path:any, data:any,){
     return this.http.post(this.serveURl+path, data)
   }
 

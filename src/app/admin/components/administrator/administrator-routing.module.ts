@@ -6,10 +6,16 @@ import { ListComponent } from './list/list.component';
 import { ListserviceComponent } from './list/listservice/listservice.component';
 import { ListworksComponent } from './list/listworks/listworks.component';
 import { ListteamsComponent } from './list/listteams/listteams.component';
-import { EditserviceComponent } from './edit/editservice/editservice.component';
-import { EditworksComponent } from './edit/editworks/editworks.component';
 import { ListcontractusComponent } from './list/listcontractus/listcontractus.component';
 import { ListaboutusComponent } from './list/listaboutus/listaboutus.component';
+
+import { EditserviceComponent } from './edit/editservice/editservice.component';
+import { EditworksComponent } from './edit/editworks/editworks.component';
+import { EditteamsComponent } from './edit/editteams/editteams.component';
+import { EditaccountComponent } from './edit/editaccount/editaccount.component';
+
+import { BaccountComponent } from './list/baccount/baccount.component';
+import { LogsComponent } from './list/logs/logs.component';
 
 
 const routes: Routes = [
@@ -19,11 +25,14 @@ const routes: Routes = [
   {path: 'listteams', component: ListteamsComponent},
   {path: 'listcontractus', component: ListcontractusComponent},
   {path: 'listaboutus', component: ListaboutusComponent},
-  {path: 'list', component: ListComponent},
+  {path: 'baccount', component: BaccountComponent},
+  {path: 'logs', component: LogsComponent},
   {path: 'create', component: CreateComponent},
   {path: 'edit/:id', component: EditComponent},
   {path: 'editservice/:id', component: EditserviceComponent},
   {path: 'editworks/:id', component: EditworksComponent},
+  {path: 'editteams/:id', component: EditteamsComponent},
+  {path: 'editaccount/:id', component: EditaccountComponent},
 
 ];
 

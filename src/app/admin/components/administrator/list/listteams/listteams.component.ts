@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-listteams',
@@ -6,10 +7,16 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./listteams.component.css']
 })
 export class ListteamsComponent implements OnInit {
-
-  constructor() { }
+  previewLoaded = false;
+  p=1;
+  file:any;
+  constructor(private _router:Router) { }
 
   ngOnInit(): void {
+  }
+
+  onClick(){
+    this._router.navigate(['admin/administrator/editteams/1']);
   }
 
 }

@@ -1,90 +1,187 @@
 <app-content>
-  <br />
-  <div class="col-md-12">
-    <div class="card">
-      <div class="card-header">
-        <div class="row">
-          <div class="col-md-10">
-            <h3>ผลงาน</h3>
-          </div>
-
-          <div class="col-md-2" align="center">
-            <button
-              type="button"
-              class="btn btn-default"
-              data-toggle="modal"
-              data-target="#modal-default"
-            >
-              เพิ่มข้อมูล
-            </button>
-          </div>
-        </div>
+  <div class="sizeeeee">
+    <br />
+    <br />
+    <br />
+    <br />
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+  </div>
+  <div class="container">
+    <div class="row">
+      <div class="col align-self-start">
+        <br>
+        ผลงาน<br />
+        ผลงาน >
       </div>
-      <!-- /.card-header -->
-      <div class="card-body">
-        <table class="table">
-          <thead>
-            <tr align="center">
-              <th style="width: 10px">id</th>
-              <th style="width: 150px">ชื่อผลงาน</th>
-              <th style="width: 150px">ประเภทบริการ</th>
-              <th style="width: 500px">รายละเอียดผลงาน</th>
-              <th></th>
-              <th></th>
-              <th></th>
-            </tr>
-          </thead>
-          <tbody align="center">
-            <tr *ngFor="let item of infoWork | paginate: { itemsPerPage: 5, currentPage: p }">
-              <td>{{ item.goal_id }}</td>
-              <td>{{ item.goal_title }}</td>
-              <td>{{ item.service_name }}</td>
-              <td>{{ item.goal_detail }}</td>
-              <td width="300">
-                <img
-                  src="http://localhost:8000/static/turtle.jpeg"
-                  style="width: 150px"
-                />
-              </td>
-              <td>
-                <button
-                  class="btn btn-primary"
-                  (click)="deleteWorks(item.goal_id)"
-                >
-                  Delete
-                </button>
-              </td>
-              <td>
-                <a
-                  class="btn btn-outline-secondary pull-right pontterCursor"
-                  (click)="onClick(item.goal_id)"
-                  >Edit</a
-                >
-              </td>
-            </tr>
-          </tbody>
-        </table>
+      <div class="col align-self-center"></div>
+      <div class="col align-self-end" align="right">
+        <button
+          type="button"
+          class="btn btn-light"
+          data-toggle="modal"
+          data-target="#modal-default"
+        >
+          เพิ่มข้อมูล
+        </button>
       </div>
-      <!-- /.card-body -->
-      <div class="card-footer clearfix">
-        <ul class="pagination pagination-sm m-0 float-right">
-          <div>
+    </div>
+    <br />
+    <div class="row">
+      <div class="col-md-12 align-self-center">
+        <div class="card">
+          <div class="card-body">
+            <table class="table table-borderless">
+              <thead class="bgHeadtable" align="center">
+                <tr>
+                  <th style="width: 80px">ลำดับ</th>
+                  <th style="width: 300px">รูปผลงาน</th>
+                  <th style="width: 180px">ชื่อผลงาน</th>
+                  <th style="width: 150px">บริการ</th>
+                  <th style="width: 310px">คำอธิบาย</th>
+                  <th style="width: 100px"></th>
+                  <th style="width: 50px"></th>
+                </tr>
+              </thead>
+              <tbody align="center">
+                <tr
+                  *ngFor="
+                    let item of infoWork
+                      | paginate: { itemsPerPage: 6, currentPage: p }
+                  "
+                >
+                  <td>{{ item.goal_id }}</td>
+                  <td>
+                    <img
+                      src="http://localhost:8000/static/goals/{{
+                        item.goal_title+item.goal_img
+                      }}"
+                      style="width: 120px"
+                    />
+                  </td>
+                  <td>{{ item.goal_title }}</td>
+                  <td>{{ item.service_name }}</td>
+                  <td>{{ item.goal_detail }}</td>
+                  <td>
+                    <button
+                      type="button"
+                      class="btn round"
+                      (click)="onClick(item.goal_id)"
+                    >
+                      แก้ไข
+                    </button>
+                  </td>
+                  <td>
+                    <i
+                      class="fas fa-trash-alt nav-icon"
+                      data-bs-toggle="modal"
+                      data-bs-target="#exampleModal"
+                      (click)="getnameDel(item.goal_id)"
+                    ></i>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div align="right">
             <pagination-controls
               (pageChange)="p = $event"
             ></pagination-controls>
           </div>
-        </ul>
+        </div>
       </div>
     </div>
-    <!-- /.card -->
   </div>
 </app-content>
+
+<div
+  class="modal fade"
+  id="exampleModal"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-body" align="center">
+        <button
+          type="button"
+          class="close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+          (click)="ngOnInit()"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <br /><br />
+        <div class="modal-body" *ngIf="infoWork">
+          คุณต้องการลบข้อมูล {{ infoWork.goal_title }} หรือไม่?
+        </div>
+        <br />
+        <div class="row">
+          <div class="col-md-3"></div>
+          <div class="col-md-3">
+            <button
+              type="button"
+              class="btn btn-light"
+              data-bs-dismiss="modal"
+            >
+              ยกเลิก
+            </button>
+          </div>
+          <div class="col-md-3">
+            <button
+              type="button"
+              class="btn btn-warning"
+              (click)="deleteWorks(infoWork.goal_id)"
+              data-bs-dismiss="modal"
+            >
+              ยืนยัน
+            </button>
+          </div>
+          <div class="col-md-3"></div>
+        </div>
+        <br /><br />
+      </div>
+    </div>
+  </div>
+</div>
 
 <div class="modal fade" id="modal-default">
   <div class="modal-dialog modal-xl">
     <div class="modal-content">
       <div class="modal-header">
-        <h4 class="modal-title textHead">เพิ่มผลงาน</h4>
+        <h4 class="modal-title textHead">เพิ่มข้อมูลผลงาน</h4>
         <button
           type="button"
           class="close"
@@ -102,6 +199,81 @@
               <div class="card-body">
                 <div class="row">
                   <div class="col-md-6">
+                    <label class="form-label">รูปผลงาน</label>
+                    <div class="mb-3">
+                      <label>
+                        <div class="container">
+                          <div
+                            class="row justify-content-md-center"
+                            align="center"
+                          >
+                            <img
+                              class="img-thumbnail"
+                              src="../../../../../../assets/img/BG-WEB-Gray.jpg"
+                              style="height: 350px; width: 500px"
+                              *ngIf="previewLoaded == false; hidden"
+                            />
+                            <div
+                              class="bgGray"
+                              *ngIf="previewLoaded == true; hidden"
+                            >
+                              <img
+                                *ngIf="previewLoaded"
+                                class="img-thumbnail mx-auto d-block"
+                                [src]="file"
+                                style="height: 350px; width: auto"
+                              />
+                            </div>
+                            <div class="radius">เพิ่มรูปภาพผลงาน</div>
+                          </div>
+                          <div
+                            class="row justify-content-md-center"
+                            align="center"
+                          >
+                            &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp;
+                            &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp;
+                            &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp;
+                            &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp;
+                            &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp;
+                            &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp;
+                            &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;
+                            &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp;
+                            &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp;
+                            &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp;
+                            &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp;
+                            &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp;
+                            &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp;
+                            &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp;
+                            &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp;
+                            &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp;
+                            &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;
+                            &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp;
+                            &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp;
+                            &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp;
+                            &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp;
+                            &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp;
+                            &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp;
+                            &nbsp; &nbsp;
+                          </div>
+                        </div>
+  
+                        <div className="imageupload">
+                          <input
+                            type="file"
+                            (change)="onChangePhoto($event)"
+                            name="imageupload"
+                            id="fileUpload"
+                            multiple
+                            hidden
+                          />
+                        </div>
+                      </label>
+                    </div>
+                    <div class="col-md-12">
+                      <div class="row"></div>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
                     <div class="mb-3">
                       <label>ชื่อผลงาน</label>
                       <input
@@ -111,8 +283,16 @@
                         formControlName="goal_title"
                       />
                     </div>
-                  </div>
-                  <div class="col-md-6">
+                    <div class="mb-3">
+                      <label>คำอธิบาย</label>
+                      <textarea
+                        class="form-control"
+                        formControlName="goal_detail"
+                        placeholder=""
+                        id="floatingTextarea2"
+                        style="height: 200px"
+                      ></textarea>
+                    </div>
                     <div class="mb-3">
                       <label>ประเภทบริการ</label>
                       <select class="form-select" formControlName="service_id">
@@ -124,38 +304,30 @@
                         </option>
                       </select>
                     </div>
-                  </div>
-                  <div class="col-md-6">
-                    <div class="mb-3">
-                      <label class="form-label texxx111xx">รูปผลงาน</label>
-                      <input
-                        class="form-control"
-                        type="file"
-                        (change)="onChangePhoto($event)"
-                      />
-                    </div>
                     <div class="col-md-12">
                       <div class="row">
-                        <div class="col-md-2"></div>
-                        <div class="col-md-7 bg">
-                          <img
-                            *ngIf="previewLoaded"
-                            class="img-thumbnail"
-                            [src]="file"
-                          />
+                        <div class="col align-self-end" align="right">
+                          <br />
+                          <button
+                            type="button"
+                            class="btn btn-light elevation-1"
+                            data-dismiss="modal"
+                            aria-label="Close"
+                            (click)="ngOnInit()"
+                          >
+                            ยกเลิก
+                          </button>
+                          &nbsp; &nbsp; &nbsp;
+                          <button
+                            class="btn btn-warning elevation-1"
+                            type="submit"
+                            value="Submit"
+                            (click)="createWorks()"
+                          >
+                            เพิ่ม
+                          </button>
                         </div>
                       </div>
-                    </div>
-                  </div>
-                  <div class="col-md-6">
-                    <div class="mb-3">
-                      <label>รายละเอียดผลงาน</label>
-                      <textarea
-                        class="form-control"
-                        placeholder="Leave a comment here"
-                        style="height: 100px"
-                        formControlName="goal_detail"
-                      ></textarea>
                     </div>
                   </div>
                 </div>
@@ -163,17 +335,6 @@
             </form>
           </div>
         </div>
-      </div>
-      <div class="modal-footer justify-content-between">
-        <button type="button" class="btn btn-default" data-dismiss="modal"  (click)="ngOnInit()">
-          Close
-        </button>
-        <input
-          class="btn padding3 btn-light elevation-3"
-          type="submit"
-          value="Submit"
-          (click)="createWorks()"
-        />
       </div>
     </div>
     <!-- /.modal-content -->

@@ -16,6 +16,10 @@ import { EditserviceComponent } from './edit/editservice/editservice.component';
 import { EditworksComponent } from './edit/editworks/editworks.component';
 import { ListcontractusComponent } from './list/listcontractus/listcontractus.component';
 import { ListaboutusComponent } from './list/listaboutus/listaboutus.component';
+import { BaccountComponent } from './list/baccount/baccount.component';
+import { LogsComponent } from './list/logs/logs.component';
+import { EditteamsComponent } from './edit/editteams/editteams.component';
+import { EditaccountComponent } from './edit/editaccount/editaccount.component';
 
 
 @NgModule({
@@ -30,6 +34,10 @@ import { ListaboutusComponent } from './list/listaboutus/listaboutus.component';
     EditworksComponent,
     ListcontractusComponent,
     ListaboutusComponent,
+    BaccountComponent,
+    LogsComponent,
+    EditteamsComponent,
+    EditaccountComponent,
   ],
   imports: [
     CommonModule,
