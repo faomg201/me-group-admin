@@ -7,7 +7,7 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 
 const routes: Routes = [{
   path: '',
-  redirectTo: AdminURL.Dashboard,
+  redirectTo: '',
   pathMatch: 'full',
 },
 {path: '', component: SidebarComponent, outlet: 'sidebar'},

@@ -1,48 +1,13 @@
 <app-content>
-  <div class="sizeeeee">
-    <br />
-    <br />
-    <br />
-    <br />
-    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+  <div class="relative">
+    <div class="sizeeeee"></div>
   </div>
   <div class="container">
     <div class="row">
       <div class="col align-self-start">
         <br />
-        บริการ<br />
-        บริการ > แก้ไขข้อมูลบริการ
+        <h4 class="textHeadPage"><b>บริการ</b></h4>
+        <h6 class="textHeadPage">บริการ > แก้ไขข้อมูลบริการ</h6>
       </div>
       <div class="col align-self-center"></div>
       <div class="col align-self-end" align="right"></div>
@@ -65,17 +30,17 @@
                               class="row justify-content-md-center"
                               align="center"
                             >
+                            <div class="bgGray">
                               <img
                                 src="http://localhost:8000/static/services/{{
-                                  info.data.service_name+info.data.service_img
+                                  info.data.service_name +
+                                    ',' +
+                                    info.data.service_img
                                 }}"
                                 *ngIf="previewLoaded == false; hidden"
                                 style="height: 350px; width: auto"
                               />
-                              <div
-                                class="bgGray"
-                                *ngIf="previewLoaded == true; hidden"
-                              >
+                              
                                 <img
                                   *ngIf="previewLoaded"
                                   class="img-thumbnail mx-auto d-block"
@@ -83,41 +48,9 @@
                                   style="height: 350px; width: auto"
                                 />
                               </div>
-                              <div class="radius">แก้ไขรูปภาพบริการ</div>
-                            </div>
-                            <div
-                              class="row justify-content-md-center"
-                              align="center"
-                            >
-                              &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp;
-                              &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp;
-                              &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp;
-                              &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp;
-                              &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp;
-                              &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp;
-                              &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp;
-                              &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp;
-                              &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp;
-                              &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp;
-                              &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp;
-                              &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp;
-                              &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp;
-                              &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp;
-                              &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp;
-                              &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp;
-                              &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp;
-                              &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp;
-                              &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp;
-                              &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp;
-                              &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;
-                              &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp;
-                              &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp;
-                              &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp;
-                              &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp;
-                              &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp;
-                              &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp;
-                              &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp;
-                              &nbsp;&nbsp; &nbsp; &nbsp;
+                              <div class="radius elevation-1">
+                                แก้ไขรูปภาพบริการ
+                              </div>
                             </div>
                           </div>
                           <div className="imageupload">
@@ -128,6 +61,9 @@
                               id="fileUpload"
                               multiple
                               hidden
+                              [ngClass]="{
+                                'is-invalid': submit && a['service_img'].errors
+                              }"
                             />
                           </div>
                         </label>
@@ -144,6 +80,9 @@
                           aria-label="First name"
                           class="form-control"
                           formControlName="service_name"
+                          [ngClass]="{
+                            'is-invalid': submit && a['service_name'].errors
+                          }"
                         />
                       </div>
                       <br />
@@ -155,15 +94,18 @@
                           placeholder=""
                           id="floatingTextarea2"
                           style="height: 200px"
+                          [ngClass]="{
+                            'is-invalid': submit && a['service_detail'].errors
+                          }"
                         ></textarea>
                       </div>
                       <br />
                       <div class="col-md-12">
                         <div class="row">
-                          <div class="col-md-8">
+                          <div class="col-md-4 ">
                             <button
                               type="button"
-                              class="btn btn-danger elevation-1"
+                              class="btn btn-danger widthButtonAdd elevation-1"
                               data-bs-toggle="modal"
                               data-bs-target="#exampleModal"
                               (click)="getnameDel(info.data.id)"
@@ -171,42 +113,25 @@
                               ลบข้อมูล
                             </button>
                           </div>
-                          <div class="col-md-4">
+                          <div class="col-md-8 " align="right">
                             <button
                               type="button"
-                              class="btn btn-light elevation-1"
+                              class="btn btn-light widthButtonAdd elevation-1"
                               data-dismiss="modal"
                               aria-label="Close"
                               (click)="ngOnInit()"
                             >
                               คืนค่า
-                            </button>
-                            &nbsp; &nbsp; &nbsp;
+                            </button>&nbsp; &nbsp; &nbsp;
                             <button
-                              class="btn btn-warning elevation-1"
-                              type="submit"
-                              value="Submit"
-                              (click)="updateService()"
-                            >
-                              บันทึก
-                            </button>
+                            class="btn btn-warning widthButtonAdd elevation-1"
+                            type="submit"
+                            value="Submit"
+                            (click)="updateService()"
+                          >
+                            บันทึก
+                          </button>
                           </div>
-                        </div>
-
-                        <div class="col align-self-end" align="right">
-                          <br />
-
-                          &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-                          &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-                          &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-                          &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-                          &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-                          &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-                          &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-                          &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-                          &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-                          &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-                          &nbsp;
                         </div>
                       </div>
                     </div>
@@ -242,31 +167,31 @@
         </button>
         <br /><br />
         <div class="modal-body" *ngIf="info">
-          คุณต้องการลบข้อมูล {{ info.data.service_name }} หรือไม่?
+          คุณต้องการลบข้อมูล <b>{{ info.data.service_name }} </b>หรือไม่?
         </div>
         <br />
         <div class="row">
-          <div class="col-md-3"></div>
-          <div class="col-md-3">
+          <div class="col-md-2"></div>
+          <div class="col-md-4">
             <button
               type="button"
-              class="btn btn-light"
+              class="btn btn-light widthButtonAdd elevation-1"
               data-bs-dismiss="modal"
             >
               ยกเลิก
             </button>
           </div>
-          <div class="col-md-3">
+          <div class="col-md-4">
             <button
               type="button"
-              class="btn btn-warning"
+              class="btn btn-warning widthButtonAdd elevation-1"
               (click)="deleteService(info.id)"
               data-bs-dismiss="modal"
             >
               ยืนยัน
             </button>
           </div>
-          <div class="col-md-3"></div>
+          <div class="col-md-2"></div>
         </div>
         <br /><br />
       </div>

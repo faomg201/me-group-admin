@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+declare var $:any;
 @Component({
   selector: 'app-logs',
   templateUrl: './logs.component.html',
@@ -10,6 +10,10 @@ export class LogsComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  openModal() {
+    $('#REMOVE_ALL').modal('show');
   }
 
 }

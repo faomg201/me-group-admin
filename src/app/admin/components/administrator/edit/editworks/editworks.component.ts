@@ -1,8 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-
 import { HttpClientService } from '../../../../../shareds/_service/http-client.service';
 import { ActivatedRoute } from '@angular/router';
-import { FormControl, FormGroup } from '@angular/forms';
+import {
+  FormControl,
+  FormGroup,
+  FormBuilder,
+  Validators
+} from '@angular/forms';
 import { first } from 'rxjs';
 import { HotToastService } from '@ngneat/hot-toast';
 import { Router } from '@angular/router';
@@ -13,44 +17,54 @@ import { Router } from '@angular/router';
   styleUrls: ['./editworks.component.css'],
 })
 export class EditworksComponent implements OnInit {
+
   previewLoaded: boolean = false;
   info: any;
   infoServ: any;
-  token: any;
   file: any;
-  worksForm = new FormGroup({
-    goal_title: new FormControl(''),
-    service_id: new FormControl(),
-    goal_detail: new FormControl(''),
-    goal_img: new FormControl(''),
-  });
+  worksForm: FormGroup;
+  submit = false;
+
   constructor(
     private http: HttpClientService,
     private _route: ActivatedRoute,
     private toastService: HotToastService,
-    private router: Router
-  ) {}
+    private router: Router,
+    private builder: FormBuilder
+  ) {
+    this.worksForm = this.builder.group({
+      goal_title: ['', Validators.required],
+      service_id: ['', Validators.required],
+      goal_detail: ['', Validators.required],
+      goal_img: ['', Validators.required],
+    });
+  }
 
   ngOnInit(): void {
     this.previewLoaded = false;
     this.onLoading();
     const id = +this._route.snapshot.params['id'];
-    console.log(id);
     this.http
       .getData('/goals/' + id)
       .pipe(first())
       .subscribe((response: any) => {
         if (response.status == true) {
           this.info = response;
-          this.worksForm = new FormGroup({
-            goal_title: new FormControl(this.info.data.goal_title),
-            service_id: new FormControl(this.info.data.service_id),
-            goal_detail: new FormControl(this.info.data.goal_detail),
-            goal_img: new FormControl(this.info.data.goal_img),
+          this.worksForm = this.builder.group({
+            goal_title: [this.info.data.goal_title, Validators.required],
+            service_id: [this.info.data.service_id, Validators.required],
+            goal_detail: [this.info.data.goal_detail, Validators.required],
+            goal_img: [this.info.data.goal_img, Validators.required],
           });
         }
       });
   }
+
+  get a() {
+    return this.worksForm.controls;
+  }
+
+
   onLoading() {
     try {
       this.http
@@ -80,7 +94,6 @@ export class EditworksComponent implements OnInit {
         this.file = reader.result;
         const formData = new FormData();
         formData.append('goal_img', this.worksForm.get('goal_img')?.value);
-
         this.http
           .updateData(
             '/goals/image/' + this._route.snapshot.params['id'],
@@ -88,10 +101,16 @@ export class EditworksComponent implements OnInit {
           )
           .pipe(first())
           .subscribe();
+        this.toastService.success('แก้ไขรูปภาพเสร็จสิ้น');
       };
     }
   }
   updateWorks() {
+    this.submit = true;
+    if (this.worksForm.invalid) {
+      this.toastService.error('กรอกข้อมูลผิดพลาด');
+      return;
+    }
     const formData = new FormData();
     formData.append('service_id', this.worksForm.get('service_id')?.value);
     formData.append('goal_detail', this.worksForm.get('goal_detail')?.value);
@@ -99,31 +118,40 @@ export class EditworksComponent implements OnInit {
     this.http
       .updateData('/goals/' + this._route.snapshot.params['id'], formData)
       .pipe(first())
-      .subscribe();
-    this.router.navigate(['/admin/administrator/listworks']);
-    setTimeout('location.reload(true);', 0);
-  }
-
-  editWorks() {
-    this.http
-      .updateData(
-        '/goals/' + this._route.snapshot.params['id'],
-        this.worksForm.value
-      )
-      .pipe(first())
-      .subscribe();
-    window.location.reload();
+      .subscribe((response: any) => {
+        console.log(response);
+        if (response.statusCode == 200) {
+          this.ngOnInit();
+          this.router.navigate(['/admin/administrator/listworks']);
+          this.toastService.success('แก้ไขข้อมูลสำเร็จ', {
+            duration: 10000,
+            style: {
+              border: '2px solid green',
+              padding: '16px',
+              color: 'green',
+            },
+            iconTheme: {
+              primary: 'green',
+              secondary: '#FFFAEE',
+            },
+          });
+        }
+      },(error) => {
+        const response = error.error;
+        if (response.status == 500) {
+          this.toastService.error('เกิดข้อผิดพลาด');
+        }
+      }
+      );
+    
   }
 
   getnameDel(id: number) {
-    console.log(id);
     this.http
       .getData('/goals/' + id)
       .pipe(first())
       .subscribe((response: any) => {
         this.info = response.data;
-        console.log(this.info, +6666);
-        console.log(this.info.goal_title);
       });
   }
 
