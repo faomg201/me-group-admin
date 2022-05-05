@@ -1,58 +1,22 @@
 <app-content>
-  <div class="sizeeeee">
-    <br />
-    <br />
-    <br />
-    <br />
-    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+  <div class="relative">
+    <div class="sizeeeee"></div>
   </div>
   <div class="container">
     <div class="row">
       <div class="col align-self-start">
         <br />
-        บริการ<br />
-        บริการ >
+        <h4 class="textHeadPage"><b>บริการ</b></h4>
+        <h6 class="textHeadPage">บริการ ></h6>
       </div>
       <div class="col align-self-center"></div>
       <div class="col align-self-end" align="right">
         <button
           type="button"
-          class="btn btn-light"
-          data-toggle="modal"
-          data-target="#modal-default"
+          class="btn btn-light widthButtonAdd elevation-2"
+          (click)="openModal()"          
         >
-          เพิ่มข้อมูล
+          <b>เพิ่มข้อมูล</b>
         </button>
       </div>
     </div>
@@ -65,7 +29,7 @@
               <thead class="bgHeadtable" align="center">
                 <tr>
                   <th style="width: 80px">ลำดับ</th>
-                  <th style="width: 300px">รูปบริการ</th>
+                  <th style="width: 150px">รูปบริการ</th>
                   <th style="width: 180px">ชื่อบริการ</th>
                   <th style="width: 310px">คำอธิบาย</th>
                   <th style="width: 100px"></th>
@@ -76,16 +40,17 @@
                 <tr
                   *ngFor="
                     let item of info
-                      | paginate: { itemsPerPage: 6, currentPage: p }
+                      | paginate: { itemsPerPage: 6, currentPage: p };
+                      let i = index
                   "
                 >
-                  <td>{{ item.id }}</td>
+                  <td>{{ i+1 }}</td>
                   <td>
                     <img
                       src="http://localhost:8000/static/services/{{
-                        item.service_name+item.service_img
+                        item.service_name+ ',' +item.service_img
                       }}"
-                      style="width: 120px"
+                      style="width: 150px"
                     />
                   </td>
                   <td>{{ item.service_name }}</td>
@@ -122,7 +87,7 @@
   </div>
 </app-content>
 
-<div class="modal fade" id="modal-default">
+<div class="modal fade" id="CREATE_SERVICE">
   <div class="modal-dialog modal-xl">
     <div class="modal-content">
       <div class="modal-header">
@@ -130,9 +95,7 @@
         <button
           type="button"
           class="close"
-          data-dismiss="modal"
-          aria-label="Close"
-          (click)="ngOnInit()"
+          (click)="resetFrom()"
         >
           <span aria-hidden="true">&times;</span>
         </button>
@@ -162,45 +125,14 @@
                             *ngIf="previewLoaded == true; hidden"
                           >
                             <img
-                              *ngIf="previewLoaded"
                               class="img-thumbnail mx-auto d-block"
                               [src]="file"
                               style="height: 350px; width: auto"
                             />
                           </div>
-                          <div class="radius">เพิ่มรูปภาพบริการ</div>
-                        </div>
-                        <div
-                          class="row justify-content-md-center"
-                          align="center"
-                        >
-                          &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp;
-                          &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp;
-                          &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp;
-                          &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp;
-                          &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp;
-                          &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp;
-                          &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;
-                          &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp;
-                          &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp;
-                          &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp;
-                          &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp;
-                          &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp;
-                          &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp;
-                          &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp;
-                          &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp;
-                          &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp;
-                          &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;
-                          &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp;
-                          &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp;
-                          &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp;
-                          &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp;
-                          &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp;
-                          &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp;
-                          &nbsp; &nbsp;
+                          <div class="radius elevation-1">เพิ่มรูปภาพบริการ</div>
                         </div>
                       </div>
-
                       <div className="imageupload">
                         <input
                           type="file"
@@ -209,6 +141,9 @@
                           id="fileUpload"
                           multiple
                           hidden
+                          [ngClass]="{
+                            'is-invalid': submit && a['service_img'].errors
+                          }"
                         />
                       </div>
                     </label>
@@ -225,6 +160,9 @@
                       aria-label="First name"
                       class="form-control"
                       formControlName="service_name"
+                      [ngClass]="{
+                        'is-invalid': submit && a['service_name'].errors
+                      }"
                     />
                   </div>
                   <br />
@@ -236,6 +174,9 @@
                       placeholder=""
                       id="floatingTextarea2"
                       style="height: 200px"
+                      [ngClass]="{
+                        'is-invalid': submit && a['service_detail'].errors
+                      }"
                     ></textarea>
                   </div>
                   <div class="col-md-12">
@@ -244,16 +185,14 @@
                         <br />
                         <button
                           type="button"
-                          class="btn btn-light elevation-1"
-                          data-dismiss="modal"
-                          aria-label="Close"
-                          (click)="ngOnInit()"
+                          class="btn btn-light widthButtonAdd elevation-1"
+                          (click)="resetFrom()"
                         >
                           ยกเลิก
                         </button>
                         &nbsp; &nbsp; &nbsp;
                         <button
-                          class="btn btn-warning elevation-1"
+                          class="btn btn-warning widthButtonAdd elevation-1"
                           type="submit"
                           value="Submit"
                           (click)="createService()"
@@ -296,31 +235,31 @@
         </button>
         <br /><br />
         <div class="modal-body" *ngIf="infoDel">
-          คุณต้องการลบข้อมูล {{ infoDel.service_name }} หรือไม่?
+          คุณต้องการลบข้อมูล <b>{{ infoDel.service_name }} </b>หรือไม่?
         </div>
         <br />
-        <div class="row">
-          <div class="col-md-3"></div>
-          <div class="col-md-3">
+        <div class="row ">
+          <div class="col-md-2 "></div>
+          <div class="col-md-4 ">
             <button
               type="button"
-              class="btn btn-light"
+              class="btn btn-light widthButtonAdd elevation-1"
               data-bs-dismiss="modal"
             >
               ยกเลิก
             </button>
           </div>
-          <div class="col-md-3">
+          <div class="col-md-4">
             <button
               type="button"
-              class="btn btn-warning"
+              class="btn btn-warning widthButtonAdd elevation-1"
               (click)="deleteService(infoDel.id)"
               data-bs-dismiss="modal"
             >
               ยืนยัน
             </button>
           </div>
-          <div class="col-md-3"></div>
+          <div class="col-md-2"></div>
         </div>
         <br /><br />
       </div>

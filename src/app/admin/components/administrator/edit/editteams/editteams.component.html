@@ -1,48 +1,13 @@
 <app-content>
-  <div class="sizeeeee">
-    <br />
-    <br />
-    <br />
-    <br />
-    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+  <div class="relative">
+    <div class="sizeeeee"></div>
   </div>
   <div class="container">
     <div class="row">
       <div class="col align-self-start">
         <br />
-        ทีมของเรา<br />
-        ทีมของเรา > แก้ไขข้อมูลทีมของเรา
+        <h4 class="textHeadPage"><b>ทีมของเรา</b></h4>
+        <h6 class="textHeadPage">ทีมของเรา > แก้ไขข้อมูลทีมของเรา</h6>
       </div>
       <div class="col align-self-center"></div>
       <div class="col align-self-end" align="right"></div>
@@ -53,86 +18,72 @@
         <div class="card">
           <div class="card-body">
             <div class="row">
-              <form>
+              <form [formGroup]="teamForm">
                 <div class="card-body">
                   <div class="row">
                     <div class="col-md-4">
                       <label class="form-label">รูปภาพ</label>
                       <div class="mb-3">
-                        <label>
-                          <div class="container">
-                            <div
-                              class="row justify-content-md-center"
-                              align="center"
-                            >
+                        <div class="container">
+                          <div
+                            class="row justify-content-md-center"
+                            align="center"
+                          >
+                            <label>
                               <img
-                                class="img-thumbnail"
-                                src="../../../../../../assets/img/BG-WEB-Gray.jpg"
-                                style="height: 300px; width: 335px"
+                                src="http://localhost:8000/static/employees/{{
+                                  infoTeam.data.emp_fname +
+                                    ',' +
+                                    infoTeam.data.emp_lname +
+                                    ',' +
+                                    infoTeam.data.emp_img
+                                }}"
                                 *ngIf="previewLoaded == false; hidden"
+                                style="height: 300px; width: auto"
                               />
-                              <div
-                                class="bgGray"
-                                *ngIf="previewLoaded == true; hidden"
+                              <input
+                                type="file"
+                                (change)="fileChangeEvent($event)"
+                                name="imageupload"
+                                id="fileUpload"
+                                hidden
+                              />
+                            </label>
+                            <div *ngIf="imageChangedEvent">
+                              <image-cropper
+                                [imageChangedEvent]="imageChangedEvent"
+                                [aspectRatio]="1 / 1"
+                                [roundCropper]="true"
+                                format="png"
+                                (imageCropped)="imageCropped($event)"
                               >
-                                <img
-                                  *ngIf="previewLoaded"
-                                  class="img-thumbnail mx-auto d-block"
-                                  [src]="file"
-                                  style="height: 300px; width: auto"
-                                />
+                              </image-cropper>
+                            </div>
+                            <label>
+                              <div
+                                class="radius elevation-1"
+                                style="height: auto; width: auto"
+                              >
+                                แก้ไขรูปภาพ
                               </div>
-                              <div class="radius">เพิ่มรูปภาพ</div>
-                            </div>
-                            <div
-                              class="row justify-content-md-center"
-                              align="center"
-                            >
-                              &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp;
-                              &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp;
-                              &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp;
-                              &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp;
-                              &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp;
-                              &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp;
-                              &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp;
-                              &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp;
-                              &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp;
-                              &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp;
-                              &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp;
-                              &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp;
-                              &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp;
-                              &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp;
-                              &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp;
-                              &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp;
-                              &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp;
-                              &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp;
-                              &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp;
-                              &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp;
-                              &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;
-                              &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp;
-                              &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp;
-                              &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp;
-                              &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp;
-                              &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp;
-                              &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp;
-                              &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp;
-                              &nbsp;&nbsp; &nbsp; &nbsp;
-                            </div>
+                              <input
+                                type="file"
+                                (change)="fileChangeEvent($event)"
+                                name="imageupload"
+                                id="fileUpload"
+                                hidden
+                            /></label>
                           </div>
-
-                          <div className="imageupload">
-                            <input
-                              type="file"
-                              name="imageupload"
-                              id="fileUpload"
-                              multiple
-                              hidden
-                            />
-                          </div>
-                        </label>
-                      </div>
-                      <div class="col-md-12">
-                        <div class="row"></div>
+                        </div>
+                        <div className="imageupload">
+                          <input
+                            type="file"
+                            name="imageupload"
+                            id="fileUpload"
+                            multiple
+                            hidden
+                          />
+                        </div>
                       </div>
                     </div>
                     <div class="col-md-1"></div>
@@ -142,78 +93,100 @@
                         <input
                           type="text"
                           class="form-control"
-                          placeholder="First name"
-                          aria-label="First name"
-                          formControlName="employee_firstname"
+                          formControlName="emp_fname"
+                          [ngClass]="{
+                            'is-invalid': submit && a['emp_fname'].errors
+                          }"
                         />
                       </div>
-                      <br />
+
                       <div class="mb-3">
                         <label>นามสกุล</label>
                         <input
                           type="text"
                           class="form-control"
-                          placeholder="Last name"
-                          aria-label="Last name"
-                          formControlName="employee_lastname"
+                          formControlName="emp_lname"
+                          [ngClass]="{
+                            'is-invalid': submit && a['emp_lname'].errors
+                          }"
+                        />
+                      </div>
+                      <div class="mb-3">
+                        <label>ตำแหน่ง</label>
+                        <input
+                          type="text"
+                          class="form-control"
+                          formControlName="emp_class"
+                          [ngClass]="{
+                            'is-invalid': submit && a['emp_class'].errors
+                          }"
+                        />
+                      </div>
+                      <div class="mb-3">
+                        <label>คติ</label>
+                        <input
+                          type="text"
+                          class="form-control"
+                          formControlName="emp_quote"
+                          [ngClass]="{
+                            'is-invalid': submit && a['emp_quote'].errors
+                          }"
+                        />
+                      </div>
+                      <div class="mb-3">
+                        <label>MBTI</label>
+                        <select class="form-select" formControlName="mbti_id"
+                        [ngClass]="{
+                          'is-invalid': submit && a['mbti_id'].errors
+                        }">
+                          <option
+                            *ngFor="let item of infoMBTI; let i = index"
+                            value="{{ item.id }}"
+                          >
+                            {{ item.mbti_name }}
+                          </option>
+                        </select>
+                      </div>
+                      <div class="mb-3">
+                        <label>ติดต่อ</label>
+                        <input
+                          type="text"
+                          class="form-control"
+                          formControlName="emp_contract"
+                          [ngClass]="{
+                            'is-invalid': submit && a['emp_contract'].errors
+                          }"
                         />
                       </div>
                       <br />
-                      <div class="mb-3">
-                        <label>ตำแหน่ง</label>
-                        <select
-                          class="form-select"
-                          formControlName="service_id"
-                        >
-                          <option selected>เลือกตำแหน่ง</option>
-                          <option value="1">One</option>
-                          <option value="2">Two</option>
-                          <option value="3">Three</option>
-                        </select>
-                      </div>
-                      <br />
-                      <div class="mb-3">
-                        <label>MBTI</label>
-                        <select
-                          class="form-select"
-                          formControlName="service_id"
-                        >
-                          <option selected>เลือกตำแหน่ง</option>
-                          <option value="1">One</option>
-                          <option value="2">Two</option>
-                          <option value="3">Three</option>
-                        </select>
-                      </div>
-                      <br /><br /><br />
                       <div class="col-md-12">
                         <div class="row">
-                          <div class="col-md-8">
+                          <div class="col-md-4">
                             <button
                               type="button"
-                              class="btn btn-danger elevation-1"
+                              class="btn btn-danger widthButtonAdd elevation-1"
                               data-bs-toggle="modal"
                               data-bs-target="#delEmp"
+                              (click)="getnameDel(infoTeam.data.employee_id)"
                             >
                               ลบข้อมูล
                             </button>
                           </div>
-                          <div class="col-md-4">
-                            &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-                            &nbsp; &nbsp; &nbsp; &nbsp;
+                          <div class="col-md-8" align="right">
                             <button
                               type="button"
-                              class="btn btn-light elevation-1"
+                              class="btn btn-light widthButtonAdd elevation-1"
                               data-dismiss="modal"
                               aria-label="Close"
                               (click)="ngOnInit()"
                             >
-                              คืนค่า
-                            </button>
-                            &nbsp; &nbsp; &nbsp;
+                              คืนค่า</button
+                            >&nbsp; &nbsp; &nbsp;
                             <button
-                              class="btn btn-warning elevation-1"
+                              class="btn btn-warning widthButtonAdd elevation-1"
                               type="submit"
                               value="Submit"
+                              (click)="updateEmployee()"
                             >
                               บันทึก
                             </button>
@@ -251,35 +224,35 @@
           <span aria-hidden="true">&times;</span>
         </button>
         <br /><br />
-        <div class="modal-body" >
-          คุณต้องการลบข้อมูล ///// หรือไม่?
+        <div class="modal-body" *ngIf="infoTeam">
+          คุณต้องการลบข้อมูล <b>{{ infoTeam.data.emp_fname }} </b>หรือไม่?
         </div>
         <br />
         <div class="row">
-          <div class="col-md-3"></div>
-          <div class="col-md-3">
+          <div class="col-md-2"></div>
+          <div class="col-md-4">
             <button
               type="button"
-              class="btn btn-light"
+              class="btn btn-light widthButtonAdd elevation-1"
               data-bs-dismiss="modal"
             >
               ยกเลิก
             </button>
           </div>
-          <div class="col-md-3">
+          <div class="col-md-4">
             <button
               type="button"
-              class="btn btn-warning"
+              class="btn btn-warning widthButtonAdd elevation-1"
+              (click)="deleteEmployee(infoTeam.employee_id)"
               data-bs-dismiss="modal"
             >
               ยืนยัน
             </button>
           </div>
-          <div class="col-md-3"></div>
+          <div class="col-md-2"></div>
         </div>
         <br /><br />
       </div>
     </div>
   </div>
 </div>
-

@@ -1,48 +1,13 @@
 <app-content>
-  <div class="sizeeeee">
-    <br />
-    <br />
-    <br />
-    <br />
-    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+  <div class="relative">
+    <div class="sizeeeee"></div>
   </div>
   <div class="container">
     <div class="row">
       <div class="col align-self-start">
         <br />
-        ติดต่อเรา<br />
-        ติดต่อเรา >
+        <h4 class="textHeadPage"><b>ติดต่อเรา</b></h4>
+        <h6 class="textHeadPage">ติดต่อเรา ></h6>
       </div>
       <div class="col align-self-center"></div>
       <div class="col align-self-end" align="right"></div>
@@ -53,7 +18,7 @@
         <div class="card">
           <div class="modal-body">
             <div class="row-md-12">
-              <form>
+              <form [formGroup]="contractForm">
                 <div class="card-body">
                   <div class="row">
                     <div class="col-md-6">
@@ -61,91 +26,140 @@
                         <label>ที่อยู่</label>
                         <textarea
                           class="form-control"
-                          formControlName="service_detail"
-                          placeholder="Leave a comment here"
+                          formControlName="enterprise_address"
                           id="floatingTextarea2"
                           style="height: 124px"
+                          [ngClass]="{
+                            'is-invalid': submit && a['enterprise_address'].errors
+                          }"
                         ></textarea>
                       </div>
-                      <div class="col-md-12">
-                        <div class="row">
-                          <div class="col-md-2"></div>
-                          <div class="col-md-7 bg"></div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col-md-6">
-                      <div class="mb-3">
-                        <label>เบอร์ติดต่อ</label>
-                        <input
-                          type="text"
-                          aria-label="First name"
-                          class="form-control"
-                          formControlName="service_name"
-                        />
-                      </div>
-                      <div class="mb-3">
-                        <label>ตำแหน่งที่อยู่</label>
-                        <input
-                          type="text"
-                          aria-label="First name"
-                          class="form-control"
-                          formControlName="service_name"
-                        />
-                      </div>
-                    </div>
-                    <div class="col-md-6">
+                      <br>
                       <div class="mb-3">
                         <label>เวลาทำการ</label>
                         <input
                           type="text"
-                          aria-label="First name"
                           class="form-control"
-                          formControlName="service_name"
+                          formControlName="enterprise_servicetime"
+                          [ngClass]="{
+                            'is-invalid': submit && a['enterprise_servicetime'].errors
+                          }"
                         />
                       </div>
                       <div class="mb-3">
                         <label>Email</label>
                         <input
                           type="text"
-                          aria-label="First name"
                           class="form-control"
-                          formControlName="service_name"
+                          formControlName="enterprise_email"
+                          [ngClass]="{
+                            'is-invalid': submit && a['enterprise_email'].errors
+                          }"
                         />
                       </div>
                       <div class="mb-3">
                         <label>Facebook</label>
                         <input
                           type="text"
-                          aria-label="First name"
                           class="form-control"
-                          formControlName="service_name"
+                          formControlName="enterprise_facebook"
+                          [ngClass]="{
+                            'is-invalid': submit && a['enterprise_facebook'].errors
+                          }"
                         />
                       </div>
                     </div>
                     <div class="col-md-6">
-                      <div class="col-md-12">
+                      <div class="mb-3">
+                        <label>เบอร์ติดต่อ</label>
+                        <input
+                          type="number"
+                          class="form-control"
+                          formControlName="enterprise_phone"
+                          [ngClass]="{
+                            'is-invalid': submit && a['enterprise_phone'].errors
+                          }"
+                        />
+                      </div>
+                      <div class="mb-3">
                         <div class="row">
-                          <div class="col bg-dark border">
-                            <br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+                          <label>ตำแหน่งที่อยู่</label>
+                          <div class="col-md-6">
+                            <div class="mb-3">
+                              <input
+                                type="number"
+                                class="form-control"
+                                formControlName="enterprise_latitude"
+                                placeholder="ละติจูด"
+                                [ngClass]="{
+                                  'is-invalid': submit && a['enterprise_latitude'].errors
+                                }"
+                              />
+                            </div>
+                          </div>
+                          <div class="col-md-6">
+                            <div class="mb-3">
+                              <input
+                                type="number"
+                                class="form-control"
+                                formControlName="enterprise_longtitude"
+                                placeholder="ลองติจูด"
+                                [ngClass]="{
+                                  'is-invalid': submit && a['enterprise_longtitude'].errors
+                                }"
+                              />
+                            </div>
+                          </div>
+                          <div class="col-md-12">
+                            <input
+                              type="text"
+                              placeholder="Google API Key"
+                              class="form-control"
+                              formControlName="enterprise_GG_key_api"
+                              [ngClass]="{
+                                'is-invalid': submit && a['enterprise_GG_key_api'].errors
+                              }"
+                            />
                           </div>
                         </div>
                       </div>
-                      <div class="col-md-12">
-                        <div class="row">
-                          <div class="col align-self-end" align="right">
-                            <br /><br />
-                            <button type="button" class="btn btn-light">
-                              คืนค่า
-                            </button>
-                            &nbsp; &nbsp; &nbsp;
-                            <button type="button" class="btn btn-warning">
-                              บันทึก
-                            </button>
+                      <div class="mb-3">
+                        <div class="col-md-12">
+                          <div class="row">
+                            <div class="col bg-dark">
+                              <br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-md-12">
+                          <div class="row">
+                            <div class="col align-self-end" align="right">
+                              <br />
+                              <button
+                                (click)="resetFrom()"
+                                type="button"
+                                class="btn btn-light widthButtonAdd elevation-1"
+                              >
+                                คืนค่า
+                              </button>
+                              &nbsp; &nbsp; &nbsp;
+                              <button
+                                class="btn btn-warning widthButtonAdd elevation-1"
+                                type="submit"
+                                value="Submit"
+                                (click)="createService()"
+                              >
+                                บันทึก
+                              </button>
+                            </div>
                           </div>
                         </div>
                       </div>
                     </div>
+                    <div class="col-md-6">
+                      
+                    </div>
+                    
                   </div>
                 </div>
               </form>

@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgxPaginationModule }from 'ngx-pagination';
 import { HotToastModule } from '@ngneat/hot-toast';
+import { ImageCropperModule } from 'ngx-image-cropper';
+
 
 import { AdministratorRoutingModule } from './administrator-routing.module';
 import { CreateComponent } from './create/create.component';
@@ -46,7 +48,8 @@ import { EditaccountComponent } from './edit/editaccount/editaccount.component';
     FormsModule,
     ReactiveFormsModule,
     NgxPaginationModule,
-    HotToastModule
+    HotToastModule,
+    ImageCropperModule
   ]
 })
 export class AdministratorModule { }

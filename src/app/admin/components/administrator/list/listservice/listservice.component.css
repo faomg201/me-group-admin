@@ -1,6 +1,3 @@
-.bgHeadtable {
-  background-color: #f8faff;
-}
 .round {
   border-radius: 30px;
   background-color: #fec87c;
@@ -12,18 +9,4 @@
 td {
   text-align: center;
   vertical-align: middle;
-}
-.sizeeeee {
-  position: absolute;
-  max-width: auto;
-  background-color: #fec87c;
-}
-
-.bgGray{
-background-color: #ededed;
-}
-.radius {
-  border-radius: 4px;
-  background: #898989;
-  color: white;
 }

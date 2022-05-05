@@ -1,58 +1,22 @@
 <app-content>
-  <div class="sizeeeee">
-    <br />
-    <br />
-    <br />
-    <br />
-    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+  <div class="relative">
+    <div class="sizeeeee"></div>
   </div>
   <div class="container">
     <div class="row">
       <div class="col align-self-start">
         <br />
-        ทีมของเรา<br />
-        ทีมของเรา >
+        <h4 class="textHeadPage"><b>ทีมของเรา</b></h4>
+        <h6 class="textHeadPage">ทีมของเรา ></h6>
       </div>
       <div class="col align-self-center"></div>
       <div class="col align-self-end" align="right">
         <button
           type="button"
-          class="btn btn-light"
-          data-toggle="modal"
-          data-target="#modal-default"
+          class="btn btn-light widthButtonAdd elevation-2"
+          (click)="openModal()"
         >
-          เพิ่มข้อมูล
+          <b>เพิ่มข้อมูล</b>
         </button>
       </div>
     </div>
@@ -64,38 +28,62 @@
             <table class="table table-borderless">
               <thead class="bgHeadtable" align="center">
                 <tr>
-                  <th style="width: 80px">ลำดับ</th>
-                  <th style="width: 300px">รูปภาพ</th>
-                  <th style="width: 180px">ชื่อ-นามสกุล</th>
-                  <th style="width: 310px">ตำแหน่ง</th>
+                  <th style="width: 50px">ลำดับ</th>
+                  <th style="width: 120px">รูปภาพ</th>
+                  <th style="width: 200px">ชื่อ-นามสกุล</th>
+                  <th style="width: 200px">ตำแหน่ง</th>
                   <th style="width: 310px">คติ</th>
                   <th style="width: 200px">MBTI</th>
+                  <th style="width: 200px">ติดต่อ</th>
                   <th style="width: 100px"></th>
                   <th style="width: 50px"></th>
                 </tr>
               </thead>
               <tbody align="center">
-                <tr>
-                  <td>1</td>
-                  <td>
+                <tr
+                  *ngFor="
+                    let item of infoTeam
+                      | paginate: { itemsPerPage: 6, currentPage: p };
+                    let i = index
+                  "
+                >
+                  <td>{{ i + 1 }}</td>
+                  <td (click)="onClick(item.employee_id)">
                     <img
-                      src="http://localhost:8000/static/turtle.jpeg"
-                      style="width: 120px"
+                      src="http://localhost:8000/static/employees/{{
+                        item.emp_fname +
+                          ',' +
+                          item.emp_lname +
+                          ',' +
+                          item.emp_img
+                      }}"
+                      style="width: 120px; border-radius: 100%"
                     />
                   </td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td>
-                    <button type="button" class="btn round"
-                    (click)="onClick()">แก้ไข</button>
+                  <td (click)="onClick(item.employee_id)">
+                    {{ item.emp_fname }} {{ item.emp_lname }}
+                  </td>
+                  <td (click)="onClick(item.employee_id)">
+                    {{ item.emp_class }}
+                  </td>
+                  <td (click)="onClick(item.employee_id)">
+                    {{ item.emp_quote }}
+                  </td>
+                  <td (click)="onClick(item.employee_id)">
+                    {{ item.mbti_name }}
+                  </td>
+                  <td (click)="onClick(item.employee_id)">
+                    {{ item.emp_contract }}
+                  </td>
+                  <td (click)="onClick(item.employee_id)">
+                    <button type="button" class="btn round">แก้ไข</button>
                   </td>
                   <td>
                     <i
                       class="fas fa-trash-alt nav-icon"
                       data-bs-toggle="modal"
                       data-bs-target="#delEmp"
+                      (click)="getnameDel(item.employee_id)"
                     ></i>
                   </td>
                 </tr>
@@ -113,99 +101,95 @@
   </div>
 </app-content>
 
-<div class="modal fade" id="modal-default">
+<div class="modal fade" id="CREATE_EMP">
   <div class="modal-dialog modal-xl">
     <div class="modal-content">
       <div class="modal-header">
         <h4 class="modal-title textHead">เพิ่มข้อมูลทีมของเรา</h4>
-        <button
-          type="button"
-          class="close"
-          data-dismiss="modal"
-          aria-label="Close"
-          (click)="ngOnInit()"
-        >
+        <button type="button" class="close" (click)="resetFrom()">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
         <div class="row-md-12">
           <div class="col-md-12">
-            <form>
+            <form [formGroup]="teamForm">
               <div class="card-body">
                 <div class="row">
                   <div class="col-md-5">
                     <label class="form-label">รูปภาพ</label>
-                    <div class="mb-3">
-                      <label>
-                        <div class="container">
-                          <div
-                            class="row justify-content-md-center"
-                            align="center"
-                          >
+                    <div class="col-md-12">
+                      <div class="container">
+                        <div
+                          class="row justify-content-md-center"
+                          align="center"
+                        >
+                          <label>
                             <img
                               class="img-thumbnail"
                               src="../../../../../../assets/img/BG-WEB-Gray.jpg"
-                              style="height: 300px; width: 450px"
+                              style="height: 300px; width: 500px"
                               *ngIf="previewLoaded == false; hidden"
                             />
-                            <div
-                              class="bgGray"
-                              *ngIf="previewLoaded == true; hidden"
+                            <input
+                              type="file"
+                              (change)="fileChangeEvent($event)"
+                              name="imageupload"
+                              id="fileUpload"
+                              hidden
+                            />
+                          </label>
+                          <div *ngIf="imageChangedEvent">
+                            <image-cropper
+                              [imageChangedEvent]="imageChangedEvent"
+                              [aspectRatio]="1 / 1"
+                              [roundCropper]="true"
+                              format="png"
+                              (imageCropped)="imageCropped($event)"
                             >
-                              <img
-                                *ngIf="previewLoaded"
-                                class="img-thumbnail mx-auto d-block"
-                                [src]="file"
-                                style="height: 300px; width: auto"
-                              />
+                            </image-cropper>
+                          </div>
+                          <label>
+                            <div
+                              class="radius elevation-1"
+                              style="height: auto; width: auto"
+                            >
+                              เพิ่มรูปภาพ
                             </div>
-                            <div class="radius">เพิ่มรูปภาพ</div>
-                          </div>
-                          <div
-                            class="row justify-content-md-center"
-                            align="center"
-                          >
-                            &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp;
-                            &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp;
-                            &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp;
-                            &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp;
-                            &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp;
-                            &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp;
-                            &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp;
-                            &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp;
-                            &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp;
-                            &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp;
-                            &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp;
-                            &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp;
-                            &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp;
-                            &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp;
-                            &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp;
-                            &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp;
-                            &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp;
-                            &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;
-                            &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp;
-                            &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp;
-                            &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp;
-                            &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp;
-                            &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp;
-                            &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;
-                          </div>
+                            <input
+                              type="file"
+                              (change)="fileChangeEvent($event)"
+                              name="imageupload"
+                              id="fileUpload"
+                              hidden
+                              [ngClass]="{
+                                'is-invalid': submit && a['emp_img'].errors
+                              }"
+                          /></label>
                         </div>
-
-                        <div className="imageupload">
-                          <input
-                            type="file"
-                            name="imageupload"
-                            id="fileUpload"
-                            multiple
-                            hidden
-                          />
-                        </div>
-                      </label>
+                      </div>
                     </div>
-                    <div class="col-md-12">
-                      <div class="row"></div>
+                    <div class="mb-3">
+                      <br /><br />
+                      <div class="col align-self-end" align="center">
+                        <button
+                          type="button"
+                          class="btn btn-light widthButtonAdd elevation-1"
+                          (click)="resetFrom()"
+                        >
+                          ยกเลิก
+                        </button>
+                        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                        &nbsp; &nbsp; &nbsp; &nbsp;
+                        <button
+                          class="btn btn-warning widthButtonAdd elevation-1"
+                          type="submit"
+                          value="Submit"
+                          (click)="createTeams()"
+                        >
+                          เพิ่ม
+                        </button>
+                      </div>
                     </div>
                   </div>
                   <div class="col-md-7">
@@ -214,65 +198,79 @@
                       <input
                         type="text"
                         class="form-control"
-                        placeholder="First name"
-                        aria-label="First name"
-                        formControlName="employee_firstname"
+                        formControlName="emp_fname"
+                        [ngClass]="{
+                          'is-invalid': submit && a['emp_fname'].errors
+                        }"
                       />
                     </div>
-                    <br />
                     <div class="mb-3">
                       <label>นามสกุล</label>
                       <input
                         type="text"
                         class="form-control"
-                        placeholder="Last name"
-                        aria-label="Last name"
-                        formControlName="employee_lastname"
+                        formControlName="emp_lname"
+                        [ngClass]="{
+                          'is-invalid': submit && a['emp_lname'].errors
+                        }"
                       />
                     </div>
-                    <br />
-                    <div class="mb-3">
-                      <label>ตำแหน่ง</label>
-                      <select class="form-select" formControlName="service_id">
-                        <option selected>เลือกตำแหน่ง</option>
-                        <option value="1">One</option>
-                        <option value="2">Two</option>
-                        <option value="3">Three</option>
-                      </select>
-                    </div>
-                    <br />
-                    <div class="mb-3">
-                      <label>MBTI</label>
-                      <select class="form-select" formControlName="service_id">
-                        <option selected>เลือกตำแหน่ง</option>
-                        <option value="1">One</option>
-                        <option value="2">Two</option>
-                        <option value="3">Three</option>
-                      </select>
-                    </div>
-                    <br /><br /><br />
-                    <div class="col-md-12">
-                      <div class="row">
-                        <div class="col align-self-end" align="right">
-                          <button
-                            type="button"
-                            class="btn btn-light elevation-1"
-                            data-dismiss="modal"
-                            aria-label="Close"
-                            (click)="ngOnInit()"
-                          >
-                            ยกเลิก
-                          </button>
-                          &nbsp; &nbsp; &nbsp;
-                          <button
-                            class="btn btn-warning elevation-1"
-                            type="submit"
-                            value="Submit"
-                          >
-                            เพิ่ม
-                          </button>
+                    <div class="row">
+                      <div class="col-md-6">
+                        <div class="mb-3">
+                          <label>ตำแหน่ง</label>
+                          <input
+                            type="text"
+                            class="form-control"
+                            formControlName="emp_class"
+                            [ngClass]="{
+                              'is-invalid': submit && a['emp_class'].errors
+                            }"
+                          />
                         </div>
                       </div>
+                      <div class="col-md-6">
+                        <div class="mb-3">
+                          <label>MBTI</label>
+                          <select
+                            class="form-select"
+                            formControlName="mbti_id"
+                            [ngClass]="{
+                              'is-invalid': submit && a['mbti_id'].errors
+                            }"
+                          >
+                            <option
+                              *ngFor="let item of infoMBTI; let i = index"
+                              value="{{ item.id }}"
+                            >
+                              {{ item.mbti_name }}
+                            </option>
+                          </select>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="mb-3">
+                      <label>คติ</label>
+                      <input
+                        type="text"
+                        class="form-control"
+                        formControlName="emp_quote"
+                        [ngClass]="{
+                          'is-invalid': submit && a['emp_quote'].errors
+                        }"
+                      />
+                    </div>
+                    <div class="mb-3">
+                      <label>ติดต่อ</label>
+                      <input
+                        type="text"
+                        class="form-control"
+                        formControlName="emp_contract"
+                        [ngClass]="{
+                          'is-invalid': submit && a['emp_contract'].errors
+                        }"
+                      />
                     </div>
                   </div>
                 </div>
@@ -307,35 +305,35 @@
           <span aria-hidden="true">&times;</span>
         </button>
         <br /><br />
-        <div class="modal-body" >
-          คุณต้องการลบข้อมูล ///// หรือไม่?
+        <div class="modal-body" *ngIf="infoDel">
+          คุณต้องการลบข้อมูล <b>{{ infoDel.emp_fname }} </b>หรือไม่?
         </div>
         <br />
         <div class="row">
-          <div class="col-md-3"></div>
-          <div class="col-md-3">
+          <div class="col-md-2"></div>
+          <div class="col-md-4">
             <button
               type="button"
-              class="btn btn-light"
+              class="btn btn-light widthButtonAdd elevation-1"
               data-bs-dismiss="modal"
             >
               ยกเลิก
             </button>
           </div>
-          <div class="col-md-3">
+          <div class="col-md-4">
             <button
               type="button"
-              class="btn btn-warning"
+              class="btn btn-warning widthButtonAdd elevation-1"
+              (click)="deleteEmployee(infoDel.employee_id)"
               data-bs-dismiss="modal"
             >
               ยืนยัน
             </button>
           </div>
-          <div class="col-md-3"></div>
+          <div class="col-md-2"></div>
         </div>
         <br /><br />
       </div>
     </div>
   </div>
 </div>
-
