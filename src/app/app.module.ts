@@ -19,7 +19,7 @@ import { ImageCropperModule } from 'ngx-image-cropper';
     AppRoutingModule,
     SharedsModule,
     HttpClientModule,
-    HotToastModule.forRoot()
+    HotToastModule.forRoot(),
   ],
   providers: [],
   bootstrap: [AppComponent]

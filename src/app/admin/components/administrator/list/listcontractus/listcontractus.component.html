@@ -3,6 +3,7 @@
     <div class="sizeeeee"></div>
   </div>
   <div class="container">
+    <!-- <div class="full" id="map"></div> -->
     <div class="row">
       <div class="col align-self-start">
         <br />
@@ -94,7 +95,9 @@
                                 [ngClass]="{
                                   'is-invalid': submit && a['enterprise_latitude'].errors
                                 }"
+                                (change)="locationlat($event)"
                               />
+                              
                             </div>
                           </div>
                           <div class="col-md-6">
@@ -107,6 +110,8 @@
                                 [ngClass]="{
                                   'is-invalid': submit && a['enterprise_longtitude'].errors
                                 }"
+                                (change)="locationlng($event)"
+                                
                               />
                             </div>
                           </div>
@@ -119,6 +124,7 @@
                               [ngClass]="{
                                 'is-invalid': submit && a['enterprise_GG_key_api'].errors
                               }"
+                              (change)="GoogleAPI($event)"
                             />
                           </div>
                         </div>
@@ -126,8 +132,7 @@
                       <div class="mb-3">
                         <div class="col-md-12">
                           <div class="row">
-                            <div class="col bg-dark">
-                              <br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+                            <div class="full" id="map">
                             </div>
                           </div>
                         </div>
@@ -147,7 +152,7 @@
                                 class="btn btn-warning widthButtonAdd elevation-1"
                                 type="submit"
                                 value="Submit"
-                                (click)="createService()"
+                                (click)="createContract()"
                               >
                                 บันทึก
                               </button>
@@ -170,120 +175,3 @@
     </div>
   </div>
 </app-content>
-<div class="modal fade" id="modal-default">
-  <div class="modal-dialog modal-xl">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h4 class="modal-title textHead">เพิ่มบริการ</h4>
-        <button
-          type="button"
-          class="close"
-          data-dismiss="modal"
-          aria-label="Close"
-          (click)="ngOnInit()"
-        >
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <div class="row-md-12">
-          <form>
-            <div class="card-body">
-              <div class="row">
-                <div class="col-md-6">
-                  <div class="mb-3">
-                    <label>เบอร์ติดต่อ</label>
-                    <input
-                      type="text"
-                      aria-label="First name"
-                      class="form-control"
-                      formControlName="service_name"
-                    />
-                  </div>
-                </div>
-                <div class="col-md-6">
-                  <div class="mb-3">
-                    <label>ชื่อผู้เสียภาษี</label>
-                    <input
-                      type="text"
-                      aria-label="First name"
-                      class="form-control"
-                      formControlName="service_name"
-                    />
-                  </div>
-                </div>
-                <div class="col-md-6">
-                  <div class="mb-3">
-                    <label>ที่อยู่</label>
-                    <textarea
-                      class="form-control"
-                      formControlName="service_detail"
-                      placeholder="Leave a comment here"
-                      id="floatingTextarea2"
-                      style="height: 100px"
-                    ></textarea>
-                  </div>
-                  <div class="col-md-12">
-                    <div class="row">
-                      <div class="col-md-2"></div>
-                      <div class="col-md-7 bg"></div>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-md-6">
-                  <div class="mb-3">
-                    <label>ที่อยู่ Google map</label>
-                    <textarea
-                      class="form-control"
-                      formControlName="service_detail"
-                      placeholder="Leave a comment here"
-                      id="floatingTextarea2"
-                      style="height: 100px"
-                    ></textarea>
-                  </div>
-                </div>
-                <div class="col-md-12">
-                  <div class="mb-3">
-                    <label>เวลาทำการ</label>
-                    <input
-                      type="text"
-                      aria-label="First name"
-                      class="form-control"
-                      formControlName="service_name"
-                    />
-                  </div>
-                  <div class="mb-3">
-                    <label>link facebook messenger</label>
-                    <input
-                      type="text"
-                      aria-label="First name"
-                      class="form-control"
-                      formControlName="service_name"
-                    />
-                  </div>
-                </div>
-              </div>
-            </div>
-          </form>
-        </div>
-      </div>
-      <div class="modal-footer justify-content-between">
-        <button
-          type="button"
-          class="btn btn-default"
-          data-dismiss="modal"
-          (click)="ngOnInit()"
-        >
-          Close
-        </button>
-        <input
-          class="btn padding3 btn-light elevation-3"
-          type="submit"
-          value="Submit"
-        />
-      </div>
-    </div>
-    <!-- /.modal-content -->
-  </div>
-  <!-- /.modal-dialog -->
-</div>

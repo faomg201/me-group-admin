@@ -22,7 +22,7 @@
                 <div class="card-body">
                   <div class="row">
                     <div class="col-md-6">
-                      <form [formGroup]="myForm" (ngSubmit)="submit()">
+                      <form [formGroup]="myForm" >
                         <div class="form-group">
                           <label for="file">รูปภาพเกี่ยวกับเรา</label>
                           <input
@@ -46,41 +46,7 @@
                             </div>
                           </div>
                         </div>
-                        <img
-                          *ngIf="images[0]"
-                          [src]="images[0]"
-                          height="200px"
-                          width="200px"
-                          style="margin: 3px"
-                        />
-                        <img
-                          *ngIf="images[1]"
-                          [src]="images[1]"
-                          height="100px"
-                          width="110px"
-                          style="margin: 3px"
-                        />
-                        <img
-                          *ngIf="images[2]"
-                          [src]="images[2]"
-                          height="100px"
-                          width="110px"
-                          style="margin: 3px"
-                        />
-                        <img
-                          *ngIf="images[3]"
-                          [src]="images[3]"
-                          height="100px"
-                          width="110px"
-                          style="margin: 3px"
-                        />
-                        <img
-                          *ngIf="images[4]"
-                          [src]="images[4]"
-                          height="100px"
-                          width="110px"
-                          style="margin: 3px"
-                        />
+                        
                         <img
                           *ngFor="let url of images"
                           [src]="url"
@@ -89,14 +55,8 @@
                           style="margin: 3px"
                         />
                         <br />
+                        <button (click)="submit()">55555555555ddd</button>
 
-                        <button
-                          class="btn btn-primary"
-                          [disabled]="myForm.invalid"
-                          type="submit"
-                        >
-                          Submit
-                        </button>
                       </form>
                     </div>
                     <div class="col-md-6">

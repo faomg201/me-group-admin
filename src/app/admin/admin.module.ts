@@ -7,7 +7,6 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { SharedsModule } from '../shareds/shareds.module';
 
 
-
 @NgModule({
   declarations: [
     DashboardComponent
@@ -15,8 +14,7 @@ import { SharedsModule } from '../shareds/shareds.module';
   imports: [
     CommonModule,
     AdminRoutingModule,
-    SharedsModule
-
+    SharedsModule,
   ]
 })
 export class AdminModule { }
