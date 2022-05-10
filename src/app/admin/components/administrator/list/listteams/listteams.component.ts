@@ -5,6 +5,7 @@ import { HotToastService } from '@ngneat/hot-toast';
 import { HttpClientService } from '../../../../../shareds/_service/http-client.service';
 import { first } from 'rxjs';
 
+
 import { ImageCroppedEvent } from 'ngx-image-cropper';
 declare var $: any;
 @Component({
@@ -195,6 +196,8 @@ export class ListteamsComponent implements OnInit {
   }
 
   createTeams() {
+    console.log(this.teamForm.get('emp_fname')?.value);
+    
     this.submit = true;
     if (this.teamForm.invalid) {
       this.toastService.error('กรอกข้อมูลผิดพลาด');
@@ -213,6 +216,8 @@ export class ListteamsComponent implements OnInit {
       .pipe(first())
       .subscribe(
         (response: any) => {
+          console.log(response);
+          
           if (response.statusCode == 201) {
             $('#CREATE_EMP').modal('hide');
             this.getTeams();
