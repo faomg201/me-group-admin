@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClientService } from '../../../../../shareds/_service/http-client.service';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { empty, first, NEVER, never } from 'rxjs';
+import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
+import { first, } from 'rxjs';
 import { HotToastService } from '@ngneat/hot-toast';
 
 @Component({
@@ -18,7 +18,6 @@ export class ListaboutusComponent implements OnInit {
   --------------------------------------------
   --------------------------------------------*/
   myForm = new FormGroup({
-    name: new FormControl('', [Validators.required, Validators.minLength(3)]),
     file: new FormControl('', [Validators.required]),
     image_name: new FormControl('', [Validators.required, Validators.maxLength(7)]),
   });
@@ -39,43 +38,134 @@ export class ListaboutusComponent implements OnInit {
   // }
   // previewLoaded = false;
   // file: any;
-  // serviceForm = new FormGroup({
+  // aboutUsForm = new FormGroup({
   //   service_name: new FormControl(''),
   //   service_detail: new FormControl(''),
   //   service_img: new FormControl(''),
   // });
-  constructor(private toastService: HotToastService, private http: HttpClientService) { }
+  submit = false;
+  infoAboutUs: any;
+  aboutUsForm: FormGroup;
+  constructor(private toastService: HotToastService, private http: HttpClientService, private builder: FormBuilder) {
+    this.aboutUsForm = this.builder.group({
+      enterprise_name: ['', Validators.required],
+      enterprise_surname: ['', Validators.required],
+      enterprise_detail: ['', Validators.required]
+    })
+  }
 
   ngOnInit(): void {
+    this.http.getData('/enterprises').pipe(first()).subscribe((response: any) => {
+      if (response.status == true) {
+        this.infoAboutUs = response;
+        this.aboutUsForm = this.builder.group({
+          enterprise_name: [this.infoAboutUs.data.enterprise_name, Validators.required],
+          enterprise_surname: [this.infoAboutUs.data.enterprise_surname, Validators.required],
+          enterprise_detail: [this.infoAboutUs.data.enterprise_detail, Validators.required]
+        });
+      }
+    });
 
   }
 
-  // onChangePhoto(e: any) {
-  //   const file: File = e.target.files[0];
-  //   if (file) {
-  //     this.serviceForm.patchValue({
-  //       service_img: file,
-  //     });
-  //     const reader = new FileReader();
-  //     reader.readAsDataURL(file);
-  //     reader.onload = () => {
-  //       // this.previewLoaded = true;
-  //       this.file = reader.result;
-  //     };
-  //   }
-  // }
+  get a() {
+    return this.aboutUsForm.controls;
+  }
+  resetFrom() {
+    this.ngOnInit();
+    this.infoAboutUs.reset();
+    this.submit = false
+  }
+  createAboutUs() {
+
+    console.log(this.infoAboutUs);
+
+    // this.submit = true;
+    // if (this.aboutUsForm.invalid) {
+    //   this.toastService.error('กรอกข้อมูลผิดพลาด');
+    //   return;
+    // }
+    if (!this.infoAboutUs) {
+      const formData = new FormData();
+      formData.append('enterprise_name', this.aboutUsForm.get('enterprise_name')?.value);
+      formData.append('enterprise_surname', this.aboutUsForm.get('enterprise_surname')?.value);
+      formData.append('enterprise_detail', this.aboutUsForm.get('enterprise_detail')?.value);
+
+      this.http.createData('/enterprises', formData).pipe(first()).subscribe((response: any) => {
+        console.log(response);
+
+        if (response.statusCode == 201) {
+          console.log(response);
+          this.toastService.success('เพิ่มข้อมูลสำเร็จ', {
+            duration: 10000,
+            style: {
+              border: '2px solid green',
+              padding: '16px',
+              color: 'green',
+            },
+            iconTheme: {
+              primary: 'green',
+              secondary: '#FFFAEE',
+            },
+          });
+        }
+      },
+        (error) => {
+          const response = error.error;
+          if (response.status == 500) {
+            this.toastService.error('เกิดข้อผิดพลาด');
+          }
+        })
+    }
+    else {
+      this.submit = true;
+      if (this.aboutUsForm.invalid) {
+        this.toastService.error('กรอกข้อมูลผิดพลาด');
+        return;
+      }
+      const formData = new FormData();
+      formData.append('enterprise_name', this.aboutUsForm.get('enterprise_name')?.value);
+      formData.append('enterprise_surname', this.aboutUsForm.get('enterprise_surname')?.value);
+      formData.append('enterprise_detail', this.aboutUsForm.get('enterprise_detail')?.value);
+      this.http.updateData('/enterprises/1', formData).pipe(first()).subscribe((response: any) => {
+        if (response.statusCode == 200) {
+          this.ngOnInit();
+          this.toastService.success('แก้ไขข้อมูลสำเร็จ', {
+            duration: 10000,
+            style: {
+              border: '2px solid green',
+              padding: '16px',
+              color: 'green',
+            },
+            iconTheme: {
+              primary: 'green',
+              secondary: '#FFFAEE',
+            },
+          });
+        }
+      }, (error) => {
+        const response = error.error;
+        if (response.status == 500) {
+          this.toastService.error('เกิดข้อผิดพลาด');
+        }
+      }
+      )
+
+
+    }
+  }
 
   get f() {
     return this.myForm.controls;
   }
-  submit() {
+  submitt() {
     const data = this.myForm.get('image_name')?.value;
     // const dataRm: string[] = [];
     // const sender = {
     //   current: data, remove: dataRm
     // }
     // console.log(data[1].name);
-    
+
 
     // const formValues = new FormData();
     // for (let i = 0; i < data.length; i++) {
@@ -83,10 +173,10 @@ export class ListaboutusComponent implements OnInit {
     // }
 
     const formData = new FormData();
-    
+
     for (let i = 0; i < data.length; i++) {
       formData.append('image_name', this.myForm.get('image_name')?.value[i]);
-      }
+    }
 
 
     this.http.createData('/aboutUs/image', formData).pipe(first()).subscribe((response: any) => {

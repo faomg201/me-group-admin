@@ -22,7 +22,7 @@
                 <div class="card-body">
                   <div class="row">
                     <div class="col-md-6">
-                      <form [formGroup]="myForm" >
+                      <form [formGroup]="myForm">
                         <div class="form-group">
                           <label for="file">รูปภาพเกี่ยวกับเรา</label>
                           <input
@@ -46,7 +46,7 @@
                             </div>
                           </div>
                         </div>
-                        
+
                         <img
                           *ngFor="let url of images"
                           [src]="url"
@@ -55,53 +55,70 @@
                           style="margin: 3px"
                         />
                         <br />
-                        <button (click)="submit()">55555555555ddd</button>
-
+                        <button (click)="submitt()">55555555555ddd</button>
                       </form>
                     </div>
                     <div class="col-md-6">
-                      <div class="mb-3">
-                        <label>ชื่อหลัก</label>
-                        <input
-                          type="text"
-                          aria-label="First name"
-                          class="form-control"
-                          formControlName="service_name"
-                        />
-                      </div>
-                      <div class="mb-3">
-                        <label>ชื่อรอง</label>
-                        <input
-                          type="text"
-                          aria-label="First name"
-                          class="form-control"
-                          formControlName="service_name"
-                        />
-                      </div>
-                      <div class="mb-3">
-                        <label>คำอธิบาย</label>
-                        <textarea
-                          class="form-control"
-                          formControlName="service_detail"
-                          placeholder=""
-                          id="floatingTextarea2"
-                          style="height: 200px"
-                        ></textarea>
-                      </div>
-                      <div class="col-md-12">
-                        <div class="row">
-                          <div class="col align-self-end" align="right">
-                            <br /><br />
-                            <button type="button" class="btn btn-light">
-                              คืนค่า
-                            </button>
-                            &nbsp; &nbsp; &nbsp;
-                            <button type="button" class="btn btn-warning">
-                              บันทึก
-                            </button>
+                      <form [formGroup]="aboutUsForm">
+                        <div class="mb-3">
+                          <label>ชื่อหลัก</label>
+                          <input
+                            type="text"
+                            aria-label="First name"
+                            class="form-control"
+                            formControlName="enterprise_name"
+                            [ngClass]="{
+                              'is-invalid':
+                                submit && a['enterprise_name'].errors
+                            }"
+                          />
+                        </div>
+                        <div class="mb-3">
+                          <label>ชื่อรอง</label>
+                          <input
+                            type="text"
+                            aria-label="First name"
+                            class="form-control"
+                            formControlName="enterprise_surname"
+                            [ngClass]="{
+                              'is-invalid':
+                                submit && a['enterprise_surname'].errors
+                            }"
+                          />
+                        </div>
+                        <div class="mb-3">
+                          <label>คำอธิบาย</label>
+                          <textarea
+                            class="form-control"
+                            formControlName="enterprise_detail"
+                            [ngClass]="{
+                              'is-invalid':
+                                submit && a['enterprise_detail'].errors
+                            }"
+                            placeholder=""
+                            id="floatingTextarea2"
+                            style="height: 200px"
+                          ></textarea>
+                        </div>
+                        <div class="col-md-12">
+                          <div class="row">
+                            <div class="col align-self-end" align="right">
+                              <br /><br />
+                              <button type="button" class="btn btn-light" (click)="resetFrom()">
+                                คืนค่า
+                              </button>
+                              &nbsp; &nbsp; &nbsp;
+                              <button
+                                type="button"
+                                class="btn btn-warning"
+                                (click)="createAboutUs()"
+                              >
+                                บันทึก
+                              </button>
+                            </div>
                           </div>
                         </div>
-                      </div>
+                      </form>
                     </div>
                   </div>
                 </div>

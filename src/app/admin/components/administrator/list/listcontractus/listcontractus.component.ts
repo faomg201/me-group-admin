@@ -7,7 +7,7 @@ import {
 } from '@angular/forms';
 import { HotToastService } from '@ngneat/hot-toast';
 
-import { Loader } from '@googlemaps/js-api-loader'; 
+import { Loader } from '@googlemaps/js-api-loader';
 
 
 @Component({
@@ -17,10 +17,10 @@ import { Loader } from '@googlemaps/js-api-loader';
 })
 export class ListcontractusComponent implements OnInit {
   p = 1;
-  locatlat:any
-  locatlng:any
-  KeyAPI:any
-  
+  locatlat: any
+  locatlng: any
+  KeyAPI: any
+
   infoContracts: any;
   submit = false;
   contractForm: FormGroup;
@@ -38,7 +38,7 @@ export class ListcontractusComponent implements OnInit {
       enterprise_GG_key_api: ['', Validators.required]
     });
   }
-  locationlat(e: any)  {
+  locationlat(e: any) {
     this.locatlat = this.contractForm.get('enterprise_latitude')?.value
     this.GoogleAPI(e)
   }
@@ -61,18 +61,18 @@ export class ListcontractusComponent implements OnInit {
     });
   }
 
-  GoogleAPI(event:any){
-    this.KeyAPI = this.contractForm.get('enterprise_GG_key_api')?.value 
-    if(!this.locatlng||!this.locatlat||!this.KeyAPI){
+  GoogleAPI(event: any) {
+    this.KeyAPI = this.contractForm.get('enterprise_GG_key_api')?.value
+    if (!this.locatlng || !this.locatlat || !this.KeyAPI) {
       return
     }
     this.submit = true
-       
+
     let loader = new Loader({
       apiKey: this.KeyAPI
     })
-    loader.load().then((google) => { 
-      console.log(google)     
+    loader.load().then((google) => {
+      console.log(google)
       const myLatLng = { lat: this.locatlat, lng: this.locatlng };
       const map = new google.maps.Map(document.getElementById("map")!, {
         zoom: 14,
@@ -107,7 +107,7 @@ export class ListcontractusComponent implements OnInit {
   resetFrom() {
     this.ngOnInit();
     this.infoContracts.reset();
-    this.submit=false
+    this.submit = false
   }
 
   createContract() {
@@ -126,10 +126,9 @@ export class ListcontractusComponent implements OnInit {
     formData.append('enterprise_longtitude', this.contractForm.get('enterprise_longtitude')?.value);
     formData.append('enterprise_GG_key_api', this.contractForm.get('enterprise_GG_key_api')?.value);
     this.http.createData('/contractUs', formData).pipe(first()).subscribe((response: any) => {
-      console.log(formData);
-      
+
       if (response.statusCode == 201) {
-        console.log(response);        
+        console.log(response);
         this.toastService.success('เพิ่มข้อมูลสำเร็จ', {
           duration: 10000,
           style: {
