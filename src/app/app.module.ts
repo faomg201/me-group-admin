@@ -7,7 +7,7 @@ import { LoginComponent } from './login/login.component';
 import { SharedsModule } from './shareds/shareds.module';
 import { HttpClientModule } from '@angular/common/http';
 import { HotToastModule } from '@ngneat/hot-toast'
-import { ImageCropperModule } from 'ngx-image-cropper';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -20,6 +20,8 @@ import { ImageCropperModule } from 'ngx-image-cropper';
     SharedsModule,
     HttpClientModule,
     HotToastModule.forRoot(),
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

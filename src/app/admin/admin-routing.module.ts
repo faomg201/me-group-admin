@@ -5,6 +5,7 @@ import { SidebarComponent } from '../shareds/components/sidebar/sidebar.componen
 import { AdminURL } from './admin.url';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 
+
 const routes: Routes = [{
   path: '',
   redirectTo: '',
