@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { LoginService } from '../../../login/service/login.service';
+import { LocalStorageService } from 'angular-web-storage';
 
 @Component({
   selector: 'app-navbar',
@@ -7,9 +9,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavbarComponent implements OnInit {
 
-  constructor() { }
+  constructor(private loginService: LoginService,public local:LocalStorageService) { }
 
   ngOnInit(): void {
+    const currentUser = this.loginService.currentUserValue;
+    // console.log(currentUser);
+    
+  }
+  logout(){
+    this.local.clear();
+    location.reload();
   }
 
 }

@@ -4,6 +4,7 @@ import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms'
 import { HotToastService } from '@ngneat/hot-toast';
 import { HttpClientService } from '../../../../../shareds/_service/http-client.service';
 import { first } from 'rxjs';
+import { LocalStorageService } from 'angular-web-storage'
 declare var $: any;
 @Component({
   selector: 'app-baccount',
@@ -16,10 +17,12 @@ export class BaccountComponent implements OnInit {
   infoRole:any;
   accountForm: FormGroup;
   submit=false;
+  token: any;
   constructor(private _router: Router,
     private builder: FormBuilder,
     private toastService: HotToastService,
-    private http: HttpClientService,) {
+    private http: HttpClientService,
+    private local: LocalStorageService) {
       this.accountForm = this.builder.group({
         Uadmin_username: ['',Validators.required],
         Uadmin_password: ['',Validators.required],
@@ -104,11 +107,11 @@ export class BaccountComponent implements OnInit {
     formData.append('Uadmin_firstname', this.accountForm.get('Uadmin_firstname')?.value);
     formData.append('Uadmin_lastname', this.accountForm.get('Uadmin_lastname')?.value);
     formData.append('role_id', this.accountForm.get('role_id')?.value);
+      
     this.http
-      .createData('/user', formData)
-      .pipe(first())
-      .subscribe(       
-        (response: any) => {console.log(response);
+      .createDatauser('/user',formData).pipe(first()).subscribe( (response: any) => {
+        console.log(response);
+        
           if (response.statusCode == 201) {
             $('#CREATE_EMP').modal('hide');
             this.getAccount();
