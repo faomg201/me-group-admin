@@ -25,17 +25,22 @@ export class LoginService {
     
    }
    public get currentUserValue():any {
-     console.log(this.currentUserSubject.value);
-     
+     console.log(this.currentUserSubject.value);     
      return localStorage.getItem('currentUser')
    }
+   public get UsernameValue():any {
+    console.log(this.currentUserSubject.value);     
+    return localStorage.getItem('Username')
+  }
 
 
   Login(loginData: any, path: any) {    
     return this.http.post(this.serveURl+ loginData, path).pipe(map((response:any) => {
+      console.log(response.data);
+      
       if(response.statusCode == 200){
         localStorage.setItem('currentUser',JSON.stringify(response.token));
-        // localStorage.setItem('Username',JSON.stringify(response.data))
+        localStorage.setItem('Username',(response.data.Uadmin_username))
         // localStorage.setItem('currentUser',JSON.stringify(response.token))
         return response
       }

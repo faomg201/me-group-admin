@@ -10,11 +10,9 @@ import { LocalStorageService } from 'angular-web-storage';
 export class NavbarComponent implements OnInit {
 
   constructor(private loginService: LoginService,public local:LocalStorageService) { }
-
+  UserN:any = this.loginService.UsernameValue;
+  
   ngOnInit(): void {
-    const currentUser = this.loginService.currentUserValue;
-    // console.log(currentUser);
-    
   }
   logout(){
     this.local.clear();
