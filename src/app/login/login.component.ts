@@ -25,10 +25,6 @@ export class LoginComponent implements OnInit {
     
   }
 
-   
-   
-
-
   ngOnInit(): void {
     this.status = false;
 
@@ -36,12 +32,7 @@ export class LoginComponent implements OnInit {
   get a() {
     return this.loginForm.controls;
   }
-  linkTo() {
-    this.router.navigate(['/admin/dashboard']);
-  }
-  ngClassMethod() {
-    this.status = !this.status;
-  }
+
 
   login() {
     const formData = new FormData();
@@ -55,7 +46,7 @@ export class LoginComponent implements OnInit {
     this.http.Login('/user/signin', formData).pipe(first()).subscribe((response: any) => {
       console.log(response);
       if(response.status == true){
-        alert('เข้าได้แต่ไม่ลิงค์ไปอ่ะ');
+        alert('เข้าได้แล้วววว');
         // location.reload();
         this.router.navigate(['/admin/dashboard'])
         

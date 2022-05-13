@@ -15,6 +15,7 @@ declare var $: any;
 })
 export class ListserviceComponent implements OnInit {
   info: any;
+  infouser:any;
   infoDel: any;
   p: number = 1;
   file: any;
@@ -37,6 +38,7 @@ export class ListserviceComponent implements OnInit {
 
   ngOnInit(): void {
     this.getService();
+    // this.getUser();
   }
 
   get a() {
@@ -69,6 +71,7 @@ export class ListserviceComponent implements OnInit {
       .pipe(first())
       .subscribe(
         (response: any) => {
+          
           if (response.status == true) {
             this.info = response.data;
           }
@@ -81,6 +84,25 @@ export class ListserviceComponent implements OnInit {
         }
       );
   }
+  // getUser() {
+  //   this.http
+  //     .getData('/user')
+  //     .pipe(first())
+  //     .subscribe(
+  //       (response: any) => {
+  //         console.log(response.data[0].Uadmin_username);
+  //         if (response.status == true) {
+  //           this.infouser = response.data;
+  //         }
+  //       },
+  //       (error) => {
+  //         const response = error.error;
+  //         if (response.status == 500) {
+  //           alert('Failed cant Get Data');
+  //         }
+  //       }
+  //     );
+  // }
   getnameDel(id: number) {
     this.http
       .getData('/services/' + id)

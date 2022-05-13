@@ -140,7 +140,7 @@ export class ListworksComponent implements OnInit {
       .pipe(first())
       .subscribe(
         (response: any) => {
-          console.log(response);
+          console.log(response.data[0].goal_title);
           if (response.status == true) {
             this.infoWork = response.data;
           }
