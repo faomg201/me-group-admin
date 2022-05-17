@@ -14,7 +14,7 @@
         <button
           type="button"
           class="btn btn-light widthButtonAdd elevation-2"
-          (click)="openModal()"
+          (click)="Open_Cre_Acc_Modal()"
         >
           <b>เพิ่มข้อมูล</b>
         </button>
@@ -29,7 +29,7 @@
               <thead class="bgHeadtable" align="center">
                 <tr>
                   <th style="width: 80px">ลำดับ</th>
-                  <th style="width: 300px">ชื่อบริการ</th>
+                  <th style="width: 300px">ชื่อผู้ใช้งาน</th>
                   <th style="width: 310px">ชื่อ-นามสกุล</th>
                   <th style="width: 180px">สิทธิ์การเข้าถึง</th>
                   <th style="width: 100px"></th>
@@ -37,26 +37,35 @@
                 </tr>
               </thead>
               <tbody align="center">
-                <tr *ngFor="
+                <tr
+                  *ngFor="
                     let item of infoAccount
-                  | paginate: { itemsPerPage: 6, currentPage: p };
+                      | paginate: { itemsPerPage: 6, currentPage: p };
                     let i = index
-              "
-                  >
-                  <td>{{i+1}}</td>
-                  <td>{{item.Uadmin_username}}</td>
-                  <td>{{item.Uadmin_firstname}} {{item.Uadmin_lastname}}</td>
-                  <td>{{item.role_name}}</td>
+                  "
+                >
+                  <td>{{ i + 1 }}</td>
+                  <td>{{ item.Uadmin_username }}</td>
                   <td>
-                    <button type="button" class="btn round" (click)="onClick(item.user_id)">
+                    {{ item.Uadmin_firstname }} {{ item.Uadmin_lastname }}
+                  </td>
+                  <td>{{ item.role_name }}</td>
+                  <td>
+                    <button
+                      type="button"
+                      class="btn round"
+                      (click)="onClick(item.user_id)"
+                    >
                       แก้ไข
                     </button>
                   </td>
-                  <td><i class="fas fa-trash-alt nav-icon"
-                    data-bs-toggle="modal"
-                      data-bs-target="#DelAccount"
+                  <td>
+                    <i
+                      class="fas fa-trash-alt nav-icon"
+                      (click)="Open_DelAccount_Model()"
                       (click)="getnameDel(item.user_id)"
-                    ></i></td>
+                    ></i>
+                  </td>
                 </tr>
               </tbody>
             </table>
@@ -77,7 +86,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <h4 class="modal-title textHead">เพิ่มข้อมูลบัญชีหลังบ้าน</h4>
-        <button type="button" class="close" (click)="resetFrom()">
+        <button type="button" class="close" (click)="Close_Cre_Acc_Modal()">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
@@ -179,7 +188,7 @@
                         <button
                           type="button"
                           class="btn btn-light widthButtonAdd elevation-1"
-                          (click)="resetFrom()"
+                          (click)="Close_Cre_Acc_Modal()"
                         >
                           ยกเลิก
                         </button>
@@ -207,13 +216,7 @@
   <!-- /.modal-dialog -->
 </div>
 
-
-<div
-  class="modal fade"
-  id="DelAccount"
-  tabindex="-1"
-  aria-hidden="true"
->
+<div class="modal fade" id="DelAccount" tabindex="-1" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
       <div class="modal-body" align="center">
@@ -228,7 +231,23 @@
         </button>
         <br /><br />
         <div class="modal-body" *ngIf="infoAccount">
-          คุณต้องการลบข้อมูล <b>{{ this.infoAccount.Uadmin_username }} </b>หรือไม่?
+          ยืนยันรหัสผ่านเพื่อลบข้อมูล
+          <b>{{ this.infoAccount.Uadmin_username }} </b>?
+        </div>
+        <div class="row">
+          <div class="col-md-2"></div>
+          <div class="col-md-8">
+            <input
+              type="password"
+              class="form-control"
+              formControlName="Confirm_password"
+              [ngClass]="{
+                'is-invalid': submit && b['Confirm_password'].errors
+              }"
+            />
+            <div class="invalid-feedback">รหัสผ่านไม่ถูกต้อง</div>
+          </div>
+          <div class="col-md-2"></div>
         </div>
         <br />
         <div class="row">

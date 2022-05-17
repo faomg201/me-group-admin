@@ -16,8 +16,8 @@ export class BaccountComponent implements OnInit {
   infoAccount:any;
   infoRole:any;
   accountForm: FormGroup;
+  ConfirmForm: FormGroup;
   submit=false;
-  token: any;
   constructor(private _router: Router,
     private builder: FormBuilder,
     private toastService: HotToastService,
@@ -31,6 +31,9 @@ export class BaccountComponent implements OnInit {
         Uadmin_lastname: ['',Validators.required],
         role_id: ['',Validators.required]
       })
+      this.ConfirmForm = this.builder.group({
+        Confirm_password: ['', Validators.required]
+      })
      }
 
   ngOnInit(): void {
@@ -41,10 +44,13 @@ export class BaccountComponent implements OnInit {
   get a() {
     return this.accountForm.controls;
   }
-  openModal() {
+  get b() {
+    return this.ConfirmForm.controls;
+  }
+  Open_Cre_Acc_Modal() {
     $('#CREATE_ACCOUNT').modal('show');
   }
-  resetFrom() {
+  Close_Cre_Acc_Modal() {
     $('#CREATE_ACCOUNT').modal('hide');
     this.accountForm.reset();
   }
@@ -115,7 +121,7 @@ export class BaccountComponent implements OnInit {
           if (response.statusCode == 201) {
             $('#CREATE_EMP').modal('hide');
             this.getAccount();
-            this.resetFrom();
+            this.Close_Cre_Acc_Modal();
             this.toastService.success('เพิ่มข้อมูลสำเร็จ', {
               duration: 10000,
               style: {
@@ -143,7 +149,15 @@ export class BaccountComponent implements OnInit {
       );
   }
 
+  Open_DelAccount_Model(){
+    $('#DelAccount').modal('show');
+  }
+  Close_DelAccount_Model(){
+    $('#DelAccount').modal('hide');
+    this.ConfirmForm.reset();
+  }
   deleteAcount(id: any) {
+
     this.http
       .removeData('/user/' + id)
       .pipe(first())

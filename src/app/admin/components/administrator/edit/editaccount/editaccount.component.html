@@ -70,40 +70,41 @@
                       <div class="mb-3">
                         <label>ยืนยันรหัสผ่านเข้าใช้งาน</label>
                         <input
-                        type="password"
-                        aria-label="First name"
-                        class="form-control"
-                        formControlName="Con_Uadmin_password"
-                        [ngClass]="{
-                          'is-invalid': submit && a['Con_Uadmin_password'].errors
-                        }"
-                      />
+                          type="password"
+                          aria-label="First name"
+                          class="form-control"
+                          formControlName="Con_Uadmin_password"
+                          [ngClass]="{
+                            'is-invalid':
+                              submit && a['Con_Uadmin_password'].errors
+                          }"
+                        />
                       </div>
                     </div>
                     <div class="col-md-6">
                       <div class="mb-3">
                         <label>ชื่อจริง</label>
                         <input
-                      type="text"
-                      class="form-control"
-                      formControlName="Uadmin_firstname"
-                      [ngClass]="{
-                        'is-invalid': submit && a['Uadmin_firstname'].errors
-                      }"
-                    />
+                          type="text"
+                          class="form-control"
+                          formControlName="Uadmin_firstname"
+                          [ngClass]="{
+                            'is-invalid': submit && a['Uadmin_firstname'].errors
+                          }"
+                        />
                       </div>
                     </div>
                     <div class="col-md-6">
                       <div class="mb-3">
                         <label>นามสกุล</label>
                         <input
-                        type="text"
-                        class="form-control"
-                        formControlName="Uadmin_lastname"
-                        [ngClass]="{
-                          'is-invalid': submit && a['Uadmin_lastname'].errors
-                        }"
-                      />
+                          type="text"
+                          class="form-control"
+                          formControlName="Uadmin_lastname"
+                          [ngClass]="{
+                            'is-invalid': submit && a['Uadmin_lastname'].errors
+                          }"
+                        />
                       </div>
                     </div>
                     <div class="col-md-12">
@@ -113,8 +114,7 @@
                           <button
                             type="button"
                             class="btn btn-danger widthButtonAdd elevation-1"
-                            data-bs-toggle="modal"
-                            data-bs-target="#DelModal"
+                            (click)="openModal_DelAcc()"
                             (click)="getnameDel(infoAccountByid.data.user_id)"
                           >
                             ลบข้อมูล
@@ -127,6 +127,7 @@
                             data-dismiss="modal"
                             aria-label="Close"
                             (click)="ngOnInit()"
+                            (click)="updateWorks()"
                           >
                             คืนค่า
                           </button>
@@ -134,9 +135,7 @@
                           &nbsp;
                           <button
                             class="btn btn-warning widthButtonAdd elevation-1"
-                            type="submit"
-                            value="Submit"
-                            (click)="updateWorks()"
+                            (click)="openModal_EditAcc()"
                           >
                             บันทึก
                           </button>
@@ -156,7 +155,7 @@
 
 <div
   class="modal fade"
-  id="DelModal"
+  id="DelAcc"
   tabindex="-1"
   aria-labelledby="exampleModalLabel"
   aria-hidden="true"
@@ -164,42 +163,124 @@
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
       <div class="modal-body" align="center">
-        <button
-          type="button"
-          class="close"
-          data-bs-dismiss="modal"
-          aria-label="Close"
-          (click)="ngOnInit()"
-        >
-          <span aria-hidden="true">&times;</span>
-        </button>
-        <br /><br />
-        <div class="modal-body" *ngIf="infoAccountByid">คุณต้องการลบข้อมูล <b>{{ infoAccountByid.data.Uadmin_username }}</b> หรือไม่?</div>
-        <br />
-        <div class="row">
-          <div class="col-md-2"></div>
-          <div class="col-md-4">
-            <button
-              type="button"
-              class="btn btn-light widthButtonAdd elevation-1"
-              data-bs-dismiss="modal"
-            >
-              ยกเลิก
-            </button>
+        <form [formGroup]="ConfirmForm">
+          <button
+            type="button"
+            class="close"
+            (click)="Close_DelAcc()"
+            aria-label="Close"
+          >
+            <span aria-hidden="true">&times;</span>
+          </button>
+          <br /><br />
+          <div class="modal-body">ยืนยันรหัสผ่าน เพื่อลบข้อมูล?</div>
+          <div class="row">
+            <div class="col-md-2"></div>
+            <div class="col-md-8">
+              <input
+                type="password"
+                class="form-control"
+                formControlName="Confirm_password"
+                [ngClass]="{
+                  'is-invalid': submit && b['Confirm_password'].errors
+                }"
+              />
+              <div class="invalid-feedback">รหัสผ่านไม่ถูกต้อง</div>
+            </div>
+            <div class="col-md-2"></div>
           </div>
-          <div class="col-md-4">
-            <button
-              type="button"
-              class="btn btn-warning widthButtonAdd elevation-1"
-              data-bs-dismiss="modal"
-              (click)="deleteAcount(infoAccountByid.user_id)"
-            >
-              ยืนยัน
-            </button>
+
+          <br />
+          <div class="row">
+            <div class="col-md-2"></div>
+            <div class="col-md-4">
+              <button
+                type="button"
+                class="btn btn-light widthButtonAdd elevation-1"
+                (click)="Close_DelAcc()"
+              >
+                ยกเลิก
+              </button>
+            </div>
+            <div class="col-md-4">
+              <button
+                type="button"
+                class="btn btn-warning widthButtonAdd elevation-1"
+                (click)="deleteAcount(infoAccountByid.user_id)"
+              >
+                ยืนยัน
+              </button>
+            </div>
+            <div class="col-md-2"></div>
           </div>
-          <div class="col-md-2"></div>
-        </div>
-        <br /><br />
+          <br /><br />
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<div
+  class="modal fade"
+  id="EditAcc"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-body" align="center">
+        <form [formGroup]="ConfirmForm">
+          <button
+            type="button"
+            class="close"
+            (click)="Close_EditAcc()"
+            aria-label="Close"
+          >
+            <span aria-hidden="true">&times;</span>
+          </button>
+          <br /><br />
+          <div class="modal-body">ยืนยันรหัสผ่าน เพื่อแก้ไขข้อมูล?</div>
+          <div class="row">
+            <div class="col-md-2"></div>
+            <div class="col-md-8">
+              <input
+                type="password"
+                class="form-control"
+                formControlName="Confirm_password"
+                [ngClass]="{
+                  'is-invalid': submit && b['Confirm_password'].errors
+                }"
+              />
+              <div class="invalid-feedback">รหัสผ่านไม่ถูกต้อง</div>
+            </div>
+            <div class="col-md-2"></div>
+          </div>
+
+          <br />
+          <div class="row">
+            <div class="col-md-2"></div>
+            <div class="col-md-4">
+              <button
+                type="button"
+                class="btn btn-light widthButtonAdd elevation-1"
+                (click)="Close_EditAcc()"
+              >
+                ยกเลิก
+              </button>
+            </div>
+            <div class="col-md-4">
+              <button
+                type="button"
+                class="btn btn-warning widthButtonAdd elevation-1"
+                (click)="updateWorks()"
+              >
+                ยืนยัน
+              </button>
+            </div>
+            <div class="col-md-2"></div>
+          </div>
+          <br /><br />
+        </form>
       </div>
     </div>
   </div>
