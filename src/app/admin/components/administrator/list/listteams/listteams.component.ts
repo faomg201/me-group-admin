@@ -211,6 +211,7 @@ export class ListteamsComponent implements OnInit {
     formData.append('mbti_id', this.teamForm.get('mbti_id')?.value);
     formData.append('emp_quote', this.teamForm.get('emp_quote')?.value);
     formData.append('emp_contract', this.teamForm.get('emp_contract')?.value);
+    console.log(55);
     this.http
       .createData('/employees', formData)
       .pipe(first())

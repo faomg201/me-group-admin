@@ -12,39 +12,14 @@ import { HotToastService } from '@ngneat/hot-toast';
 export class ListaboutusComponent implements OnInit {
   images: string[] = [];
 
-  /*------------------------------------------
-  --------------------------------------------
-  Declare Form
-  --------------------------------------------
-  --------------------------------------------*/
   myForm = new FormGroup({
     file: new FormControl('', [Validators.required]),
     image_name: new FormControl('', [Validators.required, Validators.maxLength(7)]),
   });
 
-  /*------------------------------------------
-  --------------------------------------------
-  Created constructor
-  --------------------------------------------
-  --------------------------------------------*/
-
-  // const MAX_LENGTH = 10;
-  // const photoUpload = (e) => {
-  //   if (Array.from(e.target.files).length > MAX_LENGTH) {
-  //     e.preventDefault();
-  //     alert(` กรุณาเลือกไฟล์ครั้งละไม่เกิน ${MAX_LENGTH} ภาพต่อครั้ง`);
-  //     return;
-  //   }
-  // }
-  // previewLoaded = false;
-  // file: any;
-  // aboutUsForm = new FormGroup({
-  //   service_name: new FormControl(''),
-  //   service_detail: new FormControl(''),
-  //   service_img: new FormControl(''),
-  // });
   submit = false;
   infoAboutUs: any;
+  infoImgAbout:any;
   aboutUsForm: FormGroup;
   constructor(private toastService: HotToastService, private http: HttpClientService, private builder: FormBuilder) {
     this.aboutUsForm = this.builder.group({
@@ -55,6 +30,8 @@ export class ListaboutusComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.getImgAboutus();
+    
     this.http.getData('/enterprises').pipe(first()).subscribe((response: any) => {
       if (response.status == true) {
         this.infoAboutUs = response;
@@ -66,6 +43,27 @@ export class ListaboutusComponent implements OnInit {
       }
     });
 
+  }
+  getImgAboutus() {
+    this.http
+      .getData('/aboutUs/image')
+      .pipe(first())
+      .subscribe(
+        (response: any) => {
+
+          if (response.status == true) {
+            this.infoImgAbout = response.data;
+            console.log(this.infoImgAbout);
+            
+          }
+        },
+        (error) => {
+          const response = error.error;
+          if (response.status == 500) {
+            alert('Failed cant Get Data');
+          }
+        }
+      );
   }
 
   get a() {

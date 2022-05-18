@@ -179,7 +179,6 @@ export class EditaccountComponent implements OnInit {
 
   deleteAcount(id: any) {
     this.submit = true;
-
     const UserName: any = this.loginService.UsernameValue;
     console.log(UserName);
     console.log(this.ConfirmForm.get('Confirm_password')?.value);
@@ -229,9 +228,6 @@ export class EditaccountComponent implements OnInit {
       }
 
     );
-
-
-
   }
 
 }
