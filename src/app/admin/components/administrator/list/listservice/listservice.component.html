@@ -107,46 +107,55 @@
               <div class="row">
                 <div class="col-md-6">
                   <label class="form-label">รูปบริการ</label>
-                  <div class="mb-3">
-                    <label>
-                      <div class="container">
+                  <div class="mb-3">                  
+                      <div class="container ">
                         <div
                           class="row justify-content-md-center"
                           align="center"
                         >
-                          <img
-                            class="img-thumbnail"
-                            src="../../../../../../assets/img/BG-WEB-Gray.jpg"
-                            style="height: 350px; width: 500px"
-                            *ngIf="previewLoaded == false; hidden"
-                          />
-                          <div
-                            class="bgGray"
-                            *ngIf="previewLoaded == true; hidden"
-                          >
+                          <label>
                             <img
-                              class="img-thumbnail mx-auto d-block"
-                              [src]="file"
-                              style="height: 350px; width: auto"
+                              class="img-thumbnail"
+                              src="../../../../../../assets/img/BG-WEB-Gray.jpg"
+                              style="height: 300px; width: 500px"
+                              *ngIf="previewLoaded == false; hidden"
                             />
+                            <input
+                              type="file"
+                              (change)="fileChangeEvent($event)"
+                              name="imageupload"
+                              id="fileUpload"
+                              hidden
+                            />  
+                          </label>
+                          <div *ngIf="imageChangedEvent">
+                            <image-cropper
+                              [imageChangedEvent]="imageChangedEvent"
+                              [aspectRatio]="1 / 1"
+                              format="png"
+                              (imageCropped)="imageCropped($event)"
+                            >
+                            </image-cropper>
                           </div>
-                          <div class="radius elevation-1">เพิ่มรูปภาพบริการ</div>
+                          <label>
+                            <div
+                              class="radius elevation-1"
+                              style="height: auto; width: auto"
+                            >
+                              เพิ่มรูปภาพ
+                            </div>
+                            <input
+                              type="file"
+                              (change)="fileChangeEvent($event)"
+                              name="imageupload"
+                              id="fileUpload"
+                              hidden
+                              [ngClass]="{
+                                'is-invalid': submit && a['service_img'].errors
+                              }"
+                          /></label>
                         </div>
                       </div>
-                      <div className="imageupload">
-                        <input
-                          type="file"
-                          (change)="onChangePhoto($event)"
-                          name="imageupload"
-                          id="fileUpload"
-                          multiple
-                          hidden
-                          [ngClass]="{
-                            'is-invalid': submit && a['service_img'].errors
-                          }"
-                        />
-                      </div>
-                    </label>
                   </div>
                   <div class="col-md-12">
                     <div class="row"></div>

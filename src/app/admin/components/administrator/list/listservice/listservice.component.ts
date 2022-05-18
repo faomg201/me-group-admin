@@ -7,6 +7,8 @@ import {
   Validators
 } from '@angular/forms';
 import { HotToastService } from '@ngneat/hot-toast';
+import { ImageCroppedEvent } from 'ngx-image-cropper';
+
 declare var $: any;
 @Component({
   selector: 'app-listservice',
@@ -14,8 +16,57 @@ declare var $: any;
   styleUrls: ['./listservice.component.css'],
 })
 export class ListserviceComponent implements OnInit {
+  imageChangedEvent: any = '';
+  croppedImage: any = '';
+  fileChangeEvent(event: any) {
+    this.imageChangedEvent = event;
+    const blo: Blob = event;
+  }
+  imageCropped(event: ImageCroppedEvent) {
+    this.croppedImage = event.base64;
+    this.convertDataUrlToBlob(this.croppedImage);
+  }
+
+  convertDataUrlToBlob(dataUrl: any): Blob {
+    const arr = dataUrl.split(',');
+    const mime = arr[0].match(/:(.*?);/)[1];
+    const bstr = atob(arr[1]);
+    let n = bstr.length;
+    const u8arr = new Uint8Array(n);
+
+    while (n--) {
+      u8arr[n] = bstr.charCodeAt(n);
+    }
+    const f = new Blob([u8arr], { type: mime });
+    this.blobToFile(f, this.info.service_name);
+    return f;
+  }
+
+  public blobToFile = (theBlob: Blob, fileName: string): File => {
+    var b: any = theBlob;
+    this.imageChangedEvent;
+    var Fname: any | File = this.imageChangedEvent.target.files[0];
+    var fffff: any = Fname.name;
+    b.name = fileName;
+    const file = new File([theBlob], fffff, {
+      lastModified: new Date().getTime(),
+      type: theBlob.type,
+    });
+    if (file) {
+      this.serviceForm.patchValue({
+        service_img: file,
+      });
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = () => {
+        this.previewLoaded = true;
+        this.file = reader.result;
+      };
+    }
+    return file;
+  };
   info: any;
-  infouser:any;
+  infouser: any;
   infoDel: any;
   p: number = 1;
   file: any;
@@ -71,7 +122,7 @@ export class ListserviceComponent implements OnInit {
       .pipe(first())
       .subscribe(
         (response: any) => {
-          
+
           if (response.status == true) {
             this.info = response.data;
           }
@@ -151,6 +202,7 @@ export class ListserviceComponent implements OnInit {
     $('#CREATE_SERVICE').modal('hide');
     this.serviceForm.reset();
     this.previewLoaded = false;
+    this.imageChangedEvent = false;
   }
 
   createService() {
@@ -163,31 +215,32 @@ export class ListserviceComponent implements OnInit {
     formData.append('service_img', this.serviceForm.get('service_img')?.value);
     formData.append('service_detail', this.serviceForm.get('service_detail')?.value);
     formData.append('service_name', this.serviceForm.get('service_name')?.value);
-    this.http.createData('/services', formData).pipe(first()).subscribe((response:any) => {
-      if (response.statusCode == 201){
+    this.http.createData('/services', formData).pipe(first()).subscribe((response: any) => {
+      if (response.statusCode == 201) {
         $('#CREATE_SERVICE').modal('hide');
-            this.resetFrom();
-            this.getService();
-            this.toastService.success('เพิ่มข้อมูลสำเร็จ', {
-              duration: 10000,
-              style: {
-                border: '2px solid green',
-                padding: '16px',
-                color: 'green',
-              },
-              iconTheme: {
-                primary: 'green',
-                secondary: '#FFFAEE',
-              },
-            });
+        this.submit = false;
+        this.resetFrom();
+        this.getService();
+        this.toastService.success('เพิ่มข้อมูลสำเร็จ', {
+          duration: 10000,
+          style: {
+            border: '2px solid green',
+            padding: '16px',
+            color: 'green',
+          },
+          iconTheme: {
+            primary: 'green',
+            secondary: '#FFFAEE',
+          },
+        });
       }
     },
-    (error) => {
-      const response = error.error;
-      if (response.status == 500) {
-        this.toastService.error('เกิดข้อผิดพลาด');
+      (error) => {
+        const response = error.error;
+        if (response.status == 500) {
+          this.toastService.error('เกิดข้อผิดพลาด');
+        }
       }
-    }
     );
   }
 }
