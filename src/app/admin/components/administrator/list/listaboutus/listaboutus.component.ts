@@ -21,6 +21,9 @@ export class ListaboutusComponent implements OnInit {
   infoAboutUs: any;
   infoImgAbout:any;
   aboutUsForm: FormGroup;
+  fileS:any
+
+  previewLoaded: boolean = false;
   constructor(private toastService: HotToastService, private http: HttpClientService, private builder: FormBuilder) {
     this.aboutUsForm = this.builder.group({
       enterprise_name: ['', Validators.required],
@@ -43,6 +46,20 @@ export class ListaboutusComponent implements OnInit {
       }
     });
 
+  }
+  onChangePhoto(e: any) {
+    const file: File = e.target.files[0];
+    if (file) {
+      this.myForm.patchValue({
+        image_name: file,
+      });
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = () => {
+        this.previewLoaded = true;
+        this.fileS = reader.result;
+      };
+    }
   }
   getImgAboutus() {
     this.http
