@@ -28,7 +28,7 @@ div {
   background-color: #ededed;
 }
 .radius {
-  border-radius: 4px;
+  /* border-radius: 4px; */
   background: #898989;
   color: white;
 }

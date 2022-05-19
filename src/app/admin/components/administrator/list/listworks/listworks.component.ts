@@ -111,6 +111,7 @@ export class ListworksComponent implements OnInit {
             $('#CREATE_WORK').modal('hide');
             this.resetFrom();
             this.getWorks();
+            this.submit = false;
             this.toastService.success('เพิ่มข้อมูลสำเร็จ', {
               duration: 10000,
               style: {

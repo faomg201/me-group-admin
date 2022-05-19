@@ -1,6 +1,30 @@
-.content {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: repeat(3, minmax(0px, auto));
-    grid-gap: 40px;
-  }
+.DelAboutImg {
+  /* border-radius: 4px; */
+  margin-top: -8px;
+  background: #898989;
+  color: white;
+  width: 413px;
+}
+.DelAboutImg1 {
+  /* border-radius: 4px; */
+  margin-top: -8px;
+  background: #898989;
+  color: white;
+  width: 150px;
+  
+}
+.ImgAbout {
+  width: 413px;
+  overflow: hidden;
+  object-fit: contain;
+}
+.ImgAbout1 {
+  width: 150px;
+  height: 150px;
+  overflow: hidden;
+  object-fit: contain;
+}
+
+.marginBotImg{
+    margin-right: 80px;
+}

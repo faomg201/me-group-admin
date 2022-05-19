@@ -25,14 +25,56 @@
                       <form [formGroup]="myForm">
                         <div class="form-group">
                           <label for="file">รูปภาพเกี่ยวกับเรา</label>
-                          <input
+                          <div>
+                            <label>
+                              <div class="container">
+                                <div
+                                  class="row justify-content-md-center"
+                                  align="center"
+                                >
+                                  <img
+                                    class="img-thumbnail"
+                                    src="../../../../../../assets/img/BG-WEB-Gray.jpg"
+                                    style="height: 350px; width: 500px"
+                                    *ngIf="previewLoaded == false; hidden"
+                                  />
+                                  <div
+                                    class="bgGray"
+                                    *ngIf="previewLoaded == true; hidden"
+                                  >
+                                    <img
+                                      *ngIf="previewLoaded"
+                                      class="img-thumbnail mx-auto d-block"
+                                      [src]="fileS"
+                                      style="height: 350px; width: auto"
+                                    />
+                                  </div>
+                                  <div class="radius elevation-1">
+                                    เพิ่มรูปภาพผลงาน
+                                  </div>
+                                </div>
+                              </div>
+
+                              <div className="imageupload">
+                                <input
+                                  formControlName="file"
+                                  id="file"
+                                  type="file"
+                                  class="form-control"
+                                  multiple=""
+                                  (change)="onFileChange($event)"
+                                />
+                              </div>
+                            </label>
+                          </div>
+                          <!-- <input
                             formControlName="file"
                             id="file"
                             type="file"
                             class="form-control"
                             multiple=""
                             (change)="onFileChange($event)"
-                          />
+                          /> -->
                           <div
                             *ngIf="f['file'].touched && f['file'].invalid"
                             class="alert alert-danger"
@@ -55,55 +97,259 @@
                           style="margin: 3px"
                         />
                         <br />
-                        <button (click)="submitt()">55555555555ddd</button>
+                        <button (click)="submitt()">กด</button>
                         <div class="col-md-12 bg-light">
-                          <div *ngIf="infoImgAbout" class="row justify-content-md-center"
-                          align="center">
+                          <div
+                            *ngIf="infoImgAbout"
+                            class="row justify-content-md-center"
+                            align="center"
+                          >
                             <div class="row">
-                              <div class="col-md-12"><img
-                              src="http://localhost:8000/static/aboutUs/{{
-                                infoImgAbout[0].image_name
-                              }}"
-                              style="height: 400px"
-                            /></div>
+                              <div class="col-md-12">
+                                <div class="col-md-1"></div>
+                                <div class="col-md-10">
+                                  <label>
+                                    <img
+                                      src="http://localhost:8000/static/aboutUs/{{
+                                        infoImgAbout[0].image_name
+                                      }}"
+                                      class="ImgAbout"
+                                      *ngIf="previewLoaded == false; hidden"
+                                    />
+                                    <div
+                                      class="bgGray"
+                                      *ngIf="previewLoaded == true; hidden"
+                                    >
+                                      <img
+                                        *ngIf="previewLoaded"
+                                        [src]="fileS"
+                                        class="ImgAbout"
+                                      />
+                                      <input
+                                        (change)="onChangePhoto($event)"
+                                        type="file"
+                                        hidden
+                                      />
+                                    </div>
+                                    <input
+                                      (change)="onChangePhoto($event)"
+                                      type="file"
+                                      hidden
+                                    />
+                                  </label>
+                                  <div class="DelAboutImg elevation-1">
+                                    ลบรูปภาพ
+                                  </div>
+                                </div>
+                                <div class="col-md-1"></div>
+                              </div>
+                              <div class="col-md-12"><br /></div>
+                              <div class="col-md-4">
+                                <label>
+                                  <img
+                                    src="http://localhost:8000/static/aboutUs/{{
+                                      infoImgAbout[1].image_name
+                                    }}"
+                                    class="ImgAbout1"
+                                    *ngIf="previewLoaded == false; hidden"
+                                  />
+                                  <div
+                                    class="bgGray"
+                                    *ngIf="previewLoaded == true; hidden"
+                                  >
+                                    <img
+                                      *ngIf="previewLoaded"
+                                      [src]="fileS"
+                                      class="ImgAbout1"
+                                    />
+                                    <input
+                                      (change)="onChangePhoto($event)"
+                                      type="file"
+                                      hidden
+                                    />
+                                  </div>
+                                  <input
+                                    (change)="onChangePhoto($event)"
+                                    type="file"
+                                    hidden
+                                  />
+                                </label>
+                                <div class="DelAboutImg1 elevation-1">
+                                  ลบรูปภาพ
+                                </div>
+                              </div>
+                              <div class="col-md-4">
+                                <label>
+                                  <img
+                                    src="http://localhost:8000/static/aboutUs/{{
+                                      infoImgAbout[2].image_name
+                                    }}"
+                                    class="ImgAbout1"
+                                    *ngIf="previewLoaded == false; hidden"
+                                  />
+                                  <div
+                                    class="bgGray"
+                                    *ngIf="previewLoaded == true; hidden"
+                                  >
+                                    <img
+                                      *ngIf="previewLoaded"
+                                      [src]="fileS"
+                                      class="ImgAbout1"
+                                    />
+                                    <input
+                                      (change)="onChangePhoto($event)"
+                                      type="file"
+                                      hidden
+                                    />
+                                  </div>
+                                  <input
+                                    (change)="onChangePhoto($event)"
+                                    type="file"
+                                    hidden
+                                  />
+                                </label>
+                                <div class="DelAboutImg1 elevation-1">
+                                  ลบรูปภาพ
+                                </div>
+                              </div>
+                              <div class="col-md-4">
+                                <label>
+                                  <img
+                                    src="http://localhost:8000/static/aboutUs/{{
+                                      infoImgAbout[3].image_name
+                                    }}"
+                                    class="ImgAbout1"
+                                    *ngIf="previewLoaded == false; hidden"
+                                  />
+                                  <div
+                                    class="bgGray"
+                                    *ngIf="previewLoaded == true; hidden"
+                                  >
+                                    <img
+                                      *ngIf="previewLoaded"
+                                      [src]="fileS"
+                                      class="ImgAbout1"
+                                    />
+                                    <input
+                                      (change)="onChangePhoto($event)"
+                                      type="file"
+                                      hidden
+                                    />
+                                  </div>
+                                  <input
+                                    (change)="onChangePhoto($event)"
+                                    type="file"
+                                    hidden
+                                  />
+                                </label>
+                                <div class="DelAboutImg1 elevation-1">
+                                  ลบรูปภาพ
+                                </div>
+                              </div>
+                              <div class="col-md-12"><br /></div>
+                              <div class="col-md-4">
+                                <label>
+                                  <img
+                                    src="http://localhost:8000/static/aboutUs/{{
+                                      infoImgAbout[4].image_name
+                                    }}"
+                                    class="ImgAbout1"
+                                    *ngIf="previewLoaded == false; hidden"
+                                  />
+                                  <div
+                                    class="bgGray"
+                                    *ngIf="previewLoaded == true; hidden"
+                                  >
+                                    <img
+                                      *ngIf="previewLoaded"
+                                      [src]="fileS"
+                                      class="ImgAbout1"
+                                    />
+                                    <input
+                                      (change)="onChangePhoto($event)"
+                                      type="file"
+                                      hidden
+                                    />
+                                  </div>
+                                  <input
+                                    (change)="onChangePhoto($event)"
+                                    type="file"
+                                    hidden
+                                  />
+                                </label>
+                                <div class="DelAboutImg1 elevation-1">
+                                  ลบรูปภาพ
+                                </div>
+                              </div>
+                              <div class="col-md-4">
+                                <label>
+                                  <img
+                                    src="http://localhost:8000/static/aboutUs/{{
+                                      infoImgAbout[5].image_name
+                                    }}"
+                                    class="ImgAbout1"
+                                    *ngIf="previewLoaded == false; hidden"
+                                  />
+                                  <div
+                                    class="bgGray"
+                                    *ngIf="previewLoaded == true; hidden"
+                                  >
+                                    <img
+                                      *ngIf="previewLoaded"
+                                      [src]="fileS"
+                                      class="ImgAbout1"
+                                    />
+                                    <input
+                                      (change)="onChangePhoto($event)"
+                                      type="file"
+                                      hidden
+                                    />
+                                  </div>
+                                  <input
+                                    (change)="onChangePhoto($event)"
+                                    type="file"
+                                    hidden
+                                  />
+                                </label>
+                                <div class="DelAboutImg1 elevation-1">
+                                  ลบรูปภาพ
+                                </div>
+                              </div>
+                              <div class="col-md-4">
+                                <label>
+                                  <img
+                                    src="http://localhost:8000/static/aboutUs/{{
+                                      infoImgAbout[6].image_name
+                                    }}"
+                                    class="ImgAbout1"
+                                    *ngIf="previewLoaded == false; hidden"
+                                  />
+                                  <div
+                                    class="bgGray"
+                                    *ngIf="previewLoaded == true; hidden"
+                                  >
+                                    <img
+                                      *ngIf="previewLoaded"
+                                      [src]="fileS"
+                                      class="ImgAbout1"
+                                    />
+                                    <input
+                                      (change)="onChangePhoto($event)"
+                                      type="file"
+                                      hidden
+                                    />
+                                  </div>
+                                  <input
+                                    (change)="onChangePhoto($event)"
+                                    type="file"
+                                    hidden
+                                  />
+                                </label>
+                                <div class="DelAboutImg1 elevation-1">
+                                  ลบรูปภาพ
+                                </div>
+                              </div>
                             </div>
-                            
-                            <img
-                              src="http://localhost:8000/static/aboutUs/{{
-                                infoImgAbout[1].image_name
-                              }}"
-                              style="width: 150px"
-                            />
-                            <img
-                              src="http://localhost:8000/static/aboutUs/{{
-                                infoImgAbout[2].image_name
-                              }}"
-                              style="width: 150px"
-                            />
-                            <img
-                              src="http://localhost:8000/static/aboutUs/{{
-                                infoImgAbout[3].image_name
-                              }}"
-                              style="width: 150px"
-                            />
-                            <img
-                              src="http://localhost:8000/static/aboutUs/{{
-                                infoImgAbout[4].image_name
-                              }}"
-                              style="width: 150px"
-                            />
-                            <img
-                              src="http://localhost:8000/static/aboutUs/{{
-                                infoImgAbout[5].image_name
-                              }}"
-                              style="width: 150px"
-                            />
-                            <img
-                              src="http://localhost:8000/static/aboutUs/{{
-                                infoImgAbout[6].image_name
-                              }}"
-                              style="width: 150px"
-                            />
                           </div>
                         </div>
                       </form>
