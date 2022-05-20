@@ -17,7 +17,7 @@ declare var $: any;
   styleUrls: ['./listservice.component.css'],
 })
 export class ListserviceComponent implements OnInit {
-  serveURl = environment.apiUrl;
+  private serveURl= environment.apiUrl;
   SerURL:string = this.serveURl+'/static/services/'
   imageChangedEvent: any = '';
   croppedImage: any = '';

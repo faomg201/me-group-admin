@@ -11,7 +11,7 @@ import { environment } from 'src/environments/environment';
   styleUrls: ['./listaboutus.component.css'],
 })
 export class ListaboutusComponent implements OnInit {
-  serveURl = environment.apiUrl;
+  private serveURl= environment.apiUrl;
   AboutUsURL:string = this.serveURl+'/static/aboutUs/'
 
   images: string[] = [];

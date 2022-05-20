@@ -14,7 +14,7 @@ import { environment } from 'src/environments/environment';
   styleUrls: ['./editservice.component.css']
 })
 export class EditserviceComponent implements OnInit {
-  serveURl = environment.apiUrl;
+  private serveURl= environment.apiUrl;
   SerURL:string = this.serveURl+'/static/services/'
 
   imageChangedEvent: any = '';
