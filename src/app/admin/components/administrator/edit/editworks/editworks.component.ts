@@ -18,7 +18,7 @@ import { environment } from 'src/environments/environment';
   styleUrls: ['./editworks.component.css'],
 })
 export class EditworksComponent implements OnInit {
-  serveURl = environment.apiUrl;
+  private serveURl= environment.apiUrl;
   WorkURL:string = this.serveURl+'/static/goals/'
 
   previewLoaded: boolean = false;

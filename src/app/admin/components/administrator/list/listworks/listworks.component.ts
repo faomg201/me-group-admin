@@ -19,7 +19,7 @@ declare var $: any;
   styleUrls: ['./listworks.component.css'],
 })
 export class ListworksComponent implements OnInit {
-  serveURl = environment.apiUrl;
+  private serveURl= environment.apiUrl;
   WorkURL:string = this.serveURl+'/static/goals/'
 
   infoServ: any;

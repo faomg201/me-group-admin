@@ -16,7 +16,7 @@ import { environment } from 'src/environments/environment';
   styleUrls: ['./editteams.component.css']
 })
 export class EditteamsComponent implements OnInit {
-  serveURl = environment.apiUrl;
+  private serveURl= environment.apiUrl;
   TeamURL:string = this.serveURl+'/static/employees/'
 
   imageChangedEvent: any = '';
