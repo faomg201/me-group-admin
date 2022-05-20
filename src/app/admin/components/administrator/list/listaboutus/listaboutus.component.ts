@@ -3,6 +3,7 @@ import { HttpClientService } from '../../../../../shareds/_service/http-client.s
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { first, } from 'rxjs';
 import { HotToastService } from '@ngneat/hot-toast';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-listaboutus',
@@ -10,6 +11,9 @@ import { HotToastService } from '@ngneat/hot-toast';
   styleUrls: ['./listaboutus.component.css'],
 })
 export class ListaboutusComponent implements OnInit {
+  serveURl = environment.apiUrl;
+  AboutUsURL:string = this.serveURl+'/static/aboutUs/'
+
   images: string[] = [];
 
   myForm = new FormGroup({

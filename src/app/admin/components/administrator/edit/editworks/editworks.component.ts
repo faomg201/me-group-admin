@@ -10,6 +10,7 @@ import {
 import { first } from 'rxjs';
 import { HotToastService } from '@ngneat/hot-toast';
 import { Router } from '@angular/router';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-editworks',
@@ -17,6 +18,8 @@ import { Router } from '@angular/router';
   styleUrls: ['./editworks.component.css'],
 })
 export class EditworksComponent implements OnInit {
+  serveURl = environment.apiUrl;
+  WorkURL:string = this.serveURl+'/static/goals/'
 
   previewLoaded: boolean = false;
   info: any;
