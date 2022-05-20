@@ -1,3 +1,8 @@
-nodemodules
-
-dist
+.git
+.editorconfig
+/.vscode/*
+/node_modules
+/e2e
+/docs
+.gitignore
+*.zip
