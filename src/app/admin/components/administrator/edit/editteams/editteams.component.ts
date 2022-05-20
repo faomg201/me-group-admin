@@ -7,6 +7,8 @@ import { first } from 'rxjs';
 import { HotToastService } from '@ngneat/hot-toast';
 import { Router } from '@angular/router';
 import { ImageCroppedEvent } from 'ngx-image-cropper';
+import { environment } from 'src/environments/environment';
+
 
 @Component({
   selector: 'app-editteams',
@@ -14,6 +16,9 @@ import { ImageCroppedEvent } from 'ngx-image-cropper';
   styleUrls: ['./editteams.component.css']
 })
 export class EditteamsComponent implements OnInit {
+  serveURl = environment.apiUrl;
+  TeamURL:string = this.serveURl+'/static/employees/'
+
   imageChangedEvent: any = '';
   croppedImage: any = '';
   fileChangeEvent(event: any) {

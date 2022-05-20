@@ -4,7 +4,7 @@ import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms'
 import { HotToastService } from '@ngneat/hot-toast';
 import { HttpClientService } from '../../../../../shareds/_service/http-client.service';
 import { first } from 'rxjs';
-
+import { environment } from 'src/environments/environment';
 
 import { ImageCroppedEvent } from 'ngx-image-cropper';
 declare var $: any;
@@ -14,6 +14,9 @@ declare var $: any;
   styleUrls: ['./listteams.component.css'],
 })
 export class ListteamsComponent implements OnInit {
+  serveURl = environment.apiUrl;
+  TeamURL:string = this.serveURl+'/static/employees/'
+
   imageChangedEvent: any = '';
   croppedImage: any = '';
   fileChangeEvent(event: any) {

@@ -8,6 +8,7 @@ import {
 } from '@angular/forms';
 import { HotToastService } from '@ngneat/hot-toast';
 import { ImageCroppedEvent } from 'ngx-image-cropper';
+import { environment } from 'src/environments/environment';
 
 declare var $: any;
 @Component({
@@ -16,6 +17,8 @@ declare var $: any;
   styleUrls: ['./listservice.component.css'],
 })
 export class ListserviceComponent implements OnInit {
+  serveURl = environment.apiUrl;
+  SerURL:string = this.serveURl+'/static/services/'
   imageChangedEvent: any = '';
   croppedImage: any = '';
   fileChangeEvent(event: any) {

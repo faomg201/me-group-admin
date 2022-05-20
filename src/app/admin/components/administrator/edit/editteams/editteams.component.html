@@ -31,7 +31,7 @@
                           >
                             <label>
                               <img
-                                src="http://localhost:8000/static/employees/{{
+                                src="{{TeamURL}}{{
                                   infoTeam.data.emp_fname +
                                     ',' +
                                     infoTeam.data.emp_lname +
@@ -74,15 +74,6 @@
                                 hidden
                             /></label>
                           </div>
-                        </div>
-                        <div className="imageupload">
-                          <input
-                            type="file"
-                            name="imageupload"
-                            id="fileUpload"
-                            multiple
-                            hidden
-                          />
                         </div>
                       </div>
                     </div>
@@ -135,10 +126,13 @@
                       </div>
                       <div class="mb-3">
                         <label>MBTI</label>
-                        <select class="form-select" formControlName="mbti_id"
-                        [ngClass]="{
-                          'is-invalid': submit && a['mbti_id'].errors
-                        }">
+                        <select
+                          class="form-select"
+                          formControlName="mbti_id"
+                          [ngClass]="{
+                            'is-invalid': submit && a['mbti_id'].errors
+                          }"
+                        >
                           <option
                             *ngFor="let item of infoMBTI; let i = index"
                             value="{{ item.id }}"

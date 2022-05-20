@@ -14,7 +14,7 @@
         <button
           type="button"
           class="btn btn-light widthButtonAdd elevation-2"
-          (click)="openModal()"          
+          (click)="openModal()"
         >
           <b>เพิ่มข้อมูล</b>
         </button>
@@ -41,14 +41,14 @@
                   *ngFor="
                     let item of info
                       | paginate: { itemsPerPage: 6, currentPage: p };
-                      let i = index
+                    let i = index
                   "
                 >
-                  <td>{{ i+1 }}</td>
+                  <td>{{ i + 1 }}</td>
                   <td>
                     <img
-                      src="http://localhost:8000/static/services/{{
-                        item.service_name+ ',' +item.service_img
+                      src="{{SerURL}}{{
+                        item.service_name + ',' + item.service_img
                       }}"
                       style="width: 150px"
                     />
@@ -92,11 +92,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <h4 class="modal-title textHead">เพิ่มข้อมูลบริการ</h4>
-        <button
-          type="button"
-          class="close"
-          (click)="resetFrom()"
-        >
+        <button type="button" class="close" (click)="resetFrom()">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
@@ -107,55 +103,52 @@
               <div class="row">
                 <div class="col-md-6">
                   <label class="form-label">รูปบริการ</label>
-                  <div class="mb-3">                  
-                      <div class="container ">
-                        <div
-                          class="row justify-content-md-center"
-                          align="center"
-                        >
-                          <label>
-                            <img
-                              class="img-thumbnail"
-                              src="../../../../../../assets/img/BG-WEB-Gray.jpg"
-                              style="height: 300px; width: 500px"
-                              *ngIf="previewLoaded == false; hidden"
-                            />
-                            <input
-                              type="file"
-                              (change)="fileChangeEvent($event)"
-                              name="imageupload"
-                              id="fileUpload"
-                              hidden
-                            />  
-                          </label>
-                          <div *ngIf="imageChangedEvent">
-                            <image-cropper
-                              [imageChangedEvent]="imageChangedEvent"
-                              [aspectRatio]="1 / 1"
-                              format="png"
-                              (imageCropped)="imageCropped($event)"
-                            >
-                            </image-cropper>
-                          </div>
-                          <label>
-                            <div
-                              class="radius elevation-1"
-                              style="height: auto; width: auto"
-                            >
-                              เพิ่มรูปภาพ
-                            </div>
-                            <input
-                              type="file"
-                              (change)="fileChangeEvent($event)"
-                              name="imageupload"
-                              id="fileUpload"
-                              hidden
-                              [ngClass]="{
-                                'is-invalid': submit && a['service_img'].errors
-                              }"
-                          /></label>
+                  <div class="mb-3">
+                    <div class="container">
+                      <div class="row justify-content-md-center" align="center">
+                        <label>
+                          <img
+                            class="img-thumbnail"
+                            src="../../../../../../assets/img/BG-WEB-Gray.jpg"
+                            style="height: 300px; width: 500px"
+                            *ngIf="previewLoaded == false; hidden"
+                          />
+                          <input
+                            type="file"
+                            (change)="fileChangeEvent($event)"
+                            name="imageupload"
+                            id="fileUpload"
+                            hidden
+                          />
+                        </label>
+                        <div *ngIf="imageChangedEvent">
+                          <image-cropper
+                            [imageChangedEvent]="imageChangedEvent"
+                            [aspectRatio]="1 / 1"
+                            format="png"
+                            (imageCropped)="imageCropped($event)"
+                          >
+                          </image-cropper>
                         </div>
+                        <label>
+                          <div
+                            class="radius elevation-1"
+                            style="height: auto; width: auto"
+                          >
+                            เพิ่มรูปภาพ
+                          </div>
+                          <input
+                            type="file"
+                            (change)="fileChangeEvent($event)"
+                            name="imageupload"
+                            id="fileUpload"
+                            hidden
+                            [ngClass]="{
+                              'is-invalid': submit && a['service_img'].errors
+                            }"
+                        /></label>
                       </div>
+                    </div>
                   </div>
                   <div class="col-md-12">
                     <div class="row"></div>
@@ -247,9 +240,9 @@
           คุณต้องการลบข้อมูล <b>{{ infoDel.service_name }} </b>หรือไม่?
         </div>
         <br />
-        <div class="row ">
-          <div class="col-md-2 "></div>
-          <div class="col-md-4 ">
+        <div class="row">
+          <div class="col-md-2"></div>
+          <div class="col-md-4">
             <button
               type="button"
               class="btn btn-light widthButtonAdd elevation-1"

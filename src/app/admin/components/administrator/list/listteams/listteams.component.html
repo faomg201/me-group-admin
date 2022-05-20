@@ -50,7 +50,7 @@
                   <td>{{ i + 1 }}</td>
                   <td (click)="onClick(item.employee_id)">
                     <img
-                      src="http://localhost:8000/static/employees/{{
+                      src="{{TeamURL}}{{
                         item.emp_fname +
                           ',' +
                           item.emp_lname +

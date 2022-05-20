@@ -46,8 +46,6 @@ export class LoginComponent implements OnInit {
     this.http.Login('/user/signin', formData).pipe(first()).subscribe((response: any) => {
       console.log(response);
       if(response.status == true){
-        alert('เข้าได้แล้วววว');
-        // location.reload();
         this.router.navigate(['/admin/dashboard'])
         
         

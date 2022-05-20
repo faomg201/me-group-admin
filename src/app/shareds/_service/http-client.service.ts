@@ -10,8 +10,6 @@ import { LocalStorageService,LocalStorage } from 'angular-web-storage';
 export class HttpClientService {
   serveURl = environment.apiUrl;
   info: any;
-  apiService = 'http://localhost:8000/services';
-  apiWorks = 'http://localhost:8000/goals';
   
   public token! : string 
 
