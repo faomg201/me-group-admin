@@ -1,0 +1,222 @@
+<app-content>
+  <div class="relative">
+    <div class="sizeeeee"></div>
+  </div>
+  <div class="container">
+    <div class="row">
+      <div class="col align-self-start">
+        <br />
+        <h4 class="textHeadPage"><b>ผลงาน</b></h4>
+        <h6 class="textHeadPage">ผลงาน ></h6>
+      </div>
+      <div class="col align-self-center"></div>
+      <div class="col align-self-end" align="right">
+        <button
+          type="button"
+          class="btn btn-light widthButtonAdd elevation-2"
+          (click)="openModal()"
+        >
+          <b>เพิ่มข้อมูล</b>
+        </button>
+      </div>
+    </div>
+    <br />
+    <div class="row">
+      <div class="col-md-12 align-self-center">
+        <div class="card">
+          <div class="card-body">
+            <table class="table table-borderless">
+              <thead class="bgHeadtable" align="center">
+                <tr>
+                  <th style="width: 50px">ลำดับ</th>
+                  <th style="width: 150px">รูปผลงาน</th>
+                  <th style="width: 180px">ชื่อผลงาน</th>
+                  <th style="width: 150px">บริการ</th>
+                  <th style="width: 310px">คำอธิบาย</th>
+                  <th style="width: 100px"></th>
+                  <th style="width: 50px"></th>
+                </tr>
+              </thead>
+              <tbody align="center">
+                <tr
+                  *ngFor="
+                    let item of infoWork
+                      | paginate: { itemsPerPage: 6, currentPage: p };
+                    let i = index
+                  "
+                >
+                  <td>{{ i + 1 }}</td>
+                  <td>
+                    <img
+                      src="{{ WorkURL }}{{
+                        item.goal_title + ',' + item.goal_img
+                      }}"
+                      style="width: 150px"
+                    />
+                  </td>
+                  <td>{{ item.goal_title }}</td>
+                  <td>{{ item.service_name }}</td>
+                  <td>{{ item.goal_detail }}</td>
+                  <td>
+                    <button
+                      type="button"
+                      class="btn round"
+                      (click)="onClick(item.goal_id)"
+                    >
+                      แก้ไข
+                    </button>
+                  </td>
+                  <td>
+                    <i
+                      class="fas fa-trash-alt nav-icon"
+                      data-bs-toggle="modal"
+                      data-bs-target="#exampleModal"
+                      (click)="getnameDel(item.goal_id)"
+                    ></i>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div align="right">
+            <pagination-controls
+              (pageChange)="p = $event"
+            ></pagination-controls>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</app-content>
+
+<div
+  class="modal fade"
+  id="exampleModal"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-body" align="center">
+        <button
+          type="button"
+          class="close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+          (click)="ngOnInit()"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <br /><br />
+        <div class="modal-body" *ngIf="infoWork">
+          คุณต้องการลบข้อมูล <b>{{ infoWork.goal_title }} </b>หรือไม่?
+        </div>
+        <br />
+        <div class="row">
+          <div class="col-md-2"></div>
+          <div class="col-md-4">
+            <button
+              type="button"
+              class="btn btn-light widthButtonAdd elevation-1"
+              data-bs-dismiss="modal"
+            >
+              ยกเลิก
+            </button>
+          </div>
+          <div class="col-md-4">
+            <button
+              type="button"
+              class="btn btn-warning widthButtonAdd elevation-1"
+              (click)="deleteWorks(infoWork.goal_id)"
+              data-bs-dismiss="modal"
+            >
+              ยืนยัน
+            </button>
+          </div>
+          <div class="col-md-2"></div>
+        </div>
+        <br /><br />
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="CREATE_WORK">
+  <div class="modal-dialog modal-xl">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title textHead">เพิ่มข้อมูลบล๊อกของเรา</h4>
+        <button type="button" class="close" (click)="resetFrom()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="row-md-12">
+          <div class="col-md-12">
+            <form [formGroup]="blockForm">
+              <div class="card-body">
+                <div class="row">
+                  <div class="mb-3">
+                    <label>ชื่อพนักงาน</label>
+                    <select
+                      class="form-select"
+                      formControlName="employee_id"
+                      [ngClass]="{
+                        'is-invalid': submit && a['employee_id'].errors
+                      }"
+                    >
+                      <option
+                        *ngFor="let item of infoEMP; let i = index"
+                        value="{{ item.employee_id }}"
+                      >
+                        {{ item.emp_fname }}
+                      </option>
+                    </select>
+                  </div>
+                  <div class="mb-3">
+                    <label>Link address</label>
+                    <input
+                      type="text"
+                      aria-label="First name"
+                      class="form-control"
+                      formControlName="link_address"
+                      [ngClass]="{
+                        'is-invalid': submit && a['link_address'].errors
+                      }"
+                    />
+                  </div>
+                  <div class="col-md-12">
+                    <div class="row">
+                      <div class="col align-self-end" align="right">
+                        <br />
+                        <button
+                          type="button"
+                          class="btn btn-light widthButtonAdd elevation-1"
+                          (click)="resetFrom()"
+                        >
+                          ยกเลิก
+                        </button>
+                        &nbsp; &nbsp; &nbsp;
+                        <button
+                          class="btn btn-warning widthButtonAdd elevation-1"
+                          type="submit"
+                          value="Submit"
+                          (click)="createWorks()"
+                        >
+                          เพิ่ม
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- /.modal-content -->
+  </div>
+  <!-- /.modal-dialog -->
+</div>
