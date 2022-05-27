@@ -9,16 +9,14 @@ import {
 import { HotToastService } from '@ngneat/hot-toast';
 import { ImageCroppedEvent } from 'ngx-image-cropper';
 import { environment } from 'src/environments/environment';
-
 declare var $: any;
 @Component({
-  selector: 'app-listservice',
-  templateUrl: './listservice.component.html',
-  styleUrls: ['./listservice.component.css'],
+  selector: 'app-listserviceus',
+  templateUrl: './listserviceus.component.html',
+  styleUrls: ['./listserviceus.component.css']
 })
-export class ListserviceComponent implements OnInit {
-  private serveURl= environment.apiUrl;
-  SerURL:string = this.serveURl+'/static/services/'
+export class ListserviceusComponent implements OnInit {
+
   imageChangedEvent: any = '';
   croppedImage: any = '';
   fileChangeEvent(event: any) {
@@ -41,7 +39,7 @@ export class ListserviceComponent implements OnInit {
       u8arr[n] = bstr.charCodeAt(n);
     }
     const f = new Blob([u8arr], { type: mime });
-    this.blobToFile(f, this.info.service_name);
+    this.blobToFile(f, this.infoTeam.serviceUs_name);
     return f;
   }
 
@@ -56,8 +54,8 @@ export class ListserviceComponent implements OnInit {
       type: theBlob.type,
     });
     if (file) {
-      this.serviceForm.patchValue({
-        service_img: file,
+      this.serviceUsForm.patchValue({
+        serviceUs_img: file,
       });
       const reader = new FileReader();
       reader.readAsDataURL(file);
@@ -68,13 +66,14 @@ export class ListserviceComponent implements OnInit {
     }
     return file;
   };
-  info: any;
-  infouser: any;
-  infoDel: any;
-  p: number = 1;
+
   file: any;
-  serviceForm: FormGroup;
-  previewLoaded: boolean = false;
+  previewLoaded = false;
+  p = 1;
+  infoMBTI: any;
+  infoTeam: any;
+  infoDel: any;
+  serviceUsForm: FormGroup;
   submit = false;
 
   constructor(
@@ -83,35 +82,44 @@ export class ListserviceComponent implements OnInit {
     private toastService: HotToastService,
     private builder: FormBuilder
   ) {
-    this.serviceForm = this.builder.group({
-      service_name: ['', Validators.required],
-      service_detail: ['', Validators.required],
-      service_img: ['', Validators.required]
+    this.serviceUsForm = this.builder.group({
+      serviceUs_name: ['', Validators.required],
+      serviceUs_img: ['', Validators.required],
+      serviceUs_detail: ['', Validators.required],
     });
   }
 
   ngOnInit(): void {
-    this.getService();
-    // this.getUser();
+    this.onLoadingMBTI();
+    this.getTeams();
+    this.convertDataUrlToBlob(Blob);
   }
 
   get a() {
-    return this.serviceForm.controls;
+    return this.serviceUsForm.controls;
   }
 
-  onClick(ServID: number) {
-    this._router.navigate(['admin/administrator/editservice', ServID]);
+  openModal() {
+    $('#CREATE_EMP').modal('show');
   }
 
-  getService() {
+  resetFrom() {
+    $('#CREATE_EMP').modal('hide');
+    this.serviceUsForm.reset();
+    this.previewLoaded = false;
+    this.imageChangedEvent = false;
+    this.submit = false;
+  }
+
+  getTeams() {
     this.http
-      .getData('/services')
+      .getData('/employees')
       .pipe(first())
       .subscribe(
         (response: any) => {
-
+          console.log(response);
           if (response.status == true) {
-            this.info = response.data;
+            this.infoTeam = response.data;
           }
         },
         (error) => {
@@ -122,41 +130,47 @@ export class ListserviceComponent implements OnInit {
         }
       );
   }
-  // getUser() {
-  //   this.http
-  //     .getData('/user')
-  //     .pipe(first())
-  //     .subscribe(
-  //       (response: any) => {
-  //         console.log(response.data[0].Uadmin_username);
-  //         if (response.status == true) {
-  //           this.infouser = response.data;
-  //         }
-  //       },
-  //       (error) => {
-  //         const response = error.error;
-  //         if (response.status == 500) {
-  //           alert('Failed cant Get Data');
-  //         }
-  //       }
-  //     );
-  // }
   getnameDel(id: number) {
+    console.log(id);
     this.http
-      .getData('/services/' + id)
+      .getData('/employees/' + id)
       .pipe(first())
       .subscribe((response: any) => {
         this.infoDel = response.data;
+        console.log(this.infoDel, +6666);
+        console.log(this.infoDel.serviceUs_name);
       });
   }
-  deleteService(id: any) {
+
+  onLoadingMBTI() {
+    try {
+      this.http
+        .getData('/mbti')
+        .pipe(first())
+        .subscribe((response: any) => {
+          console.log(response);
+          if (response.status == true) {
+            this.infoMBTI = response.data;
+          }
+        });
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  onClick(EMPID: number) {
+    this._router.navigate(['admin/administrator/editteams', EMPID]);
+  }
+
+  deleteEmployee(id: any) {
     this.http
-      .removeData('/services/' + id)
+      .removeData('/employees/' + id)
       .pipe(first())
       .subscribe(
         (response: any) => {
+          console.log(response);
           if (response.status == true) {
-            console.log(this.info);
+            console.log(this.infoTeam);
             this.toastService.error('ลบข้อมูลสำเร็จ', {
               style: {
                 border: '2px solid red',
@@ -168,8 +182,8 @@ export class ListserviceComponent implements OnInit {
                 secondary: '#FFFAEE',
               },
             });
-            this.info = response.data;
-            this.getService();
+            this.infoTeam = response.data;
+            this.getTeams();
           }
         },
         (error) => {
@@ -181,53 +195,50 @@ export class ListserviceComponent implements OnInit {
       );
   }
 
-  openModal() {
-    $('#CREATE_SERVICE').modal('show');
-  }
-
-  resetFrom() {
-    $('#CREATE_SERVICE').modal('hide');
-    this.serviceForm.reset();
-    this.previewLoaded = false;
-    this.imageChangedEvent = false;
-  }
-
-  createService() {
+  createServiceUs() {
     this.submit = true;
-    if (this.serviceForm.invalid) {
+    if (this.serviceUsForm.invalid) {
       this.toastService.error('กรอกข้อมูลผิดพลาด');
       return;
     }
     const formData = new FormData();
-    formData.append('service_img', this.serviceForm.get('service_img')?.value);
-    formData.append('service_detail', this.serviceForm.get('service_detail')?.value);
-    formData.append('service_name', this.serviceForm.get('service_name')?.value);
-    this.http.createData('/services', formData).pipe(first()).subscribe((response: any) => {
-      if (response.statusCode == 201) {
-        $('#CREATE_SERVICE').modal('hide');
-        this.submit = false;
-        this.resetFrom();
-        this.getService();
-        this.toastService.success('เพิ่มข้อมูลสำเร็จ', {
-          duration: 10000,
-          style: {
-            border: '2px solid green',
-            padding: '16px',
-            color: 'green',
-          },
-          iconTheme: {
-            primary: 'green',
-            secondary: '#FFFAEE',
-          },
-        });
-      }
-    },
-      (error) => {
-        const response = error.error;
-        if (response.status == 500) {
-          this.toastService.error('เกิดข้อผิดพลาด');
+    formData.append('serviceUs_img', this.serviceUsForm.get('serviceUs_img')?.value);
+    formData.append('serviceUs_name', this.serviceUsForm.get('serviceUs_name')?.value);
+    formData.append('serviceUs_detail', this.serviceUsForm.get('serviceUs_detail')?.value);
+    this.http
+      .createData('/serviceus', formData)
+      .pipe(first())
+      .subscribe(
+        (response: any) => {
+          console.log(response);
+
+          if (response.statusCode == 201) {
+            $('#CREATE_EMP').modal('hide');
+            this.getTeams();
+            this.resetFrom();
+            this.toastService.success('เพิ่มข้อมูลสำเร็จ', {
+              duration: 10000,
+              style: {
+                border: '2px solid green',
+                padding: '16px',
+                color: 'green',
+              },
+              iconTheme: {
+                primary: 'green',
+                secondary: '#FFFAEE',
+              },
+            });
+
+          } else {
+            this.toastService.error('ไม่สามารถเพิ่มข้อมูล');
+          }
+        },
+        (error) => {
+          const response = error.error;
+          if (response.statusCode == 500) {
+            this.toastService.error('เกิดข้อผิดพลาด');
+          }
         }
-      }
-    );
+      );
   }
 }

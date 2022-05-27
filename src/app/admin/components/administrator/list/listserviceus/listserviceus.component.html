@@ -1,0 +1,263 @@
+<app-content>
+  <div class="relative">
+    <div class="sizeeeee"></div>
+  </div>
+  <div class="container">
+    <div class="row">
+      <div class="col align-self-start">
+        <br />
+        <h4 class="textHeadPage"><b>ทีมของเรา</b></h4>
+        <h6 class="textHeadPage">ทีมของเรา ></h6>
+      </div>
+      <div class="col align-self-center"></div>
+      <div class="col align-self-end" align="right">
+        <button
+          type="button"
+          class="btn btn-light widthButtonAdd elevation-2"
+          (click)="openModal()"
+        >
+          <b>เพิ่มข้อมูล</b>
+        </button>
+      </div>
+    </div>
+    <br />
+    <div class="row">
+      <div class="col-md-12 align-self-center">
+        <div class="card">
+          <div class="card-body">
+            <table class="table table-borderless">
+              <thead class="bgHeadtable" align="center">
+                <tr>
+                  <th style="width: 2vw">ลำดับ</th>
+                  <th style="width: 10vw">รูปภาพ</th>
+                  <th style="width: 8vw">ชื่อบริการของเรา</th>
+                  <th style="width: 2vw"></th>
+                  <th style="width: 1vw"></th>
+                </tr>
+              </thead>
+              <tbody align="center">
+                <tr
+                  *ngFor="
+                    let item of infoTeam
+                      | paginate: { itemsPerPage: 6, currentPage: p };
+                    let i = index
+                  "
+                >
+                  <td>{{ i + 1 }}</td>
+                  <td (click)="onClick(item.employee_id)">
+                    
+                  </td>
+                  <td (click)="onClick(item.employee_id)">
+                    {{ item.emp_fname }} {{ item.emp_lname }}
+                  </td>
+                  
+                  <td (click)="onClick(item.employee_id)">
+                    <button type="button" class="btn round">แก้ไข</button>
+                  </td>
+                  <td>
+                    <i
+                      class="fas fa-trash-alt nav-icon"
+                      data-bs-toggle="modal"
+                      data-bs-target="#delEmp"
+                      (click)="getnameDel(item.employee_id)"
+                    ></i>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div align="right">
+            <pagination-controls
+              (pageChange)="p = $event"
+            ></pagination-controls>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</app-content>
+
+<div class="modal fade" id="CREATE_EMP">
+  <div class="modal-dialog modal-xl">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title textHead">เพิ่มข้อมูลบริการของเรา</h4>
+        <button type="button" class="close" (click)="resetFrom()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="row-md-12">
+          <div class="col-md-12">
+            <form [formGroup]="serviceUsForm">
+              <div class="card-body">
+                <div class="row">
+                  <div class="col-md-6">
+                    <label class="form-label">รูปภาพ</label>
+                    <div class="col-md-12">
+                      <div class="container">
+                        <div
+                          class="row justify-content-md-center"
+                          align="center"
+                        >
+                          <label>
+                            <img
+                              class="img-thumbnail"
+                              src="../../../../../../assets/img/BG-WEB-Gray.jpg"
+                              style="height: 300px; width: 500px"
+                              *ngIf="previewLoaded == false; hidden"
+                            />
+                            <input
+                              type="file"
+                              (change)="fileChangeEvent($event)"
+                              name="imageupload"
+                              id="fileUpload"
+                              hidden
+                            />
+                          </label>
+                          <div *ngIf="imageChangedEvent">
+                            <image-cropper
+                              [imageChangedEvent]="imageChangedEvent"
+                              [aspectRatio]="3 / 4"
+                              format="png"
+                              (imageCropped)="imageCropped($event)"
+                            >
+                            </image-cropper>
+                          </div>
+                          <label>
+                            <div
+                              class="radius elevation-1"
+                              style="height: auto; width: auto"
+                            >
+                              เพิ่มรูปภาพ
+                            </div>
+                            <input
+                              type="file"
+                              (change)="fileChangeEvent($event)"
+                              name="imageupload"
+                              id="fileUpload"
+                              hidden
+                              [ngClass]="{
+                                'is-invalid': submit && a['serviceUs_img'].errors
+                              }"
+                          /></label>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="mb-3">
+                      <label>ชื่อบริการของเรา</label>
+                      <input
+                        type="text"
+                        aria-label="First name"
+                        class="form-control"
+                        formControlName="serviceUs_name"
+                        [ngClass]="{
+                          'is-invalid': submit && a['serviceUs_name'].errors
+                        }"
+                      />
+                    </div>
+                    <div class="mb-3">
+                      <label>คำอธิบาย</label>
+                      <textarea
+                        class="form-control"
+                        formControlName="serviceUs_detail"
+                        placeholder=""
+                        id="floatingTextarea2"
+                        style="height: 200px"
+                        [ngClass]="{
+                          'is-invalid': submit && a['serviceUs_detail'].errors
+                        }"
+                      ></textarea>
+                    </div>
+                    <br />
+                    
+                    <div class="col-md-12">
+                      <div class="row">
+                        <div class="col align-self-end" align="right">
+                          <br />
+                          <button
+                            type="button"
+                            class="btn btn-light widthButtonAdd elevation-1"
+                            (click)="resetFrom()"
+                          >
+                            ยกเลิก
+                          </button>
+                          &nbsp; &nbsp; &nbsp;
+                          <button
+                            class="btn btn-warning widthButtonAdd elevation-1"
+                            type="submit"
+                            value="Submit"
+                            (click)="createServiceUs()"
+                          >
+                            เพิ่ม
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- /.modal-content -->
+  </div>
+  <!-- /.modal-dialog -->
+</div>
+
+<div
+  class="modal fade"
+  id="delEmp"
+  tabindex="-1"
+  aria-labelledby="delEmp"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-body" align="center">
+        <button
+          type="button"
+          class="close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+          (click)="ngOnInit()"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <br /><br />
+        <div class="modal-body" *ngIf="infoDel">
+          คุณต้องการลบข้อมูล <b>{{ infoDel.emp_fname }} </b>หรือไม่?
+        </div>
+        <br />
+        <div class="row">
+          <div class="col-md-2"></div>
+          <div class="col-md-4">
+            <button
+              type="button"
+              class="btn btn-light widthButtonAdd elevation-1"
+              data-bs-dismiss="modal"
+            >
+              ยกเลิก
+            </button>
+          </div>
+          <div class="col-md-4">
+            <button
+              type="button"
+              class="btn btn-warning widthButtonAdd elevation-1"
+              (click)="deleteEmployee(infoDel.employee_id)"
+              data-bs-dismiss="modal"
+            >
+              ยืนยัน
+            </button>
+          </div>
+          <div class="col-md-2"></div>
+        </div>
+        <br /><br />
+      </div>
+    </div>
+  </div>
+</div>

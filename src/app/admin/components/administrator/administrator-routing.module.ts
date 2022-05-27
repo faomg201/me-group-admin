@@ -8,6 +8,8 @@ import { ListworksComponent } from './list/listworks/listworks.component';
 import { ListteamsComponent } from './list/listteams/listteams.component';
 import { ListcontractusComponent } from './list/listcontractus/listcontractus.component';
 import { ListaboutusComponent } from './list/listaboutus/listaboutus.component';
+import { ListserviceusComponent } from './list/listserviceus/listserviceus.component';
+import { ListmyblogComponent } from './list/listmyblog/listmyblog.component';
 
 import { EditserviceComponent } from './edit/editservice/editservice.component';
 import { EditworksComponent } from './edit/editworks/editworks.component';
@@ -18,13 +20,17 @@ import { BaccountComponent } from './list/baccount/baccount.component';
 import { LogsComponent } from './list/logs/logs.component';
 
 
+
 const routes: Routes = [
   {path: '', redirectTo: 'list', pathMatch: 'full'},
   {path: 'listservices', component: ListserviceComponent},
+  {path: 'listservicesus', component: ListserviceusComponent},
   {path: 'listworks', component: ListworksComponent},
   {path: 'listteams', component: ListteamsComponent},
   {path: 'listcontractus', component: ListcontractusComponent},
   {path: 'listaboutus', component: ListaboutusComponent},
+  {path: 'listmyblog', component: ListmyblogComponent},
+
   {path: 'baccount', component: BaccountComponent},
   {path: 'logs', component: LogsComponent},
   {path: 'create', component: CreateComponent},

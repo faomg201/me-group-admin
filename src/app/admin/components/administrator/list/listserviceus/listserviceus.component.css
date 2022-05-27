@@ -1,0 +1,13 @@
+.round {
+    border-radius: 30px;
+    background-color: #fec87c;
+    width: 85px;
+    text-align: center;
+    height: 35px;
+    color: white;
+  }
+  td {
+    text-align: center;
+    vertical-align: middle;
+  }
+  

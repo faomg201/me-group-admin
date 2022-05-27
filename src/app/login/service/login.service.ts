@@ -23,6 +23,7 @@ export class LoginService {
     this.currentUser = this.currentUserSubject.asObservable();
 
   }
+
   public get currentUserValue(): any {
     return localStorage.getItem('currentUser')
   }
@@ -37,12 +38,15 @@ export class LoginService {
   Login(loginData: any, path: any) {
     return this.http.post(this.serveURl + loginData, path).pipe(map((response: any) => {
       console.log(response.data);
-      var now:any = new Date().getTime();
+      var timeout = setTimeout(function(){
+        alert('this is executed after 5 seconds');
+      }, 5000);
 
+      this.local.set('timeout_event', timeout);
       if (response.statusCode == 200) {
         localStorage.setItem('currentUser', JSON.stringify(response.token));
         localStorage.setItem('Username', (response.data.Uadmin_username));
-        localStorage.setItem('setupTime', now);
+        this.local.set('setupTime', response, 1, 'h');
         return response
       }
       return response

@@ -22,7 +22,8 @@ import { BaccountComponent } from './list/baccount/baccount.component';
 import { LogsComponent } from './list/logs/logs.component';
 import { EditteamsComponent } from './edit/editteams/editteams.component';
 import { EditaccountComponent } from './edit/editaccount/editaccount.component';
-
+import { ListserviceusComponent } from './list/listserviceus/listserviceus.component';
+import { ListmyblogComponent } from './list/listmyblog/listmyblog.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +41,8 @@ import { EditaccountComponent } from './edit/editaccount/editaccount.component';
     LogsComponent,
     EditteamsComponent,
     EditaccountComponent,
+    ListserviceusComponent,
+    ListmyblogComponent
   ],
   imports: [
     CommonModule,
