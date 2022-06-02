@@ -15,6 +15,7 @@ import { EditserviceComponent } from './edit/editservice/editservice.component';
 import { EditworksComponent } from './edit/editworks/editworks.component';
 import { EditteamsComponent } from './edit/editteams/editteams.component';
 import { EditaccountComponent } from './edit/editaccount/editaccount.component';
+import { EditserviceusComponent } from './edit/editserviceus/editserviceus.component';
 
 import { BaccountComponent } from './list/baccount/baccount.component';
 import { LogsComponent } from './list/logs/logs.component';
@@ -39,6 +40,7 @@ const routes: Routes = [
   {path: 'editworks/:id', component: EditworksComponent},
   {path: 'editteams/:id', component: EditteamsComponent},
   {path: 'editaccount/:id', component: EditaccountComponent},
+  {path: 'editserviceus/:id', component: EditserviceusComponent},
 
 ];
 
