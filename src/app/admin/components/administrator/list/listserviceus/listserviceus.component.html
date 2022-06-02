@@ -38,21 +38,25 @@
               <tbody align="center">
                 <tr
                   *ngFor="
-                    let item of infoTeam
+                    let item of infoServiceUs
                       | paginate: { itemsPerPage: 6, currentPage: p };
                     let i = index
                   "
                 >
                   <td>{{ i + 1 }}</td>
-                  <td (click)="onClick(item.employee_id)">
-                    
+                  <td>
+                    <img
+                    src="{{SerUsURL}}{{
+                      item.serviceUs_name + ',' + item.serviceUs_img
+                    }}"
+                    style="width: 150px"
+                  /></td>
+                  <td>
+                    {{ item.serviceUs_name }}
                   </td>
-                  <td (click)="onClick(item.employee_id)">
-                    {{ item.emp_fname }} {{ item.emp_lname }}
-                  </td>
-                  
-                  <td (click)="onClick(item.employee_id)">
-                    <button type="button" class="btn round">แก้ไข</button>
+
+                  <td >
+                    <button type="button" class="btn round" (click)="onClick(item.id)">แก้ไข</button>
                   </td>
                   <td>
                     <i
@@ -118,7 +122,7 @@
                           <div *ngIf="imageChangedEvent">
                             <image-cropper
                               [imageChangedEvent]="imageChangedEvent"
-                              [aspectRatio]="3 / 4"
+                              [aspectRatio]="1 / 1"
                               format="png"
                               (imageCropped)="imageCropped($event)"
                             >
@@ -138,7 +142,8 @@
                               id="fileUpload"
                               hidden
                               [ngClass]="{
-                                'is-invalid': submit && a['serviceUs_img'].errors
+                                'is-invalid':
+                                  submit && a['serviceUs_img'].errors
                               }"
                           /></label>
                         </div>
@@ -172,7 +177,7 @@
                       ></textarea>
                     </div>
                     <br />
-                    
+
                     <div class="col-md-12">
                       <div class="row">
                         <div class="col align-self-end" align="right">

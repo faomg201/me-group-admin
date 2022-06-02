@@ -16,7 +16,8 @@ declare var $: any;
   styleUrls: ['./listserviceus.component.css']
 })
 export class ListserviceusComponent implements OnInit {
-
+  private serveURl= environment.apiUrl;
+  SerUsURL:string = this.serveURl+'/static/serviceUs/'
   imageChangedEvent: any = '';
   croppedImage: any = '';
   fileChangeEvent(event: any) {
@@ -39,7 +40,7 @@ export class ListserviceusComponent implements OnInit {
       u8arr[n] = bstr.charCodeAt(n);
     }
     const f = new Blob([u8arr], { type: mime });
-    this.blobToFile(f, this.infoTeam.serviceUs_name);
+    this.blobToFile(f, this.infoServiceUs.serviceUs_name);
     return f;
   }
 
@@ -71,7 +72,7 @@ export class ListserviceusComponent implements OnInit {
   previewLoaded = false;
   p = 1;
   infoMBTI: any;
-  infoTeam: any;
+  infoServiceUs: any;
   infoDel: any;
   serviceUsForm: FormGroup;
   submit = false;
@@ -91,7 +92,7 @@ export class ListserviceusComponent implements OnInit {
 
   ngOnInit(): void {
     this.onLoadingMBTI();
-    this.getTeams();
+    this.getServiceUs();
     this.convertDataUrlToBlob(Blob);
   }
 
@@ -111,15 +112,15 @@ export class ListserviceusComponent implements OnInit {
     this.submit = false;
   }
 
-  getTeams() {
+  getServiceUs() {
     this.http
-      .getData('/employees')
+      .getData('/serviceUs')
       .pipe(first())
       .subscribe(
         (response: any) => {
           console.log(response);
           if (response.status == true) {
-            this.infoTeam = response.data;
+            this.infoServiceUs = response.data;
           }
         },
         (error) => {
@@ -158,8 +159,8 @@ export class ListserviceusComponent implements OnInit {
     }
   }
 
-  onClick(EMPID: number) {
-    this._router.navigate(['admin/administrator/editteams', EMPID]);
+  onClick(SerUsID: number) {
+    this._router.navigate(['admin/administrator/editserviceus', SerUsID]);
   }
 
   deleteEmployee(id: any) {
@@ -170,7 +171,7 @@ export class ListserviceusComponent implements OnInit {
         (response: any) => {
           console.log(response);
           if (response.status == true) {
-            console.log(this.infoTeam);
+            console.log(this.infoServiceUs);
             this.toastService.error('ลบข้อมูลสำเร็จ', {
               style: {
                 border: '2px solid red',
@@ -182,8 +183,8 @@ export class ListserviceusComponent implements OnInit {
                 secondary: '#FFFAEE',
               },
             });
-            this.infoTeam = response.data;
-            this.getTeams();
+            this.infoServiceUs = response.data;
+            this.getServiceUs();
           }
         },
         (error) => {
@@ -214,7 +215,7 @@ export class ListserviceusComponent implements OnInit {
 
           if (response.statusCode == 201) {
             $('#CREATE_EMP').modal('hide');
-            this.getTeams();
+            this.getServiceUs();
             this.resetFrom();
             this.toastService.success('เพิ่มข้อมูลสำเร็จ', {
               duration: 10000,
