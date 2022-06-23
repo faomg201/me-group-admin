@@ -30,23 +30,32 @@ export class LoginService {
   public get UsernameValue(): any {
     return localStorage.getItem('Username')
   }
+  public get UserIDValue(): any {
+    return localStorage.getItem('UserID')
+  }
   public get SetupTimeValue(): any {
     return localStorage.getItem('setupTime')
   }
+  public get userTokenValue(): any {
+    return localStorage.getItem('userToken')
+  }
+
 
 
   Login(loginData: any, path: any) {
     return this.http.post(this.serveURl + loginData, path).pipe(map((response: any) => {
       console.log(response.data);
-      var timeout = setTimeout(function(){
-        alert('this is executed after 5 seconds');
-      }, 5000);
-
-      this.local.set('timeout_event', timeout);
-      if (response.statusCode == 200) {
+      const now = new Date()
+      if (response.statusCode == 201) {
         localStorage.setItem('currentUser', JSON.stringify(response.token));
         localStorage.setItem('Username', (response.data.Uadmin_username));
-        this.local.set('setupTime', response, 1, 'h');
+        localStorage.setItem('UserID', (response.data.user_id));
+        // this.local.set('setupTime', response, 2, 'h');
+        // this.local.set("setupTime", Date.now());
+        localStorage.setItem('setupTime', JSON.stringify({exp: Date()}));
+        this.local.set('userToken', response.data, 1  , 'h');
+          console.log(this.local.get('userToken'),6666666);
+        
         return response
       }
       return response

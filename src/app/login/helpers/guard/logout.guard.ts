@@ -14,8 +14,10 @@ export class LogoutGuard implements CanActivate {
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
       const currentUser = this.loginService.currentUserValue;
       const setupTime = this.loginService.SetupTimeValue
+      const mytime = this.loginService.SetupTimeValue
       console.log(setupTime);
       console.log(currentUser);
+      console.log(mytime);
       
       if(!setupTime){
         this.local.clear();

@@ -46,12 +46,12 @@ export class LoginComponent implements OnInit {
     this.http.Login('/user/signin', formData).pipe(first()).subscribe((response: any) => {
       console.log(response);
       if(response.status == true){
-        this.router.navigate(['/admin/dashboard'])
+        this.router.navigate(['/admin/administrator/baccount'])
         
         
       }else{
         // console.log(response);
-        alert('รหัสผิดครับ จำไม่ได้อ่ะดี้');
+        alert('รหัสผิดครับ');
       }
       // this.router.navigate(['/admin/dashboard'])
  

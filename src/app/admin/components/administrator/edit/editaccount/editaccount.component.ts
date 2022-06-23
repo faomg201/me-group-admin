@@ -109,7 +109,7 @@ export class EditaccountComponent implements OnInit {
       .pipe(first())
       .subscribe((response: any) => {
         console.log(response);
-        if (response.statusCode == 200) {
+        if (response.statusCode == 201) {
           this.Close_EditAcc();
           this.ngOnInit();
           this.router.navigate(['/admin/administrator/baccount']);

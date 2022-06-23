@@ -203,6 +203,8 @@ export class ListserviceComponent implements OnInit {
     formData.append('service_detail', this.serviceForm.get('service_detail')?.value);
     formData.append('service_name', this.serviceForm.get('service_name')?.value);
     this.http.createData('/services', formData).pipe(first()).subscribe((response: any) => {
+      console.log(response);
+      
       if (response.statusCode == 201) {
         $('#CREATE_SERVICE').modal('hide');
         this.submit = false;

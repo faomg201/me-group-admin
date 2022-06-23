@@ -6,8 +6,8 @@
     <div class="row">
       <div class="col align-self-start">
         <br />
-        <h4 class="textHeadPage"><b>ทีมของเรา</b></h4>
-        <h6 class="textHeadPage">ทีมของเรา ></h6>
+        <h4 class="textHeadPage"><b>บริการของเรา</b></h4>
+        <h6 class="textHeadPage">บริการของเรา ></h6>
       </div>
       <div class="col align-self-center"></div>
       <div class="col align-self-end" align="right">
@@ -47,7 +47,7 @@
                   <td>
                     <img
                     src="{{SerUsURL}}{{
-                      item.serviceUs_name + ',' + item.serviceUs_img
+                      item.serviceUs_img
                     }}"
                     style="width: 150px"
                   /></td>
@@ -63,7 +63,7 @@
                       class="fas fa-trash-alt nav-icon"
                       data-bs-toggle="modal"
                       data-bs-target="#delEmp"
-                      (click)="getnameDel(item.employee_id)"
+                      (click)="getnameDel(item.id)"
                     ></i>
                   </td>
                 </tr>
@@ -235,7 +235,7 @@
         </button>
         <br /><br />
         <div class="modal-body" *ngIf="infoDel">
-          คุณต้องการลบข้อมูล <b>{{ infoDel.emp_fname }} </b>หรือไม่?
+          คุณต้องการลบข้อมูล <b>{{ infoDel.serviceUs_name }} </b>หรือไม่?
         </div>
         <br />
         <div class="row">
@@ -253,7 +253,7 @@
             <button
               type="button"
               class="btn btn-warning widthButtonAdd elevation-1"
-              (click)="deleteEmployee(infoDel.employee_id)"
+              (click)="deleteserviceUs(infoDel.id)"
               data-bs-dismiss="modal"
             >
               ยืนยัน

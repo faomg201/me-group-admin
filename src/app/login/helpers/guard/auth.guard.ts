@@ -13,20 +13,36 @@ export class AuthGuard implements CanActivate {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
     const currentUser = this.loginService.currentUserValue;
-    const setupTime = this.loginService.SetupTimeValue
-    console.log(setupTime, 666);
-    console.log(currentUser);
+    const userToken = this.loginService.userTokenValue;
 
-    var hours = 1; // Reset when storage is more than 1hours
-    var now:any = new Date().getTime();
-    if (setupTime == null) {
-      localStorage.setItem('setupTime', now)
-    } else {
-      if (now - setupTime > hours * 60 * 60 * 1000) {
-        localStorage.clear()
-        localStorage.setItem('setupTime', now);
-      }
+    const itemStr:any = this.loginService.SetupTimeValue
+    
+    
+    console.log(userToken, 666);
+    // console.log(currentUser);
+    const item = JSON.parse(itemStr)
+    const now:any = new Date()
+    // console.log(item.exp);
+    // console.log(item);
+    // console.log(now);
+    if (now> item) {
+      // If the item is expired, delete the item from storage
+      // and return null
+      this.local.clear();
     }
+    if(!userToken){
+      this.local.clear();
+      this.router.navigate(['/login'])
+    }
+    // var now:any = new Date().getTime();
+    // if (itemStr == null) {
+    //   localStorage.setItem('setupTime', now)
+    // } else {
+    //   if (now - itemStr > hours * 60 * 60 * 1000) {
+    //     localStorage.clear()
+    //     localStorage.setItem('setupTime', now);
+    //   }
+    // }
     if (currentUser) {
       // this.router.navigate(['/admin/dashboard'])
       return true;

@@ -6,8 +6,8 @@
     <div class="row">
       <div class="col align-self-start">
         <br />
-        <h4 class="textHeadPage"><b>บริการ</b></h4>
-        <h6 class="textHeadPage">บริการ > แก้ไขข้อมูลบริการ</h6>
+        <h4 class="textHeadPage"><b>บริการของเรา</b></h4>
+        <h6 class="textHeadPage">บริการของเรา > แก้ไขข้อมูลบริการของเรา</h6>
       </div>
       <div class="col align-self-center"></div>
       <div class="col align-self-end" align="right"></div>
@@ -32,8 +32,7 @@
                             <label>
                               <img
                                 src="{{SerURL}}{{
-                                  info.data.serviceUs_name +
-                                    ',' +
+                                
                                     info.data.serviceUs_img
                                 }}"
                                 *ngIf="previewLoaded == false; hidden"
@@ -150,3 +149,56 @@
     </div>
   </div>
 </app-content>
+<div
+  class="modal fade"
+  id="exampleModal"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-body" align="center">
+        <button
+          type="button"
+          class="close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+          (click)="ngOnInit()"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <br /><br />
+        <div class="modal-body" *ngIf="info">
+          คุณต้องการลบข้อมูล <b>{{ info.data.serviceUs_name }} </b>หรือไม่?
+        </div>
+        <br />
+        <div class="row">
+          <div class="col-md-2"></div>
+          <div class="col-md-4">
+            <button
+              type="button"
+              class="btn btn-light widthButtonAdd elevation-1"
+              data-bs-dismiss="modal"
+            >
+              ยกเลิก
+            </button>
+          </div>
+          <div class="col-md-4">
+            <button
+              type="button"
+              class="btn btn-warning widthButtonAdd elevation-1"
+              (click)="deleteService(info.id)"
+              data-bs-dismiss="modal"
+            >
+              ยืนยัน
+            </button>
+          </div>
+          <div class="col-md-2"></div>
+        </div>
+        <br /><br />
+      </div>
+    </div>
+  </div>
+</div>
+
