@@ -48,7 +48,7 @@
                   <td>
                     <img
                       src="{{SerURL}}{{
-                        item.service_name + ',' + item.service_img
+                       item.service_img
                       }}"
                       style="width: 150px"
                     />
@@ -124,7 +124,7 @@
                         <div *ngIf="imageChangedEvent">
                           <image-cropper
                             [imageChangedEvent]="imageChangedEvent"
-                            [aspectRatio]="1 / 1"
+                            [aspectRatio]="5/2 / 2"
                             format="png"
                             (imageCropped)="imageCropped($event)"
                           >

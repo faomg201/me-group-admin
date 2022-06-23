@@ -134,7 +134,7 @@ export class ListserviceusComponent implements OnInit {
   getnameDel(id: number) {
     console.log(id);
     this.http
-      .getData('/employees/' + id)
+      .getData('/serviceUs/' + id)
       .pipe(first())
       .subscribe((response: any) => {
         this.infoDel = response.data;
@@ -163,9 +163,9 @@ export class ListserviceusComponent implements OnInit {
     this._router.navigate(['admin/administrator/editserviceus', SerUsID]);
   }
 
-  deleteEmployee(id: any) {
+  deleteserviceUs(id: any) {
     this.http
-      .removeData('/employees/' + id)
+      .removeData('/serviceUs/' + id)
       .pipe(first())
       .subscribe(
         (response: any) => {

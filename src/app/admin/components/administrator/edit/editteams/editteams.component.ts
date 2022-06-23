@@ -165,7 +165,7 @@ export class EditteamsComponent implements OnInit {
     this.http.updateData('/employees/' + this._route.snapshot.params['id'], formData)
       .pipe(first())
       .subscribe((response:any) =>{
-        if(response.statusCode == 200 ){
+        if(response.statusCode == 201 ){
           this.ngOnInit();
           this.router.navigate(['/admin/administrator/listteams']);
           this.toastService.success('แก้ไขข้อมูลสำเร็จ', {

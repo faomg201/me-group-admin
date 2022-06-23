@@ -18,8 +18,8 @@ import { environment } from 'src/environments/environment';
   styleUrls: ['./editworks.component.css'],
 })
 export class EditworksComponent implements OnInit {
-  private serveURl= environment.apiUrl;
-  WorkURL:string = this.serveURl+'/static/goals/'
+  private serveURl = environment.apiUrl;
+  WorkURL: string = this.serveURl + '/static/goals/'
 
   previewLoaded: boolean = false;
   info: any;
@@ -118,35 +118,32 @@ export class EditworksComponent implements OnInit {
     formData.append('service_id', this.worksForm.get('service_id')?.value);
     formData.append('goal_detail', this.worksForm.get('goal_detail')?.value);
     formData.append('goal_title', this.worksForm.get('goal_title')?.value);
-    this.http
-      .updateData('/goals/' + this._route.snapshot.params['id'], formData)
-      .pipe(first())
-      .subscribe((response: any) => {
-        console.log(response);
-        if (response.statusCode == 200) {
-          this.ngOnInit();
-          this.router.navigate(['/admin/administrator/listworks']);
-          this.toastService.success('แก้ไขข้อมูลสำเร็จ', {
-            duration: 10000,
-            style: {
-              border: '2px solid green',
-              padding: '16px',
-              color: 'green',
-            },
-            iconTheme: {
-              primary: 'green',
-              secondary: '#FFFAEE',
-            },
-          });
-        }
-      },(error) => {
-        const response = error.error;
-        if (response.status == 500) {
-          this.toastService.error('เกิดข้อผิดพลาด');
-        }
+    this.http.updateData('/goals/' + this._route.snapshot.params['id'], formData).pipe(first()).subscribe((response: any) => {
+      console.log(response);
+      if (response.statusCode == 201) {
+        this.ngOnInit();
+        this.router.navigate(['/admin/administrator/listworks']);
+        this.toastService.success('แก้ไขข้อมูลสำเร็จ', {
+          duration: 10000,
+          style: {
+            border: '2px solid green',
+            padding: '16px',
+            color: 'green',
+          },
+          iconTheme: {
+            primary: 'green',
+            secondary: '#FFFAEE',
+          },
+        });
       }
-      );
-    
+    }, (error) => {
+      const response = error.error;
+      if (response.status == 500) {
+        this.toastService.error('เกิดข้อผิดพลาด');
+      }
+    }
+    );
+
   }
 
   getnameDel(id: number) {

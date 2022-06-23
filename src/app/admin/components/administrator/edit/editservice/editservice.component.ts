@@ -129,7 +129,7 @@ export class EditserviceComponent implements OnInit {
         this.serviceForm.get('service_img')?.value
       );
       this.http.updateData('/services/image/' + this._route.snapshot.params['id'], formData).pipe(first()).subscribe((res: any) => {
-        if (res.statusCode == 200) {
+        if (res.statusCode == 201) {
           this.toastService.success('แก้ไขรูปภาพเสร็จสิ้น');
         }
       }, (error) => {
@@ -151,7 +151,9 @@ export class EditserviceComponent implements OnInit {
     formData.append('service_detail', this.serviceForm.get('service_detail')?.value);
     formData.append('service_name', this.serviceForm.get('service_name')?.value);
     this.http.updateData('/services/' + this._route.snapshot.params['id'], formData).pipe(first()).subscribe((response: any) => {
-      if (response.statusCode == 200) {
+      console.log(response);
+      
+      if (response.statusCode == 201) {
         this.ngOnInit();
         this.router.navigate(['/admin/administrator/listservices'])
         this.toastService.success('แก้ไขข้อมูลสำเร็จ', {
@@ -191,6 +193,7 @@ export class EditserviceComponent implements OnInit {
       .pipe(first())
       .subscribe(
         (response: any) => {
+          
           if (response.status == true) {
             console.log(this.info);
             this.toastService.error('ลบข้อมูลสำเร็จ', {

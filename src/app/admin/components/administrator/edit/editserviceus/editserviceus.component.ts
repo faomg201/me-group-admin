@@ -14,8 +14,8 @@ import { environment } from 'src/environments/environment';
   styleUrls: ['./editserviceus.component.css']
 })
 export class EditserviceusComponent implements OnInit {
-  private serveURl= environment.apiUrl;
-  SerURL:string = this.serveURl+'/static/serviceUs/'
+  private serveURl = environment.apiUrl;
+  SerURL: string = this.serveURl + '/static/serviceUs/'
 
   imageChangedEvent: any = '';
   croppedImage: any = '';
@@ -65,15 +65,15 @@ export class EditserviceusComponent implements OnInit {
         const formData = new FormData();
         formData.append('serviceUs_img', this.serviceForm.get('serviceUs_img')?.value);
 
-        this.http
-          .updateData(
-            '/serviceUs/image/' + this._route.snapshot.params['id'],
-            formData
-          )
-          .pipe(first())
-          .subscribe();
-        this.toastService.success('แก้ไขรูปภาพเสร็จสิ้น');
+        this.http.updateData('/serviceUs/image/' + this._route.snapshot.params['id'],
+          formData).pipe(first()).subscribe((response: any) => {
+            if (response.status == true) {
+              this.toastService.success('แก้ไขรูปภาพเสร็จสิ้น');
+            }
+          });
+
       };
+
     }
     return file;
   };
@@ -129,7 +129,7 @@ export class EditserviceusComponent implements OnInit {
         this.serviceForm.get('serviceUs_img')?.value
       );
       this.http.updateData('/serviceUs/image/' + this._route.snapshot.params['id'], formData).pipe(first()).subscribe((res: any) => {
-        if (res.statusCode == 200) {
+        if (res.statusCode == 201) {
           this.toastService.success('แก้ไขรูปภาพเสร็จสิ้น');
         }
       }, (error) => {
@@ -151,7 +151,7 @@ export class EditserviceusComponent implements OnInit {
     formData.append('serviceUs_detail', this.serviceForm.get('serviceUs_detail')?.value);
     formData.append('serviceUs_name', this.serviceForm.get('serviceUs_name')?.value);
     this.http.updateData('/serviceUs/' + this._route.snapshot.params['id'], formData).pipe(first()).subscribe((response: any) => {
-      if (response.statusCode == 200) {
+      if (response.statusCode == 201) {
         this.ngOnInit();
         this.router.navigate(['/admin/administrator/listservicesus'])
         this.toastService.success('แก้ไขข้อมูลสำเร็จ', {
@@ -178,7 +178,7 @@ export class EditserviceusComponent implements OnInit {
 
   getnameDel(id: number) {
     this.http
-      .getData('/services/' + id)
+      .getData('/serviceUs/' + id)
       .pipe(first())
       .subscribe((response: any) => {
         this.info = response.data;
@@ -187,10 +187,11 @@ export class EditserviceusComponent implements OnInit {
 
   deleteService(id: any) {
     this.http
-      .removeData('/services/' + id)
+      .removeData('/serviceUs/' + id)
       .pipe(first())
       .subscribe(
         (response: any) => {
+
           if (response.status == true) {
             console.log(this.info);
             this.toastService.error('ลบข้อมูลสำเร็จ', {
@@ -205,7 +206,7 @@ export class EditserviceusComponent implements OnInit {
               },
             });
             this.info = response.data;
-            this.router.navigate(['/admin/administrator/listservices'])
+            this.router.navigate(['/admin/administrator/listservicesus'])
           }
         },
         (error) => {

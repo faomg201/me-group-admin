@@ -1,13 +1,13 @@
 <app-content>
-  <div class="relative">
+  <!-- <div class="relative">
     <div class="sizeeeee"></div>
   </div>
   <div class="container">
     <div class="row">
       <div class="col align-self-start">
         <br />
-        <h4 class="textHeadPage"><b>ผลงาน</b></h4>
-        <h6 class="textHeadPage">ผลงาน ></h6>
+        <h4 class="textHeadPage"><b>บล็อกของเรา</b></h4>
+        <h6 class="textHeadPage">บล็อกของเรา ></h6>
       </div>
       <div class="col align-self-center"></div>
       <div class="col align-self-end" align="right">
@@ -29,10 +29,9 @@
               <thead class="bgHeadtable" align="center">
                 <tr>
                   <th style="width: 50px">ลำดับ</th>
-                  <th style="width: 150px">รูปผลงาน</th>
-                  <th style="width: 180px">ชื่อผลงาน</th>
-                  <th style="width: 150px">บริการ</th>
-                  <th style="width: 310px">คำอธิบาย</th>
+                  <th style="width: 150px">รูปพนักงาน</th>
+                  <th style="width: 170px">ชื่อพนักงาน</th>
+                  <th style="width: 190px">ลิงค์</th>
                   <th style="width: 100px"></th>
                   <th style="width: 50px"></th>
                 </tr>
@@ -40,7 +39,7 @@
               <tbody align="center">
                 <tr
                   *ngFor="
-                    let item of infoWork
+                    let item of infoMyBlog
                       | paginate: { itemsPerPage: 6, currentPage: p };
                     let i = index
                   "
@@ -48,15 +47,12 @@
                   <td>{{ i + 1 }}</td>
                   <td>
                     <img
-                      src="{{ WorkURL }}{{
-                        item.goal_title + ',' + item.goal_img
-                      }}"
-                      style="width: 150px"
-                    />
+                    src="{{TeamURL}}{{item.emp_fname +',' +item.emp_lname +',' +item.emp_img}}"
+                    style="width: 120px; border-radius: 100%"
+                  />
                   </td>
-                  <td>{{ item.goal_title }}</td>
-                  <td>{{ item.service_name }}</td>
-                  <td>{{ item.goal_detail }}</td>
+                  <td>{{ item.emp_fname }}</td>
+                  <td>{{ item.link_address }}</td>
                   <td>
                     <button
                       type="button"
@@ -71,7 +67,7 @@
                       class="fas fa-trash-alt nav-icon"
                       data-bs-toggle="modal"
                       data-bs-target="#exampleModal"
-                      (click)="getnameDel(item.goal_id)"
+                      (click)="getnameDel(item.MyBlog_id)"
                     ></i>
                   </td>
                 </tr>
@@ -86,7 +82,7 @@
         </div>
       </div>
     </div>
-  </div>
+  </div> -->
 </app-content>
 
 <div
@@ -109,8 +105,8 @@
           <span aria-hidden="true">&times;</span>
         </button>
         <br /><br />
-        <div class="modal-body" *ngIf="infoWork">
-          คุณต้องการลบข้อมูล <b>{{ infoWork.goal_title }} </b>หรือไม่?
+        <div class="modal-body" *ngIf="infoMyBlog">
+          คุณต้องการลบข้อมูล <b>{{ infoMyBlog.link_address }} </b>หรือไม่?
         </div>
         <br />
         <div class="row">
@@ -128,7 +124,7 @@
             <button
               type="button"
               class="btn btn-warning widthButtonAdd elevation-1"
-              (click)="deleteWorks(infoWork.goal_id)"
+              (click)="deleteWorks(infoMyBlog.goal_id)"
               data-bs-dismiss="modal"
             >
               ยืนยัน

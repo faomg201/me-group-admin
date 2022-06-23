@@ -21,10 +21,14 @@ declare var $: any;
 export class ListmyblogComponent implements OnInit {
 
   private serveURl= environment.apiUrl;
+  private TeststroCloud = environment.stroCloud;
   WorkURL:string = this.serveURl+'/static/goals/'
+  TeamURL:string = this.serveURl+'/static/employees/'
+  testUrl:string = this.TeststroCloud+'/test-upload-image-megroup/image/sevices/'
+  
 
   infoEMP: any;
-  infoWork: any;
+  infoMyBlog: any;
   file: any;
   p: number = 1;
   blockForm: FormGroup;
@@ -44,8 +48,8 @@ export class ListmyblogComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.getWorks();
-    this.onLoading();
+    this.getMyBlog();
+    console.log(this.testUrl);
   }
 
   get a() {
@@ -111,7 +115,7 @@ export class ListmyblogComponent implements OnInit {
           if (response.statusCode == 201) {
             $('#CREATE_WORK').modal('hide');
             this.resetFrom();
-            this.getWorks();
+            this.getMyBlog();
             this.submit = false;
             this.toastService.success('เพิ่มข้อมูลสำเร็จ', {
               duration: 10000,
@@ -135,16 +139,14 @@ export class ListmyblogComponent implements OnInit {
         }
       );
   }
-
-  getWorks() {
+  getMyBlog() {
     this.http
-      .getData('/goals')
+      .getData('/MyBlog')
       .pipe(first())
       .subscribe(
         (response: any) => {
-          console.log(response.data[0].goal_title);
           if (response.status == true) {
-            this.infoWork = response.data;
+            this.infoMyBlog = response.data;
           }
         },
         (error) => {
@@ -155,16 +157,14 @@ export class ListmyblogComponent implements OnInit {
         }
       );
   }
-
   getnameDel(id: number) {
     console.log(id);
     this.http
-      .getData('/goals/' + id)
+      .getData('/MyBlog/' + id)
       .pipe(first())
       .subscribe((response: any) => {
-        this.infoWork = response.data;
-        console.log(this.infoWork, +6666);
-        console.log(this.infoWork.goal_title);
+        this.infoMyBlog = response.data;
+        console.log(this.infoMyBlog, +6666);
       });
   }
 
@@ -176,7 +176,7 @@ export class ListmyblogComponent implements OnInit {
         (response: any) => {
           console.log(response);
           if (response.status == true) {
-            console.log(this.infoWork);
+            console.log(this.infoMyBlog);
             this.toastService.error('ลบข้อมูลสำเร็จ', {
               style: {
                 border: '2px solid red',
@@ -188,8 +188,8 @@ export class ListmyblogComponent implements OnInit {
                 secondary: '#FFFAEE',
               },
             });
-            this.infoWork = response.data;
-            this.getWorks();
+            this.infoMyBlog = response.data;
+            this.getMyBlog();
           }
         },
         (error) => {

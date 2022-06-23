@@ -25,7 +25,7 @@ export class DashboardComponent implements OnInit {
     loader.load().then(()=>{
       const myLatLng = { lat: 14.903574368823824, lng: 102.05638331433778 };
       const map = new google.maps.Map(document.getElementById("map")!,{
-        zoom:14,
+        zoom:15,
         center: myLatLng
       })
       
