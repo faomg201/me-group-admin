@@ -9,6 +9,8 @@ import {
 import { HotToastService } from '@ngneat/hot-toast';
 import { ImageCroppedEvent } from 'ngx-image-cropper';
 import { environment } from 'src/environments/environment';
+import { LocalStorageService } from 'angular-web-storage'
+
 declare var $: any;
 @Component({
   selector: 'app-listserviceus',
@@ -77,7 +79,7 @@ export class ListserviceusComponent implements OnInit {
   serviceUsForm: FormGroup;
   submit = false;
 
-  constructor(
+  constructor(private local: LocalStorageService,
     private http: HttpClientService,
     private _router: Router,
     private toastService: HotToastService,
@@ -91,6 +93,15 @@ export class ListserviceusComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.http.getData('/check-login').pipe(first()).subscribe((response: any) => {
+    },(error) => {
+        const response = error.error;
+        if (response.status == false) {
+          this.local.clear();
+          location.reload();
+        }
+      }
+    );
     this.onLoadingMBTI();
     this.getServiceUs();
     this.convertDataUrlToBlob(Blob);

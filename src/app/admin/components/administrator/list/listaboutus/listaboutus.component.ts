@@ -4,6 +4,8 @@ import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms'
 import { first, } from 'rxjs';
 import { HotToastService } from '@ngneat/hot-toast';
 import { environment } from 'src/environments/environment';
+import { LocalStorageService } from 'angular-web-storage'
+
 
 @Component({
   selector: 'app-listaboutus',
@@ -28,7 +30,8 @@ export class ListaboutusComponent implements OnInit {
   fileS:any
 
   previewLoaded: boolean = false;
-  constructor(private toastService: HotToastService, private http: HttpClientService, private builder: FormBuilder) {
+  constructor(private local: LocalStorageService,
+    private toastService: HotToastService, private http: HttpClientService, private builder: FormBuilder) {
     this.aboutUsForm = this.builder.group({
       enterprise_name: ['', Validators.required],
       enterprise_surname: ['', Validators.required],
@@ -37,6 +40,15 @@ export class ListaboutusComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.http.getData('/check-login').pipe(first()).subscribe((response: any) => {
+    },(error) => {
+        const response = error.error;
+        if (response.status == false) {
+          this.local.clear();
+          location.reload();
+        }
+      }
+    );
     this.getImgAboutus();
     
     this.http.getData('/enterprises').pipe(first()).subscribe((response: any) => {

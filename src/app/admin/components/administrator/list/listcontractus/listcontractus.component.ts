@@ -9,6 +9,7 @@ import { HotToastService } from '@ngneat/hot-toast';
 
 import { Loader } from '@googlemaps/js-api-loader';
 import { LoginService } from '../../../../../login/service/login.service';
+import { LocalStorageService } from 'angular-web-storage'
 
 
 @Component({
@@ -27,7 +28,7 @@ export class ListcontractusComponent implements OnInit {
   infoContracts: any;
   submit = false;
   contractForm: FormGroup;
-  constructor(private http: HttpClientService,
+  constructor(private local: LocalStorageService,private http: HttpClientService,
     private toastService: HotToastService,
     private builder: FormBuilder,
     private loginService: LoginService) {
@@ -80,6 +81,15 @@ export class ListcontractusComponent implements OnInit {
   //   });
   // }
   ngOnInit(): void {
+    this.http.getData('/check-login').pipe(first()).subscribe((response: any) => {
+    },(error) => {
+        const response = error.error;
+        if (response.status == false) {
+          this.local.clear();
+          location.reload();
+        }
+      }
+    );
     this.http.getData('/contractus').pipe(first()).subscribe((response: any) => {
       
       if (response.status == true) {

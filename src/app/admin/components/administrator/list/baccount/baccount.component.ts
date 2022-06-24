@@ -39,6 +39,17 @@ export class BaccountComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.http.getData('/check-login').pipe(first()).subscribe((response: any) => {
+    },(error) => {
+        const response = error.error;
+        console.log(response);
+        
+        if (response.status == false) {
+          this.local.clear();
+          location.reload();
+        }
+      }
+    );
     this.getAccount();
     this.onLoadingRole();
     this.infoAccount();
@@ -69,6 +80,7 @@ export class BaccountComponent implements OnInit {
       });
   }
   getAccount() {
+    
     this.http.getData('/user').pipe(first()).subscribe((response: any) => {
       if (response.status == true) {
         this.infoAccount = response.data;

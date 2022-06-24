@@ -6,6 +6,7 @@ import { first } from 'rxjs';
 import { HotToastService } from '@ngneat/hot-toast';
 import { Router } from '@angular/router';
 import { LoginService } from '../../../../../login/service/login.service';
+import { LocalStorageService } from 'angular-web-storage'
 
 declare var $: any;
 @Component({
@@ -20,7 +21,7 @@ export class EditaccountComponent implements OnInit {
   accountForm: FormGroup;
   ConfirmForm: FormGroup;
 
-  constructor(private loginService: LoginService, private http: HttpClientService, private _route: ActivatedRoute, private toastService: HotToastService, private router: Router,
+  constructor(private local: LocalStorageService, private loginService: LoginService, private http: HttpClientService, private _route: ActivatedRoute, private toastService: HotToastService, private router: Router,
     private builder: FormBuilder) {
     this.accountForm = this.builder.group({
       Uadmin_username: ['', Validators.required],
@@ -36,6 +37,17 @@ export class EditaccountComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.http.getData('/check-login').pipe(first()).subscribe((response: any) => {
+    },(error) => {
+        const response = error.error;
+        console.log(response);
+        
+        if (response.status == false) {
+          this.local.clear();
+          location.reload();
+        }
+      }
+    );
     this.onLoadingRole();
     const id = +this._route.snapshot.params['id'];
     this.http.getData('/user/' + id).pipe(first()).subscribe((response: any) => {
