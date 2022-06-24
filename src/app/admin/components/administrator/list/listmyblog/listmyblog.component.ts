@@ -8,6 +8,8 @@ import {
   FormBuilder,
   Validators
 } from '@angular/forms';
+import { LocalStorageService } from 'angular-web-storage'
+
 
 import { HotToastService } from '@ngneat/hot-toast';
 import { environment } from 'src/environments/environment';
@@ -35,7 +37,7 @@ export class ListmyblogComponent implements OnInit {
   submit = false;
 
   previewLoaded: boolean = false;
-  constructor(
+  constructor(private local: LocalStorageService,
     private http: HttpClientService,
     private _router: Router,
     private toastService: HotToastService,
@@ -48,6 +50,15 @@ export class ListmyblogComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.http.getData('/check-login').pipe(first()).subscribe((response: any) => {
+    },(error) => {
+        const response = error.error;
+        if (response.status == false) {
+          this.local.clear();
+          location.reload();
+        }
+      }
+    );
     this.getMyBlog();
     console.log(this.testUrl);
   }

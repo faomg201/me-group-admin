@@ -11,6 +11,7 @@ import {
 
 import { HotToastService } from '@ngneat/hot-toast';
 import { environment } from 'src/environments/environment';
+import { LocalStorageService } from 'angular-web-storage'
 
 declare var $: any;
 @Component({
@@ -30,7 +31,7 @@ export class ListworksComponent implements OnInit {
   submit = false;
 
   previewLoaded: boolean = false;
-  constructor(
+  constructor(private local: LocalStorageService,
     private http: HttpClientService,
     private _router: Router,
     private toastService: HotToastService,
@@ -45,6 +46,15 @@ export class ListworksComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.http.getData('/check-login').pipe(first()).subscribe((response: any) => {
+    },(error) => {
+        const response = error.error;
+        if (response.status == false) {
+          this.local.clear();
+          location.reload();
+        }
+      }
+    );
     this.getWorks();
     this.onLoading();
   }

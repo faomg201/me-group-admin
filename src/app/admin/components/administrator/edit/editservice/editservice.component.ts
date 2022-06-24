@@ -7,6 +7,7 @@ import { HotToastService } from '@ngneat/hot-toast';
 import { Router } from '@angular/router';
 import { ImageCroppedEvent } from 'ngx-image-cropper';
 import { environment } from 'src/environments/environment';
+import { LocalStorageService } from 'angular-web-storage'
 
 @Component({
   selector: 'app-editservice',
@@ -83,7 +84,7 @@ export class EditserviceComponent implements OnInit {
   file: any;
   serviceForm: FormGroup;
   submit = false;
-  constructor(private http: HttpClientService, private _route: ActivatedRoute, private toastService: HotToastService, private router: Router,
+  constructor(private local: LocalStorageService,private http: HttpClientService, private _route: ActivatedRoute, private toastService: HotToastService, private router: Router,
     private builder: FormBuilder) {
     this.serviceForm = this.builder.group({
       service_name: ['', Validators.required],
@@ -93,6 +94,17 @@ export class EditserviceComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.http.getData('/check-login').pipe(first()).subscribe((response: any) => {
+    },(error) => {
+        const response = error.error;
+        console.log(response);
+        
+        if (response.status == false) {
+          this.local.clear();
+          location.reload();
+        }
+      }
+    );
     this.previewLoaded = false;
     const id = +this._route.snapshot.params['id'];
     this.http.getData('/services/' + id).pipe(first()).subscribe((response: any) => {

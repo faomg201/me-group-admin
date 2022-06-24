@@ -11,6 +11,8 @@ import { first } from 'rxjs';
 import { HotToastService } from '@ngneat/hot-toast';
 import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
+import { LocalStorageService } from 'angular-web-storage'
+
 
 @Component({
   selector: 'app-editworks',
@@ -29,6 +31,7 @@ export class EditworksComponent implements OnInit {
   submit = false;
 
   constructor(
+    private local: LocalStorageService,    
     private http: HttpClientService,
     private _route: ActivatedRoute,
     private toastService: HotToastService,
@@ -44,6 +47,15 @@ export class EditworksComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.http.getData('/check-login').pipe(first()).subscribe((response: any) => {
+    },(error) => {
+        const response = error.error;
+        if (response.status == false) {
+          this.local.clear();
+          location.reload();
+        }
+      }
+    );
     this.previewLoaded = false;
     this.onLoading();
     const id = +this._route.snapshot.params['id'];

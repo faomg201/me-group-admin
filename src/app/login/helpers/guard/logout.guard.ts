@@ -23,7 +23,7 @@ export class LogoutGuard implements CanActivate {
         this.local.clear();
       }
       if(currentUser){
-        this.router.navigate(['/admin/dashboard'])
+        this.router.navigate(['/admin/administrator/baccount'])
         
       }
       return true
