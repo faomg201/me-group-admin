@@ -4,6 +4,7 @@ import { LoginService } from '../login/service/login.service';
 import { FormControl, FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { LocalStorageService } from 'angular-web-storage';
 import { first } from 'rxjs';
+import { HotToastService } from '@ngneat/hot-toast';
 
 
 @Component({
@@ -17,7 +18,7 @@ export class LoginComponent implements OnInit {
   token: any
   loginForm: FormGroup;
   submit = false;
-  constructor(private builder: FormBuilder, private http: LoginService, public local: LocalStorageService, private router: Router) {
+  constructor(private toastService: HotToastService,private builder: FormBuilder, private http: LoginService, public local: LocalStorageService, private router: Router) {
     this.loginForm = this.builder.group({
       Uadmin_username: ['', Validators.required],
       Uadmin_password: ['', Validators.required]
@@ -46,12 +47,33 @@ export class LoginComponent implements OnInit {
     this.http.Login('/user/signin', formData).pipe(first()).subscribe((response: any) => {
       console.log(response);
       if(response.status == true){
+        this.toastService.success('เข้าสู่ระบบสำเร็จ', {
+          duration: 10000,
+          style: {
+            border: '2px solid green',
+            padding: '16px',
+            color: 'green',
+          },
+          iconTheme: {
+            primary: 'green',
+            secondary: '#FFFAEE',
+          },
+        });
         this.router.navigate(['/admin/administrator/baccount'])
-        
-        
       }else{
         // console.log(response);
-        alert('รหัสผิดครับ');
+        this.toastService.error('รหัสผ่านหรือชื่อผู้ใช้ไม่ถูกต้อง', {
+          duration: 10000,
+          style: {
+            border: '2px solid red',
+            padding: '16px',
+            color: 'red',
+          },
+          iconTheme: {
+            primary: 'red',
+            secondary: 'red',
+          },
+        });
       }
       // this.router.navigate(['/admin/dashboard'])
  
