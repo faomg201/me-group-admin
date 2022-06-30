@@ -12,6 +12,7 @@
       <div class="col align-self-center"></div>
       <div class="col align-self-end" align="right">
         <button
+        *ngIf="roleName !== 'Editor'; hidden"
           type="button"
           class="btn btn-light widthButtonAdd elevation-2"
           (click)="Open_Cre_Acc_Modal()"
@@ -51,7 +52,7 @@
                   </td>
                   <td>{{ item.role_name }}</td>
                   <td>
-                    <button
+                    <button *ngIf="roleName !== 'Editor' || NameUser == item.Uadmin_username; hidden"
                       type="button"
                       class="btn round"
                       (click)="onClick(item.user_id)"
@@ -61,6 +62,7 @@
                   </td>
                   <td>
                     <i
+                      *ngIf="roleName !== 'Editor'; hidden"
                       class="fas fa-trash-alt nav-icon"
                       (click)="Open_DelAccount_Model()"
                       (click)="getnameDel(item.user_id)"
@@ -221,60 +223,60 @@
     <div class="modal-content">
       <div class="modal-body" align="center">
         <form [formGroup]="ConfirmForm">
-        <button
-          type="button"
-          class="close"
-          (click)="Close_DelAccount_Model()"
-          aria-label="Close"
-          (click)="ngOnInit()"
-        >
-          <span aria-hidden="true">&times;</span>
-        </button>
-        <br /><br />
-        <div class="modal-body" *ngIf="infoAccount">
-          ยืนยันรหัสผ่านเพื่อลบข้อมูล
-          <b>{{ this.infoAccount.Uadmin_username }} </b>?
-        </div>
-        <div class="row">
-          <div class="col-md-2"></div>
-          <div class="col-md-8">
-            <input
-              type="password"
-              class="form-control"
-              formControlName="Confirm_password"
-              [ngClass]="{
-                'is-invalid': submit && b['Confirm_password'].errors
-              }"
-            />
-            <div class="invalid-feedback">รหัสผ่านไม่ถูกต้อง</div>
+          <button
+            type="button"
+            class="close"
+            (click)="Close_DelAccount_Model()"
+            aria-label="Close"
+            (click)="ngOnInit()"
+          >
+            <span aria-hidden="true">&times;</span>
+          </button>
+          <br /><br />
+          <div class="modal-body" *ngIf="infoAccount">
+            ยืนยันรหัสผ่านเพื่อลบข้อมูล
+            <b>{{ this.infoAccount.Uadmin_username }} </b>?
           </div>
-          <div class="col-md-2"></div>
-        </div>
-        <br />
-        <div class="row">
-          <div class="col-md-2"></div>
-          <div class="col-md-4">
-            <button
-              type="button"
-              class="btn btn-light widthButtonAdd elevation-1"
-              (click)="Close_DelAccount_Model()"
-            >
-              ยกเลิก
-            </button>
+          <div class="row">
+            <div class="col-md-2"></div>
+            <div class="col-md-8">
+              <input
+                type="password"
+                class="form-control"
+                formControlName="Confirm_password"
+                [ngClass]="{
+                  'is-invalid': submit && b['Confirm_password'].errors
+                }"
+              />
+              <div class="invalid-feedback">รหัสผ่านไม่ถูกต้อง</div>
+            </div>
+            <div class="col-md-2"></div>
           </div>
-          <div class="col-md-4">
-            <button
-              type="button"
-              class="btn btn-warning widthButtonAdd elevation-1"
-              (click)="deleteAcount(infoAccount.user_id)"
-            >
-              ยืนยัน
-            </button>
+          <br />
+          <div class="row">
+            <div class="col-md-2"></div>
+            <div class="col-md-4">
+              <button
+                type="button"
+                class="btn btn-light widthButtonAdd elevation-1"
+                (click)="Close_DelAccount_Model()"
+              >
+                ยกเลิก
+              </button>
+            </div>
+            <div class="col-md-4">
+              <button
+                type="button"
+                class="btn btn-warning widthButtonAdd elevation-1"
+                (click)="deleteAcount(infoAccount.user_id)"
+              >
+                ยืนยัน
+              </button>
+            </div>
+            <div class="col-md-2"></div>
           </div>
-          <div class="col-md-2"></div>          
-        </div>
-        <br /><br />
-      </form>
+          <br /><br />
+        </form>
       </div>
     </div>
   </div>

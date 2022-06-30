@@ -112,6 +112,7 @@
                       <div class="row">
                         <div class="col-md-8">
                           <button
+                          *ngIf="roleName !== 'Editor'; hidden"
                             type="button"
                             class="btn btn-danger widthButtonAdd elevation-1"
                             (click)="openModal_DelAcc()"

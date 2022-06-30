@@ -39,6 +39,9 @@ export class LoginService {
   public get userTokenValue(): any {
     return localStorage.getItem('userToken')
   }
+  public get roleNameValue(): any {
+    return localStorage.getItem('roleName')
+  }
 
 
 
@@ -49,6 +52,7 @@ export class LoginService {
       if (response.statusCode == 201) {
         localStorage.setItem('currentUser', JSON.stringify(response.token));
         localStorage.setItem('Username', (response.data.Uadmin_username));
+        localStorage.setItem('roleName', (response.data.role_name));
         localStorage.setItem('UserID', (response.data.user_id));
         // this.local.set('setupTime', response, 2, 'h');
         // this.local.set("setupTime", Date.now());

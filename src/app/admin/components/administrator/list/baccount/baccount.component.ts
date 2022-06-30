@@ -13,6 +13,9 @@ declare var $: any;
   styleUrls: ['./baccount.component.css']
 })
 export class BaccountComponent implements OnInit {
+  roleName = this.loginService.roleNameValue;
+  NameUser = this.loginService.UsernameValue;
+ 
   p = 1;
   infoAccount: any;
   infoRole: any;
@@ -39,6 +42,7 @@ export class BaccountComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    console.log(this.roleName);
     this.http.getData('/check-login').pipe(first()).subscribe((response: any) => {
     },(error) => {
         const response = error.error;
