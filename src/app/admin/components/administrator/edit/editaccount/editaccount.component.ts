@@ -15,6 +15,7 @@ declare var $: any;
   styleUrls: ['./editaccount.component.css']
 })
 export class EditaccountComponent implements OnInit {
+  roleName = this.loginService.roleNameValue;
   infoAccountByid: any;
   infoRole: any;
   submit = false;
