@@ -19,6 +19,7 @@ import { EditserviceusComponent } from './edit/editserviceus/editserviceus.compo
 
 import { BaccountComponent } from './list/baccount/baccount.component';
 import { LogsComponent } from './list/logs/logs.component';
+import { AuthGuard } from 'src/app/login/helpers/guard/auth.guard';
 
 
 
@@ -33,7 +34,7 @@ const routes: Routes = [
   {path: 'listmyblog', component: ListmyblogComponent},
 
   {path: 'baccount', component: BaccountComponent},
-  {path: 'logs', component: LogsComponent},
+  {path: 'logs', component: LogsComponent,canActivate: [AuthGuard]},
   {path: 'create', component: CreateComponent},
   {path: 'edit/:id', component: EditComponent},
   {path: 'editservice/:id', component: EditserviceComponent},

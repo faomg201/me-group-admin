@@ -98,7 +98,8 @@
               <p>ติดต่อเรา</p>
             </a>
           </li>
-          <li class="nav-item">
+          <li class="nav-item"
+          *ngIf="roleName !== 'Editor'; hidden">
             <a href="admin/administrator/logs" class="nav-link">
               <i class="fas fa-history nav-icon"></i>
               <p>ประวัติกิจกรรม</p>
