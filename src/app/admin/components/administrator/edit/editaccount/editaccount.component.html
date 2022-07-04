@@ -50,7 +50,8 @@
                     <div class="col-md-6">
                       <div class="mb-3">
                         <label>สิทธิ์การเข้าถึง</label>
-                        <select
+                        <select 
+                        *ngIf="roleName !== 'Editor'; hidden"
                           class="form-select"
                           formControlName="role_id"
                           [ngClass]="{
@@ -64,6 +65,26 @@
                             {{ item.role_name }}
                           </option>
                         </select>
+                        <fieldset disabled>
+                          <div class="form-group">
+                            <select
+                            *ngIf="roleName !== 'Admin'; hidden"
+                              class="form-select"
+                              formControlName="role_id"
+                              [ngClass]="{
+                                'is-invalid': submit && a['role_id'].errors
+                              }"
+                            >
+                              <option
+                                *ngFor="let item of infoRole; let i = index"
+                                value="{{ item.id }}"
+                              >
+                                {{ item.role_name }}
+                              </option>
+                            </select>
+                          </div>
+                        </fieldset>
+                        
                       </div>
                     </div>
                     <div class="col-md-6">
@@ -112,7 +133,7 @@
                       <div class="row">
                         <div class="col-md-8">
                           <button
-                          *ngIf="roleName !== 'Editor'; hidden"
+                            *ngIf="roleName !== 'Editor'; hidden"
                             type="button"
                             class="btn btn-danger widthButtonAdd elevation-1"
                             (click)="openModal_DelAcc()"
