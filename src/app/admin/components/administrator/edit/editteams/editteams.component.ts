@@ -121,7 +121,6 @@ export class EditteamsComponent implements OnInit {
     this.previewLoaded = false;
     this.onLoading();
     const id = +this._route.snapshot.params['id'];
-    console.log(id);
     this.http
       .getData('/employees/' + id)
       .pipe(first())
@@ -151,7 +150,6 @@ export class EditteamsComponent implements OnInit {
         .getData('/mbti')
         .pipe(first())
         .subscribe((response: any) => {
-          console.log(response);
           if (response.status == true) {
             this.infoMBTI = response.data;
           }
@@ -203,14 +201,11 @@ export class EditteamsComponent implements OnInit {
   }
 
   getnameDel(id: number) {
-    console.log(id);
     this.http
       .getData('/employees/' + id)
       .pipe(first())
       .subscribe((response: any) => {
         this.infoTeam = response.data;
-        console.log(this.infoTeam, +6666);
-        console.log(this.infoTeam.emp_fname);
       });
   }
 
@@ -220,9 +215,7 @@ export class EditteamsComponent implements OnInit {
       .pipe(first())
       .subscribe(
         (response: any) => {
-          console.log(response);
           if (response.status == true) {
-            console.log(this.infoTeam);
             this.toastService.error('ลบข้อมูลสำเร็จ', {
               style: {
                 border: '2px solid red',

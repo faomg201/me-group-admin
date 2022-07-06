@@ -122,6 +122,7 @@ export class ListteamsComponent implements OnInit {
     this.teamForm.reset();
     this.previewLoaded = false;
     this.imageChangedEvent = false;
+    this.submit = false;
   }
 
   getTeams() {
@@ -130,7 +131,6 @@ export class ListteamsComponent implements OnInit {
       .pipe(first())
       .subscribe(
         (response: any) => {
-          console.log(response);
           if (response.status == true) {
             this.infoTeam = response.data;
           }
@@ -144,14 +144,11 @@ export class ListteamsComponent implements OnInit {
       );
   }
   getnameDel(id: number) {
-    console.log(id);
     this.http
       .getData('/employees/' + id)
       .pipe(first())
       .subscribe((response: any) => {
         this.infoDel = response.data;
-        console.log(this.infoDel, +6666);
-        console.log(this.infoDel.emp_fname);
       });
   }
 
@@ -161,7 +158,6 @@ export class ListteamsComponent implements OnInit {
         .getData('/mbti')
         .pipe(first())
         .subscribe((response: any) => {
-          console.log(response);
           if (response.status == true) {
             this.infoMBTI = response.data;
           }
@@ -181,9 +177,7 @@ export class ListteamsComponent implements OnInit {
       .pipe(first())
       .subscribe(
         (response: any) => {
-          console.log(response);
           if (response.status == true) {
-            console.log(this.infoTeam);
             this.toastService.error('ลบข้อมูลสำเร็จ', {
               style: {
                 border: '2px solid red',
@@ -209,8 +203,6 @@ export class ListteamsComponent implements OnInit {
   }
 
   createTeams() {
-    console.log(this.teamForm.get('emp_fname')?.value);
-    
     this.submit = true;
     if (this.teamForm.invalid) {
       this.toastService.error('กรอกข้อมูลผิดพลาด');
@@ -224,14 +216,11 @@ export class ListteamsComponent implements OnInit {
     formData.append('mbti_id', this.teamForm.get('mbti_id')?.value);
     formData.append('emp_quote', this.teamForm.get('emp_quote')?.value);
     formData.append('emp_contract', this.teamForm.get('emp_contract')?.value);
-    console.log(55);
     this.http
       .createData('/employees', formData)
       .pipe(first())
       .subscribe(
         (response: any) => {
-          console.log(response);
-          
           if (response.statusCode == 201) {
             $('#CREATE_EMP').modal('hide');
             this.getTeams();

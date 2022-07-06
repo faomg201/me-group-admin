@@ -86,7 +86,6 @@ export class EditworksComponent implements OnInit {
         .getData('/services')
         .pipe(first())
         .subscribe((response: any) => {
-          console.log(response);
           if (response.status == true) {
             this.infoServ = response.data;
           }
@@ -131,7 +130,6 @@ export class EditworksComponent implements OnInit {
     formData.append('goal_detail', this.worksForm.get('goal_detail')?.value);
     formData.append('goal_title', this.worksForm.get('goal_title')?.value);
     this.http.updateData('/goals/' + this._route.snapshot.params['id'], formData).pipe(first()).subscribe((response: any) => {
-      console.log(response);
       if (response.statusCode == 201) {
         this.ngOnInit();
         this.router.navigate(['/admin/administrator/listworks']);
@@ -173,9 +171,7 @@ export class EditworksComponent implements OnInit {
       .pipe(first())
       .subscribe(
         (response: any) => {
-          console.log(response);
           if (response.status == true) {
-            console.log(this.info);
             this.toastService.error('ลบข้อมูลสำเร็จ', {
               style: {
                 border: '2px solid red',

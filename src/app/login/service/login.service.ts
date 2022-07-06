@@ -33,9 +33,9 @@ export class LoginService {
   public get UserIDValue(): any {
     return localStorage.getItem('UserID')
   }
-  public get SetupTimeValue(): any {
-    return localStorage.getItem('setupTime')
-  }
+  // public get SetupTimeValue(): any {
+  //   return localStorage.getItem('setupTime')
+  // }
   public get userTokenValue(): any {
     return localStorage.getItem('userToken')
   }
@@ -47,8 +47,6 @@ export class LoginService {
 
   Login(loginData: any, path: any) {
     return this.http.post(this.serveURl + loginData, path).pipe(map((response: any) => {
-      console.log(response.data);
-      const now = new Date()
       if (response.statusCode == 201) {
         localStorage.setItem('currentUser', JSON.stringify(response.token));
         localStorage.setItem('Username', (response.data.Uadmin_username));
@@ -56,9 +54,8 @@ export class LoginService {
         localStorage.setItem('UserID', (response.data.user_id));
         // this.local.set('setupTime', response, 2, 'h');
         // this.local.set("setupTime", Date.now());
-        localStorage.setItem('setupTime', JSON.stringify({exp: Date()}));
+        // localStorage.setItem('setupTime', JSON.stringify({exp: Date()}));
         this.local.set('userToken', response.data, 1  , 'h');
-          console.log(this.local.get('userToken'),6666666);
         
         return response
       }

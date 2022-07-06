@@ -15,24 +15,11 @@ export class AuthGuard implements CanActivate {
     const currentUser = this.loginService.currentUserValue;
     const userToken = this.loginService.userTokenValue;
     const roleName = this.loginService.roleNameValue;
-      console.log(roleName);
-      
-    const itemStr:any = this.loginService.SetupTimeValue
     
-    
-    console.log(userToken, 666);
-    const item = JSON.parse(itemStr)
-    const now:any = new Date()
-    console.log()
     const PartN = window.location.pathname;
     if(PartN == '/admin/administrator/logs' && roleName == 'Editor'){
       // this.router.navigate(['/admin/administrator/baccount'])
       return false;
-    }
-    if (now> item) {
-      // If the item is expired, delete the item from storage
-      // and return null
-      this.local.clear();
     }
     if(!userToken){
       this.local.clear();

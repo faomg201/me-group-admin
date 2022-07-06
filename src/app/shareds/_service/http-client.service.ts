@@ -19,8 +19,8 @@ export class HttpClientService {
    }
 
   getData(path:any){
-    console.log(path);
-    console.log(this.serveURl+path);
+    // console.log(path);
+    // console.log(this.serveURl+path);
     
     return this.http.get(this.serveURl+path,{
       headers: {
@@ -36,10 +36,6 @@ export class HttpClientService {
     })
   }
   createDatauser(path:any, data:any  ){
-    // console.log(path);
-    // console.log(data);
-    // console.log(token);
-    
     return this.http.post(this.serveURl+path, data,{
       headers: {
         Authorization: 'Bearer '+ this.token
