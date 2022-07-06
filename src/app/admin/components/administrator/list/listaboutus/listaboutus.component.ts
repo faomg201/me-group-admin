@@ -86,8 +86,6 @@ export class ListaboutusComponent implements OnInit {
 
           if (response.status == true) {
             this.infoImgAbout = response.data;
-            console.log(this.infoImgAbout);
-            
           }
         },
         (error) => {
@@ -108,9 +106,6 @@ export class ListaboutusComponent implements OnInit {
     this.submit = false
   }
   createAboutUs() {
-
-    console.log(this.infoAboutUs);
-
     // this.submit = true;
     // if (this.aboutUsForm.invalid) {
     //   this.toastService.error('กรอกข้อมูลผิดพลาด');
@@ -123,10 +118,7 @@ export class ListaboutusComponent implements OnInit {
       formData.append('enterprise_detail', this.aboutUsForm.get('enterprise_detail')?.value);
 
       this.http.createData('/enterprises', formData).pipe(first()).subscribe((response: any) => {
-        console.log(response);
-
         if (response.statusCode == 201) {
-          console.log(response);
           this.toastService.success('เพิ่มข้อมูลสำเร็จ', {
             duration: 10000,
             style: {
@@ -191,17 +183,6 @@ export class ListaboutusComponent implements OnInit {
   }
   submitt() {
     const data = this.myForm.get('image_name')?.value;
-    // const dataRm: string[] = [];
-    // const sender = {
-    //   current: data, remove: dataRm
-    // }
-    // console.log(data[1].name);
-
-
-    // const formValues = new FormData();
-    // for (let i = 0; i < data.length; i++) {
-    //   formValues.append("name", data[i].name, data[i].size); 
-    // }
 
     const formData = new FormData();
 
@@ -211,10 +192,8 @@ export class ListaboutusComponent implements OnInit {
 
 
     this.http.createData('/aboutUs/image', formData).pipe(first()).subscribe((response: any) => {
-      console.log(response);
-
+  
       if (response.statusCode == 201) {
-        console.log(response);
         this.toastService.success('เพิ่มข้อมูลสำเร็จ', {
           duration: 10000,
           style: {
@@ -275,7 +254,6 @@ export class ListaboutusComponent implements OnInit {
           image_name: file,
         });
       }
-      console.log(this.myForm.get('image_name')?.value);
 
       // }
 

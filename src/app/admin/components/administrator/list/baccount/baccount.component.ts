@@ -42,12 +42,9 @@ export class BaccountComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log(this.roleName);
     this.http.getData('/check-login').pipe(first()).subscribe((response: any) => {
     },(error) => {
         const response = error.error;
-        console.log(response);
-        
         if (response.status == false) {
           this.local.clear();
           location.reload();
@@ -73,14 +70,11 @@ export class BaccountComponent implements OnInit {
   }
 
   getnameDel(id: number) {
-    console.log(id);
     this.http
       .getData('/user/' + id)
       .pipe(first())
       .subscribe((response: any) => {
         this.infoAccount = response.data;
-        console.log(this.infoAccount, +6666);
-        console.log(this.infoAccount.Uadmin_username);
       });
   }
   getAccount() {
@@ -88,7 +82,6 @@ export class BaccountComponent implements OnInit {
     this.http.getData('/user').pipe(first()).subscribe((response: any) => {
       if (response.status == true) {
         this.infoAccount = response.data;
-        console.log(this.infoAccount);
       }
     }, (error) => {
       const response = error.error;
@@ -108,7 +101,6 @@ export class BaccountComponent implements OnInit {
           }
         });
     } catch (error) {
-      console.log(error);
     }
   }
 
@@ -134,7 +126,6 @@ export class BaccountComponent implements OnInit {
 
     this.http
       .createDatauser('/user', formData).pipe(first()).subscribe((response: any) => {
-        console.log(response);
 
         if (response.statusCode == 201) {
           $('#CREATE_EMP').modal('hide');
@@ -180,14 +171,11 @@ export class BaccountComponent implements OnInit {
     this.submit = true;
 
     const UserName: any = this.loginService.UsernameValue;
-    console.log(UserName);
-    console.log(this.ConfirmForm.get('Confirm_password')?.value);
     const formData = new FormData();
     formData.append('Uadmin_username', UserName);
     formData.append('Uadmin_password', this.ConfirmForm.get('Confirm_password')?.value);
 
     this.loginService.Login('/user/signin', formData).pipe(first()).subscribe((response: any) => {
-      console.log(response);
       if (response.status == true) {
         this.http
           .removeData('/user/' + id)

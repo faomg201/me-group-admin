@@ -37,15 +37,14 @@ export class LoginComponent implements OnInit {
 
   login() {
     const formData = new FormData();
-    console.log(this.loginForm.get('Uadmin_username')?.value);
-    console.log(this.loginForm.get('Uadmin_password')?.value);
+    // console.log(this.loginForm.get('Uadmin_username')?.value);
+    // console.log(this.loginForm.get('Uadmin_password')?.value);
     
     
     formData.append('Uadmin_username', this.loginForm.get('Uadmin_username')?.value);
     formData.append('Uadmin_password', this.loginForm.get('Uadmin_password')?.value);
     
     this.http.Login('/user/signin', formData).pipe(first()).subscribe((response: any) => {
-      console.log(response);
       if(response.status == true){
         this.toastService.success('เข้าสู่ระบบสำเร็จ', {
           duration: 10000,
@@ -88,9 +87,7 @@ export class LoginComponent implements OnInit {
     },
       err => {
         const error = err.error.error
-
-        console.log(error);
-        alert('แตกกกก');
+        alert('เกิดข้อผิดพลาด');
       }
 
     );

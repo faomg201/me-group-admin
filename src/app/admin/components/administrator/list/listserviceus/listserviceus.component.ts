@@ -129,7 +129,6 @@ export class ListserviceusComponent implements OnInit {
       .pipe(first())
       .subscribe(
         (response: any) => {
-          console.log(response);
           if (response.status == true) {
             this.infoServiceUs = response.data;
           }
@@ -143,14 +142,11 @@ export class ListserviceusComponent implements OnInit {
       );
   }
   getnameDel(id: number) {
-    console.log(id);
     this.http
       .getData('/serviceUs/' + id)
       .pipe(first())
       .subscribe((response: any) => {
         this.infoDel = response.data;
-        console.log(this.infoDel, +6666);
-        console.log(this.infoDel.serviceUs_name);
       });
   }
 
@@ -160,7 +156,6 @@ export class ListserviceusComponent implements OnInit {
         .getData('/mbti')
         .pipe(first())
         .subscribe((response: any) => {
-          console.log(response);
           if (response.status == true) {
             this.infoMBTI = response.data;
           }
@@ -180,9 +175,7 @@ export class ListserviceusComponent implements OnInit {
       .pipe(first())
       .subscribe(
         (response: any) => {
-          console.log(response);
           if (response.status == true) {
-            console.log(this.infoServiceUs);
             this.toastService.error('ลบข้อมูลสำเร็จ', {
               style: {
                 border: '2px solid red',
@@ -222,8 +215,6 @@ export class ListserviceusComponent implements OnInit {
       .pipe(first())
       .subscribe(
         (response: any) => {
-          console.log(response);
-
           if (response.statusCode == 201) {
             $('#CREATE_EMP').modal('hide');
             this.getServiceUs();

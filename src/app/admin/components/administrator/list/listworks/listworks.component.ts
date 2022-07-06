@@ -84,7 +84,6 @@ export class ListworksComponent implements OnInit {
         .getData('/services')
         .pipe(first())
         .subscribe((response: any) => {
-          console.log(response);
           if (response.status == true) {
             this.infoServ = response.data;
           }
@@ -102,6 +101,7 @@ export class ListworksComponent implements OnInit {
     $('#CREATE_WORK').modal('hide');
     this.worksForm.reset();
     this.previewLoaded = false;
+    this.submit = false;
   }
 
   createWorks() {
@@ -155,7 +155,6 @@ export class ListworksComponent implements OnInit {
       .pipe(first())
       .subscribe(
         (response: any) => {
-          console.log(response.data[0].goal_title);
           if (response.status == true) {
             this.infoWork = response.data;
           }
@@ -170,14 +169,11 @@ export class ListworksComponent implements OnInit {
   }
 
   getnameDel(id: number) {
-    console.log(id);
     this.http
       .getData('/goals/' + id)
       .pipe(first())
       .subscribe((response: any) => {
         this.infoWork = response.data;
-        console.log(this.infoWork, +6666);
-        console.log(this.infoWork.goal_title);
       });
   }
 
@@ -187,9 +183,7 @@ export class ListworksComponent implements OnInit {
       .pipe(first())
       .subscribe(
         (response: any) => {
-          console.log(response);
           if (response.status == true) {
-            console.log(this.infoWork);
             this.toastService.error('ลบข้อมูลสำเร็จ', {
               style: {
                 border: '2px solid red',
